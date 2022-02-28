@@ -2,6 +2,8 @@ const parseCSV = require('./lib/parsecsv');
 const currency = require('currency.js');
 const date = require('date-and-time');
 
+// url "https://query1.finance.yahoo.com/v7/finance/download/AMZN?period1=863740800&period2=1645574400&interval=1d&events=history&includeAdjustedClose=true"
+
 // just a quick / dumb help func
 const cleanBool = (input) => {
     if (input === 'false') {
@@ -96,16 +98,16 @@ const cleanOrderObj = (orderObj) => {
             December: {total: currency(0), count: 0}
         },
         year: {},
-        mostCommon: []
+        mostCommon: [],
+        cleanRecords: []
     };
 
     const tmpAsinCountObj = {};
-    const cleanRecords = [];
 
     let tmpTotalPurchase = currency(0);
     records.forEach(orderObj => {
         const cleanObj = cleanOrderObj(orderObj);
-        cleanRecords.push(cleanObj);
+        outputObj.cleanRecords.push(cleanObj);
         const itemTotalValue = cleanObj.ItemTotal.value;
         const orderDay = date.format(cleanObj.OrderDate,'dddd'); 
         const orderMonth = date.format(cleanObj.OrderDate, 'MMMM');
@@ -130,11 +132,11 @@ const cleanOrderObj = (orderObj) => {
         outputObj.year[orderYear].count++;
         outputObj.year[orderYear].total.add(cleanObj.ItemTotal);
 
-        // asin count
+        // ASIN count
         if (!tmpAsinCountObj[cleanObj.ASINISBN]) {
             tmpAsinCountObj[cleanObj.ASINISBN] = 0;
         }   
-        tmpAsinCountObj[cleanObj.ASINISBN] = tmpAsinCountObj[cleanObj.ASINISBN] + 1;
+        tmpAsinCountObj[cleanObj.ASINISBN]++;
 
         // most expensive
         if (itemTotalValue > 0 && itemTotalValue > outputObj.mostExpensive.ItemTotal.value) {
@@ -156,7 +158,7 @@ const cleanOrderObj = (orderObj) => {
     const sortedTmpAsinCountArray = Object.keys(tmpAsinCountObj).sort((a,b) => (tmpAsinCountObj[b]-tmpAsinCountObj[a]));
     sortedTmpAsinCountArray.forEach(ASIN => {
         if (tmpAsinCountObj[ASIN] > 1) {
-            const tmpOrderObj = cleanRecords.find(record => record.ASINISBN === ASIN);
+            const tmpOrderObj = outputObj.cleanRecords.find(record => record.ASINISBN === ASIN);
             const tmpObj = {
                 count: tmpAsinCountObj[ASIN],
                 Title: tmpOrderObj.Title,
@@ -165,7 +167,6 @@ const cleanOrderObj = (orderObj) => {
             outputObj.mostCommon.push(tmpObj)
         }
     });
-
 
     console.log(outputObj);
 
