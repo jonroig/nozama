@@ -27,7 +27,7 @@ const cleanOrderObj = (orderObj) => {
         ASINISBN: orderObj[4],
         UNSPSCCode: orderObj[5],
         Website: orderObj[6],
-        ReleaseDate: orderObj[7],
+        ReleaseDate: orderObj[7] === '' ? null : new Date(orderObj[7]),
         Condition: orderObj[8],
         Seller: orderObj[9],
         SellerCredentials: orderObj[10],
@@ -38,7 +38,7 @@ const cleanOrderObj = (orderObj) => {
         PurchaseOrderNumber: orderObj[15],
         POLineNumber: orderObj[16],
         OrderingCustomerEmail: orderObj[17],
-        ShipmentDate: orderObj[18],
+        ShipmentDate: new Date(orderObj[18]),
         ShippingAddressName: orderObj[19],
         ShippingAddressStreet1: orderObj[20],
         ShippingAddressStreet2: orderObj[21],
@@ -99,7 +99,7 @@ const cleanOrderObj = (orderObj) => {
         },
         year: {},
         mostCommon: [],
-        cleanRecords: []
+        cleanRecords: [],
     };
 
     const tmpAsinCountObj = {};
@@ -147,7 +147,6 @@ const cleanOrderObj = (orderObj) => {
         if (itemTotalValue > 0 && itemTotalValue < outputObj.leastExpensive.ItemTotal.value) {
             outputObj.leastExpensive = cleanObj;
         }
-        
     });
 
     // do some aggregation
@@ -167,9 +166,16 @@ const cleanOrderObj = (orderObj) => {
             outputObj.mostCommon.push(tmpObj)
         }
     });
+    
+    // now let's break it down by year / month
+    outputObj.cleanRecords.forEach(record => {
+        
+    });
 
+
+    // tmp
+    outputObj.cleanRecords = null;
     console.log(outputObj);
-
 
 
     // total purchases
