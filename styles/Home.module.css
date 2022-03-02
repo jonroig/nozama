@@ -14,20 +14,14 @@
 }
 
 .footer {
-  display: flex;
-  flex: 1;
   padding: 2rem 0;
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
+  flex-basis: 100%;
+  text-align: center;
 }
 
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
 
 .title a {
   color: #0070f3;
@@ -52,7 +46,7 @@
 }
 
 .description {
-  margin: 4rem 0;
+  margin: 2rem 2rem 1rem 2rem;
   line-height: 1.5;
   font-size: 1.5rem;
 }
