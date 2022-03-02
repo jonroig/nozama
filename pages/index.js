@@ -18,7 +18,7 @@ export default function Home() {
   
   if (reportContent) {
     return (
-      <Report records={reportContent} />
+      <Report orderObj={reportContent} />
     );
   }
   return (

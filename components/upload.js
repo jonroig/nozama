@@ -94,12 +94,12 @@ export default function CSVReader({setReportContent}) {
     <CSVReader
     
       onUploadAccepted={(results) => {
-        const cleanResults = processCSV(results.data);
-        console.log('---------------------------');
-        console.log(cleanResults);
-        console.log('---------------------------');
+        const orderObj = processCSV(results.data);
+        // console.log('---------------------------');
+        // console.log(cleanResults);
+        // console.log('---------------------------');
         setZoneHover(false);
-        setReportContent(cleanResults);
+        setReportContent(orderObj);
       }}
       onDragOver={(event) => {
         event.preventDefault();
