@@ -1,14 +1,26 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import dynamic from 'next/dynamic'
+import dynamic from 'next/dynamic';
+import React, { useState } from 'react';
 
 import styles from '../styles/Home.module.css';
 const Upload = dynamic(
   () => import('../components/upload'),
   { ssr: false }
-)
+);
+const Report = dynamic(
+  () => import('../components/report'),
+  { ssr: false }
+);
 
 export default function Home() {
+  const [reportContent, setReportContent] = useState(null);
+  
+  if (reportContent) {
+    return (
+      <Report records={reportContent} />
+    );
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -28,7 +40,7 @@ export default function Home() {
         <p className={styles.description}>
           Read your Amazon CSV file
         </p>
-        <Upload />
+        <Upload setReportContent={setReportContent}/>
         <br/><br/><br/><br/>
 
         <div className={styles.grid}>

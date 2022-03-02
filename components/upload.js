@@ -81,7 +81,9 @@ const styles = {
   }
 };
 
-export default function CSVReader() {
+export default function CSVReader({setReportContent}) {
+ console.log('setReportContent', setReportContent);
+  
   const { CSVReader } = useCSVReader();
   const [zoneHover, setZoneHover] = useState(false);
   const [removeHoverColor, setRemoveHoverColor] = useState(
@@ -90,12 +92,14 @@ export default function CSVReader() {
 
   return (
     <CSVReader
+    
       onUploadAccepted={(results) => {
         const cleanResults = processCSV(results.data);
         console.log('---------------------------');
         console.log(cleanResults);
         console.log('---------------------------');
         setZoneHover(false);
+        setReportContent(cleanResults);
       }}
       onDragOver={(event) => {
         event.preventDefault();
