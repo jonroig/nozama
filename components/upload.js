@@ -82,8 +82,6 @@ const styles = {
 };
 
 export default function CSVReader({setReportContent}) {
- console.log('setReportContent', setReportContent);
-  
   const { CSVReader } = useCSVReader();
   const [zoneHover, setZoneHover] = useState(false);
   const [removeHoverColor, setRemoveHoverColor] = useState(
@@ -95,9 +93,6 @@ export default function CSVReader({setReportContent}) {
     
       onUploadAccepted={(results) => {
         const orderObj = processCSV(results.data);
-        // console.log('---------------------------');
-        // console.log(cleanResults);
-        // console.log('---------------------------');
         setZoneHover(false);
         setReportContent(orderObj);
       }}
@@ -156,7 +151,7 @@ export default function CSVReader({setReportContent}) {
                 </div>
               </>
             ) : (
-              'Click to upload'
+              'Select AMZN CSV file'
             )}
           </div>
         </>

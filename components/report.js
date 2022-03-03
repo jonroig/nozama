@@ -1,50 +1,14 @@
 const currency = require('currency.js');
 const date = require('date-and-time');
 
-const RecordItem = ({record}) => (
-    <div>
-        Item: {record.Title}<br/>
-        Cost: {record.ItemTotal.value}
-    </div>
-);
-
-const MostCommon = ({records}) => {
-    const tmpRecords = records.slice(0, 10);
-    
-    return (
-        <>
-            {tmpRecords.map(record => (
-                <div key={`mostCommon_${record.ASINISBN}`}>
-                    {record.count} {record.Title}
-                </div>
-            ))}
-        </>
-    );
-}
-
-const ByYear = ({records}) => {
-    return (
-        <>
-            {Object.keys(records).map(year => (
-                <div key={year}>
-                    {year} {records[year].records.length} {records[year].total.value}
-                </div>
-            ))}
-        </>
-    );
-}
-
-
-const ByDay = ({records}) => (
-    <>
-        {Object.keys(records).map(day => (
-            <div key={day}>
-                {day} {records[day].records.length} {records[day].total.value}
-            </div>
-        ))}
-    </>
-);
-
+import RecordItem from './reportModules/recordItem';
+import TotalPurchases from './reportModules/totalPurchases';
+import MostExpensive from './reportModules/mostExpensive';
+import LeastExpensive from './reportModules/leastExpensive';
+import MostCommon from './reportModules/mastCommon';
+import ByYear from './byYear';
+import ByDay from './reportModules/byDay';
+import ByCategory from './reportModules/byCategory';
 
 export default function Report({orderObj}) {
 
@@ -53,38 +17,22 @@ export default function Report({orderObj}) {
     return (
         <div>
             <h1>Report!</h1>
-            <div>
-                Total Number of Purchases: {orderObj.totalNumberOfPurchases}
-            </div>
-            <div>
-                Total purchase: {orderObj.totalPurchase}
-            </div>
+            <TotalPurchases orderObj={orderObj} />
             <br/>
-            <div>
-                Most Expensive:<br/><RecordItem record={orderObj.mostExpensive} />
-            </div>
+            <MostExpensive orderObj={orderObj} />
             <br/>
-            <div>
-                Least Expensive:<br/><RecordItem record={orderObj.leastExpensive} />
-            </div>
+            <LeastExpensive orderObj={orderObj} />
 
             <br/>
 
-            <div>
-                Most Common: <br/>
-                <MostCommon records={orderObj.mostCommon} />
-            </div>
+            <MostCommon orderObj={orderObj} />
             <br/>
 
-            <div>
-                By Year:<br/><ByYear records={orderObj.year} />
-            </div>
+            <ByYear orderObj={orderObj} />
 
-            <div>
-                By Day:<br/><ByDay records={orderObj.byDay} />
-            </div>
+            <ByDay orderObj={orderObj} />
 
-
+            <ByCategory orderObj={orderObj} />
         </div>
     );
   }
