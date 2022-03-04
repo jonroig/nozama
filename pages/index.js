@@ -18,7 +18,7 @@ export default function Home() {
   
   if (reportContent) {
     return (
-      <Report orderObj={reportContent} />
+      <Report orderArray={reportContent} />
     );
   }
   return (
@@ -35,10 +35,10 @@ export default function Home() {
         <h1 className={styles.title}>
           NOZAMA
         </h1>
-        <h2>... a look back at your Amazon purchases...</h2>
+        <h2 className={styles.subTitle}>... a look back at your Amazon purchases...</h2>
 
         <p className={styles.description}>
-          Read your Amazon CSV file
+          Import Amazon Order History Report
         </p>
         <Upload setReportContent={setReportContent}/>
         <br/><br/><br/><br/>

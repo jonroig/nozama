@@ -92,9 +92,9 @@ export default function CSVReader({setReportContent}) {
     <CSVReader
     
       onUploadAccepted={(results) => {
-        const orderObj = processCSV(results.data);
+        const orderArray = processCSV(results.data);
         setZoneHover(false);
-        setReportContent(orderObj);
+        setReportContent(orderArray);
       }}
       onDragOver={(event) => {
         event.preventDefault();
@@ -151,7 +151,7 @@ export default function CSVReader({setReportContent}) {
                 </div>
               </>
             ) : (
-              'Select AMZN CSV file'
+              'Select AMZN CSV'
             )}
           </div>
         </>
