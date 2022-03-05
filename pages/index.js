@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 import styles from '../styles/Home.module.css';
 const Upload = dynamic(
@@ -44,34 +45,32 @@ export default function Home() {
         <br/><br/><br/><br/>
 
         <div className={styles.grid}>
-        <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Privacy &rarr;</h2>
-            <p>Your data is 100% private. Nothing is logged or sent back to a server.</p>
-          </a>
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Purchase History &rarr;</h2>
-            <p>
-              A quick guide to grabbing your AMZN purchase history.
-            </p>
-          </a>
-
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>WTF? &rarr;</h2>
-            <p>What is Nozama and how does it work?</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Open Source &rarr;</h2>
-            <p>Errors / ideas? PRs welcome!</p>
-          </a>
-
-          
+          <Link href="/privacy" >
+            <a className={styles.card}>
+              <h2>Privacy &rarr;</h2>
+              <p>Your data is 100% private. Nothing is logged or sent back to a server.</p>
+            </a>
+          </Link>
+          <Link href="/amazonpurchasehistory">
+            <a className={styles.card}>
+              <h2>Purchase History &rarr;</h2>
+              <p>
+                A quick guide to grabbing your AMZN purchase history.
+              </p>
+            </a>
+          </Link>
+          <Link href="/wtf">
+            <a className={styles.card}>
+              <h2>WTF? &rarr;</h2>
+              <p>What is Nozama and how does it work?</p>
+            </a>
+          </Link>
+          <Link href="https://github.com/jonroig/nozama">
+            <a className={styles.card}>
+              <h2>Open Source &rarr;</h2>
+              <p>Errors / ideas? PRs welcome!</p>
+            </a>
+          </Link>
         </div>
       </main>
     </div>
