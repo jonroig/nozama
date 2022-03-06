@@ -1,6 +1,7 @@
 import currency  from 'currency.js';
 import date from 'date-and-time';
 
+
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -74,13 +75,7 @@ export default function ByYear({orderArray}) {
 
     return (
         <>
-            <h3>By Year</h3>
-            <Bar options={options} data={data} />;
-            {Object.keys(yearObj).map(year => (
-                <div key={year}>
-                    {year} {yearObj[year].records.length} {yearObj[year].total.value}
-                </div>
-            ))}
+            <Bar options={options} data={data} />
         </>
     );
 }

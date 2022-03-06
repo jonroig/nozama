@@ -1,9 +1,12 @@
 import currency  from 'currency.js';
 import date from 'date-and-time';
+import { useSelector } from 'react-redux';
 
-export default function ByCategory({orderArray}) {
+export default function ByCategory() {
+    const state = useSelector((state) => state);
+
     const byCategory = {};
-    orderArray.forEach(orderObj => {
+    state.orderArray.forEach(orderObj => {
         const theCategory = orderObj.Category || 'UNDEFINED';
         if (!byCategory[theCategory]) {
             byCategory[theCategory] = {

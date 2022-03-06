@@ -11,15 +11,12 @@ export default function TotalPurchaes({orderArray}) {
         totalObj.totalPurchase = totalObj.totalPurchase.add(orderObj.ItemTotal);
     });
 
+    
+
     return (
         <>
-            <h3>Overview</h3>
-            <div>
-                Total Number of Purchases: {totalObj.totalNumberOfPurchases}
-            </div>
-            <div>
-                Total purchase: {totalObj.totalPurchase.value}
-            </div>
+            <h2>{totalObj.totalPurchase.format()} Spent!</h2>
+            <h3>{new Intl.NumberFormat().format(totalObj.totalNumberOfPurchases)} Purchases!</h3>
         </>
     );
 }

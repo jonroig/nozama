@@ -1,6 +1,7 @@
 import currency  from 'currency.js';
 import date from 'date-and-time';
 
+
 export default function ByDay({orderArray}) {
     const dayObj = {};
     orderArray.forEach(orderObj => {
@@ -18,7 +19,7 @@ export default function ByDay({orderArray}) {
     });
     return (
         <>
-            <h3>By Day</h3>
+            <h3>By Dayew</h3>
             {Object.keys(dayObj).map(day => (
                 <div key={day}>
                     {day} {dayObj[day].records.length} {dayObj[day].total.value}

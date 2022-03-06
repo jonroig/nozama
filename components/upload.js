@@ -1,4 +1,5 @@
 import React, { useState, CSSProperties } from 'react';
+import { useRouter } from 'next/router';
 
 import {
   useCSVReader,
@@ -6,7 +7,10 @@ import {
   formatFileSize,
 } from 'react-papaparse';
 
-import {processCSV} from '../lib/processCSV';
+import { useDispatch } from 'react-redux';
+import { loadData } from '../actions';
+
+import { processCSV } from '../lib/processCSV';
 
 const GREY = '#CCC';
 const GREY_LIGHT = 'rgba(255, 255, 255, 0.4)';
@@ -81,20 +85,24 @@ const styles = {
   }
 };
 
-export default function CSVReader({setReportContent}) {
+export default function CSVReader() {
   const { CSVReader } = useCSVReader();
   const [zoneHover, setZoneHover] = useState(false);
   const [removeHoverColor, setRemoveHoverColor] = useState(
     DEFAULT_REMOVE_HOVER_COLOR
   );
 
+  const dispatch = useDispatch();
+  const router = useRouter();
   return (
     <CSVReader
-    
+      
       onUploadAccepted={(results) => {
         const orderArray = processCSV(results.data);
         setZoneHover(false);
-        setReportContent(orderArray);
+        dispatch(loadData(orderArray));
+        router.push('/report');
+        
       }}
       onDragOver={(event) => {
         event.preventDefault();

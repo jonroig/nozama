@@ -3,25 +3,21 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
+
 
 import styles from '../styles/Home.module.css';
 const Upload = dynamic(
   () => import('../components/upload'),
   { ssr: false }
 );
-const Report = dynamic(
-  () => import('../components/report'),
-  { ssr: false }
-);
+
 
 export default function Home() {
-  const [reportContent, setReportContent] = useState(null);
-  
-  if (reportContent) {
-    return (
-      <Report orderArray={reportContent} />
-    );
-  }
+  const state = useSelector((state) => state);
+
+  const showUploadButton = state.orderArray.length ? false : true;
+
   return (
     <div className={styles.container}>
       <Head>
@@ -38,10 +34,25 @@ export default function Home() {
         </h1>
         <h2 className={styles.subTitle}>... a look back at your Amazon purchases...</h2>
 
-        <p className={styles.description}>
-          Import Amazon Order History Report
-        </p>
-        <Upload setReportContent={setReportContent}/>
+        {showUploadButton && (
+          <>
+            <p className={styles.description}>
+              Import Amazon Order History Report
+            </p>
+            <Upload/>
+          </>
+        )}
+        {!showUploadButton && (
+          <>
+            <p className={styles.description}>
+              <Link href="/report" >
+                View your report
+              </Link>
+              
+            </p>
+          </>
+        )}
+        
         <br/><br/><br/><br/>
 
         <div className={styles.grid}>
