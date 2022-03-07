@@ -26,7 +26,7 @@ function Amazonpurchasehistory() {
             <li>Click Request Report</li>
           </ol>
           <p>
-            When the report is complete, you'll receive an email notification. It takes about 2 minutes.
+            When the report is complete, you&apos;ll receive an email notification. It takes about 2 minutes.
           </p>
           <p>
             To retrieve the report, visit <a href={`https://www.amazon.com/gp/b2b/reports?tag=${affiliateId}`} target="_blank" rel="noreferrer">Order History Reports</a> and select Download.
