@@ -13,7 +13,7 @@ import MostCommon from '../components/reportModules/mostCommon';
 import ByYear from '../components/reportModules/byYear';
 import ByDay from '../components/reportModules/byDay';
 import ByCategory from '../components/reportModules/byCategory';
-import AccumulationByDay from '../components/reportModules/AccumulationByDay';
+import AccumulationByDay from '../components/reportModules/accumulationByDay';
 
 
 
