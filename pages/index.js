@@ -1,12 +1,14 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-
+import { loadData } from '../actions';
+import { processCSVFromJson } from '../lib/processCSV';
 import styles from '../styles/Home.module.css';
+
 const Upload = dynamic(
   () => import('../components/upload'),
   { ssr: false }
@@ -14,6 +16,20 @@ const Upload = dynamic(
 
 
 export default function Home() {
+
+  const dispatch = useDispatch();
+  
+  const [importedData, setImportedData] = useState(false);
+
+  useEffect(() => {
+    const jsonOrderArray = localStorage.getItem('orderArray');
+    if (jsonOrderArray && !importedData) {
+      const orderArray = processCSVFromJson(JSON.parse(jsonOrderArray));
+      setImportedData(true);
+      dispatch(loadData(orderArray));
+    }
+  })
+
   const state = useSelector((state) => state);
 
   const showUploadButton = state.orderArray.length ? false : true;

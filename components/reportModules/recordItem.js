@@ -6,7 +6,7 @@ import styles from '../../styles/Reports.module.css';
 
 
 export default function RecordItem({record}) {
-    if (!record) {
+    if (!record || !record.OrderDate) {
         return (<></>);
     }
 

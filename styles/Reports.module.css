@@ -85,3 +85,7 @@
     margin: 0;
 }
 
+.totalSpendSubSubhead {
+    font-size: calc((75vw - 4.5rem) / 15);
+    margin: 0;
+}

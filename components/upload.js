@@ -1,6 +1,6 @@
 import React, { useState, CSSProperties } from 'react';
 import { useRouter } from 'next/router';
-
+import lzutf8 from 'lzutf8';
 import {
   useCSVReader,
   lightenDarkenColor,
@@ -11,6 +11,8 @@ import { useDispatch } from 'react-redux';
 import { loadData } from '../actions';
 
 import { processCSV } from '../lib/processCSV';
+
+
 
 const GREY = '#CCC';
 const GREY_LIGHT = 'rgba(255, 255, 255, 0.4)';
