@@ -22,14 +22,14 @@ function Privacy() {
             Nozama attempt to retain your data in any way.
           </p>
           <p>
-            For convenience's sake, Nozama does persist your data in your browser's{' '}
+            For convenience&apos;s sake, Nozama does persist your data in your browser&apos;s{' '}
             <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank" rel="noreferrer">localStorage</a>, 
             so when you resume a session its waiting for you there, no 
             need to get the app to re-read the purchzse history CSV.
           </p>
           <p>
             We do 3rd party tracking with Google Analytics and we load images
-            from Amazon, but presumably, they already know what you've purchased from them.
+            from Amazon, but presumably, they already know what you&apos;ve purchased from them.
           </p>
           <h2>No Hidden Tricks</h2>
           <p>
