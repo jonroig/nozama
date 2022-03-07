@@ -9,9 +9,9 @@ export default function RecordItem({record}) {
     if (!record) {
         return (<></>);
     }
-    const key = `mostExpensive_${record.ASINISBN}`;
+
     return (
-        <div className={styles.commonRow} key={key}>
+        <div className={styles.commonRow}>
             <div className={styles.mostExpensiveCostColumn}>
                 {record.ItemTotal.format()}
                 <div className={styles.totalSpend}>

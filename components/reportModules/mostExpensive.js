@@ -13,9 +13,12 @@ export default function MostExpensive({orderArray}) {
     return (
         <div>
             <h3>Most Expensive</h3>
-            {outputArray.map(record => (
-                <RecordItem record={record} />
-            ))}
+            {outputArray.map(record => {
+                const key = `mostExpensive_${record.ASINISBN}`;
+                return (
+                    <RecordItem key={mostExpensive_$record.ASINISBN} record={record} />
+                )
+            }
         </div>
     );
 }
