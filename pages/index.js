@@ -21,7 +21,7 @@ export default function Home() {
   
   const [importedData, setImportedData] = useState(false);
 
-  useEffect(() => {
+  useEffect(importedData => {
     const jsonOrderArray = localStorage.getItem('orderArray');
     if (jsonOrderArray && !importedData) {
       const orderArray = processCSVFromJson(JSON.parse(jsonOrderArray));
