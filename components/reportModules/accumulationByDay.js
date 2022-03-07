@@ -27,15 +27,15 @@ ChartJS.register(
 const options = {
     responsive: true,
     plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Chart.js Line Chart',
-      },
+        legend: {
+            position: 'top',
+        },
+        title: {
+            display: true,
+            text: 'Chart.js Line Chart',
+        },
     },
-  };
+};
 
 
 export default function AccumulationByDay({orderArray}) {
@@ -64,7 +64,6 @@ export default function AccumulationByDay({orderArray}) {
         labels,
         datasets: [
             {
-            label: 'Dataset 1',
             data: dayData,
             borderColor: 'rgb(255, 99, 132)',
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
@@ -73,14 +72,6 @@ export default function AccumulationByDay({orderArray}) {
     };
 
     return (
-        <>
-            <h3>By Dayz</h3>
-            <Line options={options} data={data} />;
-            {/* {Object.keys(dayObj).map(day => (
-                <div key={day}>
-                    {day} {dayObj[day].records.length} {dayObj[day].totalAccumulatedSpend.value}
-                </div>
-            ))} */}
-        </>
+        <Line options={options} data={data} />
     );
 }

@@ -3,18 +3,20 @@ const currency = require('currency.js');
 import RecordItem from "./recordItem";
 
 export default function MostExpensive({orderArray}) {
-    let leastExpensiveObj = orderArray[0];
-    orderArray.forEach(orderObj => {
-        const itemTotalValue = orderObj.ItemTotal.value;
-        if (itemTotalValue > 0 && itemTotalValue < leastExpensiveObj.ItemTotal.value) {
-            leastExpensiveObj = orderObj;
-        }
-    });
+    const tmpArray = orderArray.filter(orderObj => orderObj.ItemTotal.value !== 0);
+
+    const sortedLeastExpensive = tmpArray.sort((a,b) => (
+        a.ItemTotal.value - b.ItemTotal.value
+    ));
+
+    const outputArray = sortedLeastExpensive.slice(0, 10);
 
     return (
         <div>
             <h3>Least Expensive</h3>
-            <RecordItem record={leastExpensiveObj} />
+            {outputArray.map(record => (
+                <RecordItem record={record} />
+            ))}
         </div>
     );
 }

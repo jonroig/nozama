@@ -11,8 +11,6 @@ export default function TotalPurchaes({orderArray}) {
         totalObj.totalPurchase = totalObj.totalPurchase.add(orderObj.ItemTotal);
     });
 
-    
-
     return (
         <>
             <h2>{totalObj.totalPurchase.format()} Spent!</h2>

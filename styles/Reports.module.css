@@ -12,4 +12,61 @@
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
 }
-  
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 1rem 0;
+}
+
+.commonRow {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 1rem 0;
+    height: 300px;
+    
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 3;
+    font-size: 1.5rem;
+}
+
+.countColumn {
+    font-size: 4rem;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+.mostExpensiveCostColumn {
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+
+.totalSpend {
+    font-size: 1.25rem;
+}
+
+.amznImageFrame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.amznImage {
+    object-fit: contain;
+}

@@ -101,6 +101,9 @@ export default function CSVReader() {
         const orderArray = processCSV(results.data);
         setZoneHover(false);
         dispatch(loadData(orderArray));
+        if (typeof window !== "undefined") {
+          localStorage.setItem('orderArray', JSON.stringify(orderArray));
+        }
         router.push('/report');
         
       }}
