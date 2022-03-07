@@ -6,7 +6,7 @@ function Privacy() {
     return (
       <div className={styles.container}>
         <Head>
-          <title>Nozama... a look back at your Amazon purchase history</title>
+          <title>Nozama: Privacy</title>
           <meta name="description" content="Analyze your Amazon purchase history." />
           <link rel="icon" href="/favicon.ico" />
         </Head>

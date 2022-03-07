@@ -1,10 +1,10 @@
 const date = require('date-and-time');
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
-
 import styles from '../styles/Reports.module.css';
+import { loadData } from '../actions';
 
 import RecordItem from '../components/reportModules/recordItem';
 import TotalPurchases from '../components/reportModules/totalPurchases';
@@ -18,13 +18,23 @@ import AccumulationByDay from '../components/reportModules/accumulationByDay';
 
 
 export default function Report() {
+    const dispatch = useDispatch();
     const router = useRouter();
+
     const state = useSelector((state) => state);
     useEffect(() => {
         if (!state || !state.orderArray || state.orderArray.length === 0) {
             router.push('/');
         }
     });
+
+    const clearReport = () => {
+        if (typeof window !== "undefined") {
+            localStorage.setItem('orderArray', JSON.stringify([]));
+            dispatch(loadData([]));
+        }
+        router.push('/');
+    }
     
     const outputArray = state.orderArray;
     console.log(outputArray);
@@ -37,6 +47,10 @@ export default function Report() {
             <MostCommon orderArray={outputArray} />
             <ByCategory orderArray={outputArray} />
             <MostExpensive orderArray={outputArray} />
+
+            <div onClick={clearReport}>
+                Clear report
+            </div>
         </div>
     );
 }
