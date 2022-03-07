@@ -9,7 +9,6 @@ import styles from '../styles/Reports.module.css';
 import RecordItem from '../components/reportModules/recordItem';
 import TotalPurchases from '../components/reportModules/totalPurchases';
 import MostExpensive from '../components/reportModules/mostExpensive';
-import LeastExpensive from '../components/reportModules/leastExpensive';
 import MostCommon from '../components/reportModules/mostCommon';
 import ByYear from '../components/reportModules/byYear';
 import ByDay from '../components/reportModules/byDay';
