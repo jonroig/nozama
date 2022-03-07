@@ -1,4 +1,5 @@
 import currency  from 'currency.js';
+import styles from '../../styles/Reports.module.css';
 
 export default function TotalPurchaes({orderArray}) {
     const totalObj = {
@@ -12,9 +13,9 @@ export default function TotalPurchaes({orderArray}) {
     });
 
     return (
-        <>
-            <h2>{totalObj.totalPurchase.format()} Spent!</h2>
-            <h3>{new Intl.NumberFormat().format(totalObj.totalNumberOfPurchases)} Purchases!</h3>
-        </>
+        <div className={styles.totalSpendContainer}>
+            <h2 className={styles.totalSpendHeadline}>{totalObj.totalPurchase.format()}</h2>
+            <h3 className={styles.totalSpendSubhead}>{new Intl.NumberFormat().format(totalObj.totalNumberOfPurchases)} items</h3>
+        </div>
     );
 }

@@ -70,3 +70,18 @@
 .amznImage {
     object-fit: contain;
 }
+
+.totalSpendContainer {
+    text-align: center;
+}
+
+.totalSpendHeadline {
+    font-size: calc((75vw - 4.5rem) / 4);
+    margin: 0;
+}
+
+.totalSpendSubhead {
+    font-size: calc((75vw - 4.5rem) / 9);
+    margin: 0;
+}
+
