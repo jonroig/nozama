@@ -10,7 +10,7 @@ export default function AmznImage({ASINISBN, title}) {
     return (
         <>  
             <div className={styles.amznImageFrame}>
-                <a href={linkHref} target="_blank" rel="noopener" title={title}>
+                <a href={linkHref} target="_blank" rel="noreferrer" title={title}>
                     <img border="0" src={imgHref} alt={title} className={styles.amznImage}/>
                 </a>
             </div>
