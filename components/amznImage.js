@@ -1,7 +1,7 @@
 
 import styles from '../styles/Reports.module.css';
 
-export default function AmznImage({ASINISBN, title}) {
+export default function AmznImage({ASINISBN, title, format = '_SL200_'}) {
     const affiliateId = 'nozama072-20';
 
     const linkHref = `https://www.amazon.com/dp/${ASINISBN}?tag=${affiliateId}`;

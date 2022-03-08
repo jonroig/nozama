@@ -40,7 +40,7 @@ export default function MostCommon({orderArray}) {
                         </div>
                     </div>
                     <div className={styles.column}>
-                        <AmznLink ASINISBN={record.ASINISBN} title={record.title} />
+                        <h3><AmznLink ASINISBN={record.ASINISBN} title={record.title} /></h3>
                         <AmznImage ASINISBN={record.ASINISBN} title={record.title} />
                     </div>
                 </div>

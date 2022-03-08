@@ -9,7 +9,6 @@ export default function MostExpensive({orderArray}) {
     ));
 
     const outputArray = sortedMostExpensive.slice(0, 10);
-    console.log(outputArray);
     return (
         <div>
             <h3>Most Expensive</h3>
