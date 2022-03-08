@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import AmznImage from "../amznImage";
 import AmznLink from '../amznLink';
-import ImageByASINISBN from '../ImageByASINISBN';
+import ImageByASINISBN from '../imageByASINISBN';
 import styles from '../../styles/Reports.module.css';
 
 
