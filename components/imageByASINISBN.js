@@ -15,7 +15,7 @@ export default function ImageByASINISBN({ASINISBN, orderArray, format = '_SL200_
         <>  
             <div style={{margin: 5}}>
                 <a href={linkHref} target="_blank" rel="noreferrer" title={outputObj.Title} >
-                    <img border="0" src={imgHref} alt={outputObj.Title} alt=''/>
+                    <img border="0" src={imgHref} alt=''/>
                 </a>
             </div>
             <img src="" width="1" height="1" border="0" alt="" style={{border : 'none !important', margin:'0px !important'}} />

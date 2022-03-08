@@ -54,7 +54,7 @@ export default function ByCategory() {
                         </h3>
                         <div className={styles.row}>
                         {Object.keys(byCategory[category].asinObj).map(ASINISBN => (
-                            <ImageByASINISBN ASINISBN={ASINISBN} orderArray={orderArray} format='_SL70_' />
+                            <ImageByASINISBN key={`mostCommonByAsin_${ASINISBN}_${category}`} ASINISBN={ASINISBN} orderArray={orderArray} format='_SL70_' />
                         ))}
                         </div>
                         
