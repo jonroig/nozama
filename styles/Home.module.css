@@ -52,6 +52,10 @@
   font-size: 1.5rem;
 }
 
+.description a {
+  text-decoration: underline;
+}
+
 .grid {
   display: flex;
   align-items: center;
@@ -100,4 +104,10 @@
     width: 100%;
     flex-direction: column;
   }
+}
+
+.demoCSS {
+  cursor: pointer;
+  padding: 10px;
+  font-weight: bold;
 }

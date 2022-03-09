@@ -1,8 +1,12 @@
+import React, { useState } from 'react';
+
 import AmznImage from "./amznImage";
 
 export default function ImageByASINISBN({ASINISBN, orderArray, format = '_SL200_'}) {
+    const [shouldDisplay, setShouldDisplay] = useState(true);
+
     const outputObj = orderArray.find(orderObj => ASINISBN === orderObj.ASINISBN);
-    if (!outputObj) {
+    if (!outputObj || !shouldDisplay) {
         return (<></>);
     }
     
@@ -13,12 +17,12 @@ export default function ImageByASINISBN({ASINISBN, orderArray, format = '_SL200_
     
     return (
         <>  
-            <div style={{margin: 5}}>
+            <div>
                 <a href={linkHref} target="_blank" rel="noreferrer" title={outputObj.Title} >
-                    <img border="0" src={imgHref} alt=''/>
+                    <img border="0"  height='70' width='70' src={imgHref} alt='' style={{margin: 20}} onError={() => setShouldDisplay(false)} />
                 </a>
             </div>
-            <img src="" width="1" height="1" border="0" alt="" style={{border : 'none !important', margin:'0px !important'}} />
+            <img src={trackHref} width="1" height="1" border="0" alt="" style={{border : 'none !important', margin:'0px !important'}} />
         </>
     );
 }

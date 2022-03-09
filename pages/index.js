@@ -4,10 +4,14 @@ import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
+import { usePapaParse } from 'react-papaparse';
+import { useRouter } from 'next/router';
 
 import { loadData } from '../actions';
 import { processCSVFromJson } from '../lib/processCSV';
 import styles from '../styles/Home.module.css';
+import { processCSV } from '../lib/processCSV';
+
 
 const Upload = dynamic(
   () => import('../components/upload'),
@@ -18,17 +22,29 @@ const Upload = dynamic(
 export default function Home() {
 
   const dispatch = useDispatch();
-  
-  const [importedData, setImportedData] = useState(false);
+  const router = useRouter();
+  const { readString } = usePapaParse();
 
-  useEffect(importedData => {
+
+  useEffect(() => {
     const jsonOrderArray = localStorage.getItem('orderArray');
-    if (jsonOrderArray && !importedData) {
+    if (jsonOrderArray) {
       const orderArray = processCSVFromJson(JSON.parse(jsonOrderArray));
-      setImportedData(true);
       dispatch(loadData(orderArray));
     }
-  })
+  }, []);
+
+  const doDemo = async () => {
+    const response = await fetch('/example.csv');
+    const rawData = await response.text()
+    readString(rawData, {
+      complete: (results) => {
+        const orderArray = processCSV(results.data);
+        dispatch(loadData(orderArray));
+        router.push('/report');
+      }
+    }) 
+  }
 
   const state = useSelector((state) => state);
 
@@ -53,9 +69,12 @@ export default function Home() {
         {showUploadButton && (
           <>
             <p className={styles.description}>
-              Import Amazon Order History Report
+              Import <Link href="/amazonpurchasehistory">Amazon Order History Report</Link>
             </p>
             <Upload/>
+            <div className={styles.demoCSS} onClick={doDemo}>
+              &gt;&gt;&gt; demo csv &lt;&lt;&lt;
+            </div>
           </>
         )}
         {!showUploadButton && (

@@ -39,7 +39,10 @@ export default function Report() {
     const outputArray = state.orderArray;
     console.log(outputArray);
     return (
-        <div className={styles.container}>         
+        <div className={styles.container}> 
+            <div onClick={clearReport} className={styles.clearReport}>
+                Clear report
+            </div>        
             <TotalPurchases orderArray={outputArray} />
             <ByYear orderArray={outputArray} />
             <ByDay orderArray={outputArray} />
@@ -48,7 +51,7 @@ export default function Report() {
             <ByCategory orderArray={outputArray} />
             <MostExpensive orderArray={outputArray} />
 
-            <div onClick={clearReport}>
+            <div onClick={clearReport} className={styles.clearReport}>
                 Clear report
             </div>
         </div>

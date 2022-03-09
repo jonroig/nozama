@@ -27,7 +27,6 @@
     flex-wrap: wrap;
     width: 100%;
     padding: 1rem 0;
-    height: 300px;
 }
 
 .otherRow {
@@ -44,6 +43,10 @@
     flex-basis: 100%;
     flex: 3;
     font-size: 1.5rem;
+}
+
+.column h3 {
+    margin-top: 20px;
 }
 
 .countColumn {
@@ -103,4 +106,15 @@
 
 .floatLeft {
     float: left;
+}
+
+.clearReport {
+    margin: auto;
+    border-style: dotted;
+    border-color: black;
+    border-width: 1px;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+    padding: 5px;
 }
