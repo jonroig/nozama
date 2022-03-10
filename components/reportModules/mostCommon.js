@@ -3,6 +3,8 @@ import currency  from 'currency.js';
 import AmznImage from "../amznImage";
 import AmznLink from '../amznLink';
 import styles from '../../styles/Reports.module.css';
+import OrderTable from '../orderTable';
+import ImageByASINISBN from '../imageByASINISBN';
 
 export default function MostCommon({orderArray}) {
     const tmpAsinCountObj = {};
@@ -38,10 +40,13 @@ export default function MostCommon({orderArray}) {
                         <div className={styles.totalSpend}>
                             {record.total.format()}
                         </div>
+                        <div>
+                       
+                        </div>
                     </div>
                     <div className={styles.column}>
                         <h3><AmznLink ASINISBN={record.ASINISBN} title={record.title} /></h3>
-                        <AmznImage ASINISBN={record.ASINISBN} title={record.title} />
+                        <OrderTable records={record.records} orderArray={orderArray} ASINISBN={record.ASINISBN} />
                     </div>
                 </div>
             ))}
