@@ -2,6 +2,7 @@ const date = require('date-and-time');
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
+import dynamic from 'next/dynamic';
 
 import styles from '../styles/Reports.module.css';
 import { loadData } from '../actions';
@@ -9,11 +10,16 @@ import { loadData } from '../actions';
 import RecordItem from '../components/reportModules/recordItem';
 import TotalPurchases from '../components/reportModules/totalPurchases';
 import MostExpensive from '../components/reportModules/mostExpensive';
-import MostCommon from '../components/reportModules/mostCommon';
+// import MostCommon from '../components/reportModules/mostCommon';
 import ByYear from '../components/reportModules/byYear';
 import ByDay from '../components/reportModules/byDay';
 import ByCategory from '../components/reportModules/byCategory';
 import AccumulationByDay from '../components/reportModules/accumulationByDay';
+
+const MostCommon = dynamic(
+    () => import('../components/reportModules/mostCommon'),
+    { ssr: false }
+  );
 
 
 
