@@ -1,5 +1,5 @@
-import {  useState } from 'react';
-import date from 'date-and-time';
+import {useState} from 'react';
+
 import {
     DataEditor,
     DataEditorContainer,
@@ -9,61 +9,12 @@ import {
 
 
 const affiliateId = 'nozama072-20';
+
     
-export default function OrderTable({records, ASINISBN}) {
+export default function OrderTable({records, columns, divId}) {
     const [sortColumn, setSortColumn] = useState('OrderDate');
     const [sortDirection, setSortDirection] = useState('DESC');
     const [expanded, setExpanded] = useState(false);
-
-    const columns = [
-        { 
-            title: 'Date', 
-            kind: 'Text',
-            width: 110,
-            source: 'OrderDate',
-            sortType: 'date',
-            formatter: (orderDate) => (date.format(orderDate, 'YYYY-MM-DD'))
-        },
-        { 
-            title: 'Quantity', 
-            kind: 'Text',
-            width: 70,
-            source: 'Quantity',
-            sortType: 'number',
-            formatter: (Quantity) => (Quantity.toString() || 1)
-        },
-        { 
-            title: 'Unit Price', 
-            kind: 'Text',
-            width: 80,
-            source: 'PurchasePricePerUnit',
-            sortType: 'money',
-            formatter: (purchasePricePerUnit) => (purchasePricePerUnit.format())
-        },
-        {
-            title: 'Tax',
-            kind: 'Text',
-            width: 80,
-            source: 'ItemSubtotalTax',
-            sortType: 'money',
-            formatter: (itemSubtotalTax) => (itemSubtotalTax.format())
-        },
-        {
-            title: 'Price',
-            kind: 'Text',
-            width: 80,
-            source: 'ItemTotal',
-            sortType: 'money',
-            formatter: (itemTotal) => (itemTotal.format())
-        },
-        { 
-            title: 'OrderID', 
-            kind: 'Text',
-            width: 175,
-            source: 'OrderID',
-            sortType: 'text'
-        },
-    ];
 
     // figure out the type of sort we're doing from the column definitions
     const sortType = columns.find(columnObj => columnObj.source === sortColumn).sortType;
@@ -83,7 +34,7 @@ export default function OrderTable({records, ASINISBN}) {
         const newExpanded = !expanded;
         setExpanded(newExpanded);
         if (!newExpanded) {
-            const elmnt = document.getElementById(`mostCommon_${ASINISBN}`);
+            const elmnt = document.getElementById(divId);
             elmnt.scrollIntoView();
         }
     }
@@ -117,7 +68,7 @@ export default function OrderTable({records, ASINISBN}) {
             allowAdd: false,
             readonly: true,
             displayData
-        }
+        };
 
         return outputObj;
     }
@@ -146,6 +97,5 @@ export default function OrderTable({records, ASINISBN}) {
             </DataEditorContainer>
             <div onClick={sizeChangeClick}>Expand / Contract</div>
         </>
-        
     );
 }
