@@ -7,11 +7,13 @@ import {
     GridCellKind
   } from "@glideapps/glide-data-grid";
 
+  import styles from '../styles/OrderTable.module.css';
+
 
 const affiliateId = 'nozama072-20';
 
     
-export default function OrderTable({records, columns, divId}) {
+export default function OrderTable({records, columns, divId, tableWidth = 595}) {
     const [sortColumn, setSortColumn] = useState('OrderDate');
     const [sortDirection, setSortDirection] = useState('DESC');
     const [expanded, setExpanded] = useState(false);
@@ -83,7 +85,7 @@ export default function OrderTable({records, columns, divId}) {
     return (
         <>
             <DataEditorContainer 
-                width={595} 
+                width={tableWidth} 
                 height={outputHeight} 
                 style={{border: '1px solid black'}}
             >
@@ -95,7 +97,14 @@ export default function OrderTable({records, columns, divId}) {
                     onHeaderClicked={headerClicked}
                 />
             </DataEditorContainer>
-            <div onClick={sizeChangeClick}>Expand / Contract</div>
+            <div onClick={sizeChangeClick} className={styles.expandContract} style={{width: tableWidth}}>
+                {expanded && (
+                    <span>[ &#9650; Contract &#9650; ]</span>
+                )}
+                {!expanded && (
+                     <span>[ &#9660; Expand  &#9660; ]</span>
+                )}
+            </div>
         </>
     );
 }
