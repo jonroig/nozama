@@ -10,9 +10,10 @@ import {
 
 const affiliateId = 'nozama072-20';
     
-export default function OrderTable({records}) {
+export default function OrderTable({records, ASINISBN}) {
     const [sortColumn, setSortColumn] = useState('OrderDate');
     const [sortDirection, setSortDirection] = useState('DESC');
+    const [expanded, setExpanded] = useState(false);
 
     const columns = [
         { 
@@ -64,6 +65,7 @@ export default function OrderTable({records}) {
         },
     ];
 
+    // figure out the type of sort we're doing from the column definitions
     const sortType = columns.find(columnObj => columnObj.source === sortColumn).sortType;
     const sortedRows = records.sort((a,b) => {
         if (sortType === 'date') {
@@ -76,9 +78,21 @@ export default function OrderTable({records}) {
 
     const outputRows = sortDirection === 'ASC' ? sortedRows : sortedRows.reverse();
 
+
+    const sizeChangeClick = () => {
+        const newExpanded = !expanded;
+        setExpanded(newExpanded);
+        if (!newExpanded) {
+            const elmnt = document.getElementById(`mostCommon_${ASINISBN}`);
+            elmnt.scrollIntoView();
+        }
+    }
+
+
     const cellClicked = (cell) => {
         console.log('cellClicked', cell);
     }
+
 
     const headerClicked = (cell) => {
         const newSortColumn = columns[cell].source;
@@ -108,15 +122,30 @@ export default function OrderTable({records}) {
         return outputObj;
     }
 
+    const biggestHeight = (278 / 8) * sortedRows.length;
+    const smallestHeight = (278 / 2);
+    let outputHeight = biggestHeight;
+    if (!expanded) {
+        outputHeight = smallestHeight;
+    }
+
     return (
-        <DataEditorContainer width={595} height={278} style={{border: '1px solid black'}}>
-            <DataEditor 
-                getCellContent={getData} 
-                columns={columns} 
-                rows={sortedRows.length} 
-                onCellClicked={cellClicked}
-                onHeaderClicked={headerClicked}
-            />
-        </DataEditorContainer>
+        <>
+            <DataEditorContainer 
+                width={595} 
+                height={outputHeight} 
+                style={{border: '1px solid black'}}
+            >
+                <DataEditor 
+                    getCellContent={getData} 
+                    columns={columns} 
+                    rows={sortedRows.length} 
+                    onCellClicked={cellClicked}
+                    onHeaderClicked={headerClicked}
+                />
+            </DataEditorContainer>
+            <div onClick={sizeChangeClick}>Expand / Contract</div>
+        </>
+        
     );
 }

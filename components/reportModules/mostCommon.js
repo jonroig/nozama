@@ -34,7 +34,7 @@ export default function MostCommon({orderArray}) {
         <>
             <h2>Most Common</h2>
             {tmpRecords.map(record => (
-                <div key={`mostCommon_${record.ASINISBN}`} className={styles.commonRow}>
+                <div key={`mostCommon_${record.ASINISBN}`} id={`mostCommon_${record.ASINISBN}`} className={styles.commonRow}>
                     <div className={styles.countColumn}>
                         {record.records.length} 
                         <div className={styles.totalSpend}>
@@ -45,8 +45,8 @@ export default function MostCommon({orderArray}) {
                         </div>
                     </div>
                     <div className={styles.column}>
-                        <h3><AmznLink ASINISBN={record.ASINISBN} title={record.title} /></h3>
-                        <OrderTable records={record.records} />
+                        <h3><AmznLink ASINISBN={record.ASINISBN} title={record.title}/></h3>
+                        <OrderTable records={record.records} ASINISBN={record.ASINISBN}/>
                     </div>
                 </div>
             ))}
