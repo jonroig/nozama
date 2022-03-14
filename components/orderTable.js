@@ -21,7 +21,7 @@ export default function OrderTable({records}) {
             width: 110,
             source: 'OrderDate',
             sortType: 'date',
-            formatter: (orderDate) => (  date.format(orderDate, 'YYYY-MM-DD') )
+            formatter: (orderDate) => (date.format(orderDate, 'YYYY-MM-DD'))
         },
         { 
             title: 'Quantity', 
@@ -37,7 +37,7 @@ export default function OrderTable({records}) {
             width: 80,
             source: 'PurchasePricePerUnit',
             sortType: 'money',
-            formatter: (purchasePricePerUnit) => (purchasePricePerUnit.format() )
+            formatter: (purchasePricePerUnit) => (purchasePricePerUnit.format())
         },
         {
             title: 'Tax',
@@ -45,7 +45,7 @@ export default function OrderTable({records}) {
             width: 80,
             source: 'ItemSubtotalTax',
             sortType: 'money',
-            formatter: (itemSubtotalTax) => ( itemSubtotalTax.format() )
+            formatter: (itemSubtotalTax) => (itemSubtotalTax.format())
         },
         {
             title: 'Price',
@@ -53,14 +53,14 @@ export default function OrderTable({records}) {
             width: 80,
             source: 'ItemTotal',
             sortType: 'money',
-            formatter: (itemTotal) => ( itemTotal.format() )
+            formatter: (itemTotal) => (itemTotal.format())
         },
         { 
             title: 'OrderID', 
             kind: 'Text',
             width: 175,
             source: 'OrderID',
-            sortType: 'text',
+            sortType: 'text'
         },
     ];
 
