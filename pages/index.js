@@ -32,7 +32,7 @@ export default function Home() {
       const orderArray = processCSVFromJson(JSON.parse(jsonOrderArray));
       dispatch(loadData(orderArray));
     }
-  }, []);
+  }, [dispatch]);
 
   const doDemo = async () => {
     const response = await fetch('/example.csv');

@@ -19,7 +19,7 @@ function Amazonpurchasehistory() {
         <main className={styles.main}>
           <h1 className={styles.title}>AMZN Purchase History</h1>
           <h2>Get a copy of your Amazon purchase history. Only takes 2 mins.</h2>
-          <Image src='/RequestOrderHistoryReport.png' width='387' height='313' layout='fixed' />
+          <Image src='/RequestOrderHistoryReport.png' width='387' height='313' layout='fixed' alt='Export your Amazon purchase history'/>
           <ol>
             <li>Go to <a href={`https://www.amazon.com/gp/b2b/reports?tag=${affiliateId}`} target="_blank" rel="noreferrer">Order History Reports</a> in Your Account.</li>
             <li>Select &lsquo;Items&rsquo; report type from the drop-down menu.</li>
