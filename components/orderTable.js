@@ -31,44 +31,37 @@ export default function OrderTable({records, orderArray, ASINISBN}) {
     console.log(sortedRows);
     const columns = [
         { 
-            key: 'OrderDate', 
-            name: 'Date', 
-            sortable: true, 
-            sortDescendingFirst: true, 
+            title: 'Date', 
+            kind: 'Text',
             width: 125,
-            formatter: (props) => (<>{date.format(props.row.OrderDate, 'YYYY-MM-DD')}</>)
+            source: 'OrderDate',
+            formatter: (orderDate) => (  date.format(orderDate, 'YYYY-MM-DD') )
         },
         {
-            key: 'ItemSubtotal',
-            name: 'Price',
+            title: 'Price',
+            kind: 'Text',
             width: 80,
-            formatter: (props) => (<>{props.row.ItemSubtotal.format()}</>)
+            source: 'ItemTotal',
+            formatter: (itemTotal) => ( itemTotal.format() )
         },
         {
-            key: 'ItemSubtotalTax',
-            name: 'Tax',
+            title: 'Tax',
+            kind: 'Text',
             width: 80,
-            formatter: (props) => (<>{props.row.ItemSubtotalTax.format()}</>)
-        },
-        {
-            key: 'ItemTotal',
-            name: 'Price',
-            width: 80,
-            formatter: (props) => (<>{props.row.ItemTotal.format()}</>)
+            source: 'ItemSubtotalTax',
+            formatter: (itemSubtotalTax) => ( itemSubtotalTax.format() )
         },
         { 
-            key: 'OrderID', 
-            name: 'Order ID' 
+            title: 'OrderID', 
+            kind: 'Text',
+            width: 100,
+            source: 'OrderID',
         },
-        
     ];
+
+    const sourceArray = columns.map(columnObj => columnObj.source);
     
-    const BLAHcolumns = [
-        { title: "First Name", width: 100 },
-        { title: "Last Name", width: 100 }
-    ];
     const numRows = 3;
-    // const getData = () => {};
 
     const images = [
         "https://avatars.githubusercontent.com/in/29110",
@@ -76,7 +69,26 @@ export default function OrderTable({records, orderArray, ASINISBN}) {
         "https://avatars.githubusercontent.com/in/15368"
       ];
       
+      
     const getData = ([col, row]) => {
+        console.log([col, row]);
+        const columnObj = columns[col];
+        console.log('columnObj', columnObj);
+        const dataSource = columnObj.source;
+        const data = sortedRows[row][dataSource];
+        const displayData = columnObj.formatter ? columnObj.formatter(data) : data;
+        
+        const outputObj = {
+            kind: GridCellKind[columnObj.kind],
+            data,
+            allowOverlay: false,
+            allowAdd: false,
+            readonly: true,
+            displayData
+        }
+        console.log('outputObj', outputObj)
+        return outputObj;
+
         if (col === 0) {
           return {
             kind: GridCellKind.Image,
@@ -101,7 +113,7 @@ export default function OrderTable({records, orderArray, ASINISBN}) {
 
     return (
         <DataEditorContainer width={1000} height={300}>
-            <DataEditor getCellContent={getData} columns={BLAHcolumns} rows={numRows} />
+            <DataEditor getCellContent={getData} columns={columns} rows={numRows} />
         </DataEditorContainer>
     );
 }
