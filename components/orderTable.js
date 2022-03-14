@@ -1,7 +1,5 @@
 import {  useState } from 'react';
-import currency  from 'currency.js';
 import date from 'date-and-time';
-import { Title } from 'chart.js';
 import {
     DataEditor,
     DataEditorContainer,
@@ -9,73 +7,93 @@ import {
     GridCellKind
   } from "@glideapps/glide-data-grid";
 
-const findByOrderId = (orderId, orderArray, ASINISBN) => (
-    orderArray.find(orderObj => orderObj.OrderID === orderId && orderObj.ASINISBN === ASINISBN)
-);
 
 const affiliateId = 'nozama072-20';
     
-export default function OrderTable({records, orderArray, ASINISBN}) {
-    const [sortColumns, setSortColumns] = useState([]);
+export default function OrderTable({records}) {
+    const [sortColumn, setSortColumn] = useState('OrderDate');
+    const [sortDirection, setSortDirection] = useState('DESC');
 
-    const sortTheColumn = (sortColumn) => {
-        console.log('sortColumn', sortColumn);
-        setSortColumns(sortColumn);
-    }
-
-    const rows = records.map(record => (
-        findByOrderId(record, orderArray, ASINISBN)
-    ));
-
-    const sortedRows = rows.sort((a,b) => (b.OrderDate.getTime() - a.OrderDate.getTime()));
-    console.log(sortedRows);
     const columns = [
         { 
             title: 'Date', 
             kind: 'Text',
-            width: 125,
+            width: 110,
             source: 'OrderDate',
+            sortType: 'date',
             formatter: (orderDate) => (  date.format(orderDate, 'YYYY-MM-DD') )
         },
-        {
-            title: 'Price',
+        { 
+            title: 'Quantity', 
+            kind: 'Text',
+            width: 70,
+            source: 'Quantity',
+            sortType: 'number',
+            formatter: (Quantity) => (Quantity.toString() || 1)
+        },
+        { 
+            title: 'Unit Price', 
             kind: 'Text',
             width: 80,
-            source: 'ItemTotal',
-            formatter: (itemTotal) => ( itemTotal.format() )
+            source: 'PurchasePricePerUnit',
+            sortType: 'money',
+            formatter: (purchasePricePerUnit) => (purchasePricePerUnit.format() )
         },
         {
             title: 'Tax',
             kind: 'Text',
             width: 80,
             source: 'ItemSubtotalTax',
+            sortType: 'money',
             formatter: (itemSubtotalTax) => ( itemSubtotalTax.format() )
+        },
+        {
+            title: 'Price',
+            kind: 'Text',
+            width: 80,
+            source: 'ItemTotal',
+            sortType: 'money',
+            formatter: (itemTotal) => ( itemTotal.format() )
         },
         { 
             title: 'OrderID', 
             kind: 'Text',
-            width: 100,
+            width: 175,
             source: 'OrderID',
+            sortType: 'text',
         },
     ];
 
-    const sourceArray = columns.map(columnObj => columnObj.source);
-    
-    const numRows = 3;
+    const sortType = columns.find(columnObj => columnObj.source === sortColumn).sortType;
+    const sortedRows = records.sort((a,b) => {
+        if (sortType === 'date') {
+            return b[sortColumn].getTime() - a[sortColumn].getTime();
+        } else if (sortType === 'money') {
+            return b[sortColumn].value < a[sortColumn].value ? 1: -1;
+        }
+        return b[sortColumn] < a[sortColumn] ? 1 : -1;
+    });
 
-    const images = [
-        "https://avatars.githubusercontent.com/in/29110",
-        "https://avatars.githubusercontent.com/u/10679635",
-        "https://avatars.githubusercontent.com/in/15368"
-      ];
-      
+    const outputRows = sortDirection === 'ASC' ? sortedRows : sortedRows.reverse();
+
+    const cellClicked = (cell) => {
+        console.log('cellClicked', cell);
+    }
+
+    const headerClicked = (cell) => {
+        const newSortColumn = columns[cell].source;
+        if (sortColumn === newSortColumn) {
+           const newSortDirection =  sortDirection === 'ASC' ? 'DESC' : 'ASC';
+           setSortDirection(newSortDirection);
+        }
+        setSortColumn(newSortColumn);
+    }
+
       
     const getData = ([col, row]) => {
-        console.log([col, row]);
         const columnObj = columns[col];
-        console.log('columnObj', columnObj);
         const dataSource = columnObj.source;
-        const data = sortedRows[row][dataSource];
+        const data = outputRows[row][dataSource];
         const displayData = columnObj.formatter ? columnObj.formatter(data) : data;
         
         const outputObj = {
@@ -86,49 +104,19 @@ export default function OrderTable({records, orderArray, ASINISBN}) {
             readonly: true,
             displayData
         }
-        console.log('outputObj', outputObj)
-        return outputObj;
 
-        if (col === 0) {
-          return {
-            kind: GridCellKind.Image,
-            data: [...images],
-            displayData: [...images],
-            allowOverlay: false,
-            allowAdd: false
-            // readonly: true,
-          };
-        } else if (col !== 0) {
-          return {
-            kind: GridCellKind.Text,
-            data: "testing",
-            allowOverlay: false,
-            displayData: "o"
-          };
-        } else {
-          console.info("err", col);
-          throw new Error();
-        }
-      }
+        return outputObj;
+    }
 
     return (
-        <DataEditorContainer width={1000} height={300}>
-            <DataEditor getCellContent={getData} columns={columns} rows={numRows} />
+        <DataEditorContainer width={595} height={278} style={{border: '1px solid black'}}>
+            <DataEditor 
+                getCellContent={getData} 
+                columns={columns} 
+                rows={sortedRows.length} 
+                onCellClicked={cellClicked}
+                onHeaderClicked={headerClicked}
+            />
         </DataEditorContainer>
     );
-}
-
-const blehc = () => {
-    <DataEditorContainer width={1000} height={700}>
-            <DataEditor getCellContent={getData} columns={BLAHcolumns} rows={numRows} />
-        </DataEditorContainer>
-}
-
-const blah = () => {
-    <DataGrid 
-            columns={columns} 
-            rows={sortedRows} 
-            sortColumns={sortColumns}
-            onSortColumnsChange={sortTheColumn}
-        />
 }

@@ -18,7 +18,7 @@ export default function MostCommon({orderArray}) {
             };
         }   
         tmpAsinCountObj[orderObj.ASINISBN].total = tmpAsinCountObj[orderObj.ASINISBN].total.add(orderObj.ItemTotal);
-        tmpAsinCountObj[orderObj.ASINISBN].records.push(orderObj.OrderID);
+        tmpAsinCountObj[orderObj.ASINISBN].records.push(orderObj);
     });
     
     const mostCommon = [];
@@ -46,7 +46,7 @@ export default function MostCommon({orderArray}) {
                     </div>
                     <div className={styles.column}>
                         <h3><AmznLink ASINISBN={record.ASINISBN} title={record.title} /></h3>
-                        <OrderTable records={record.records} orderArray={orderArray} ASINISBN={record.ASINISBN} />
+                        <OrderTable records={record.records} />
                     </div>
                 </div>
             ))}
