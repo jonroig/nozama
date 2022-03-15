@@ -81,11 +81,12 @@ export default function OrderTable({records, columns, divId}) {
     }
 
     const biggestHeight = (sortedRows.length * 50) + 40;
-    const smallestHeight = 185;
+    const smallestHeight = (sortedRows.length * 50) + 40 < 185 ? (sortedRows.length * 50) + 40 : 185;
     let outputHeight = biggestHeight;
     if (!expanded) {
         outputHeight = smallestHeight;
     }
+    const shouldShowExpand = sortedRows.length > 3;
 
     return (
         <>
@@ -104,14 +105,16 @@ export default function OrderTable({records, columns, divId}) {
                     rowHeight={50}
                 />
             </DataEditorContainer>
-            <div onClick={sizeChangeClick} className={styles.expandContract} style={{width: tableWidth}}>
-                {expanded && (
-                    <span>[ &#9650; Contract &#9650; ]</span>
-                )}
-                {!expanded && (
-                     <span>[ &#9660; Expand  &#9660; ]</span>
-                )}
-            </div>
+            {shouldShowExpand && (
+                <div onClick={sizeChangeClick} className={styles.expandContract} style={{width: tableWidth}}>
+                    {expanded && (
+                        <span>[ &#9650; Contract &#9650; ]</span>
+                    )}
+                    {!expanded && (
+                        <span>[ &#9660; Expand  &#9660; ]</span>
+                    )}
+                </div>
+            )}
         </>
     );
 }
