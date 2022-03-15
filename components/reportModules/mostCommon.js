@@ -96,10 +96,9 @@ export default function MostCommon({orderArray}) {
                         </div>
                     </div>
                     <div className={styles.column}>
-                        <h3><AmznLink ASINISBN={record.ASINISBN} title={record.title}/></h3>
+                        <h3><AmznLink record={record} /></h3>
                         <OrderTable 
                             records={record.records} 
-                            ASINISBN={record.ASINISBN}
                             columns={columns}
                             divId={`mostCommon_${record.ASINISBN}`}
                         />

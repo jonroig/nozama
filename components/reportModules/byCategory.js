@@ -6,7 +6,57 @@ import AmznImage from "../amznImage";
 import AmznLink from '../amznLink';
 import ImageByASINISBN from '../imageByASINISBN';
 import styles from '../../styles/Reports.module.css';
+import OrderTable from '../orderTable';
 
+const columns = [
+    { 
+        title: 'Date', 
+        kind: 'Text',
+        width: 110,
+        source: 'OrderDate',
+        sortType: 'date',
+        formatter: (orderDate) => (date.format(orderDate, 'YYYY-MM-DD'))
+    },
+    { 
+        title: 'Quantity', 
+        kind: 'Text',
+        width: 70,
+        source: 'Quantity',
+        sortType: 'number',
+        formatter: (Quantity) => (Quantity.toString() || 1)
+    },
+    { 
+        title: 'Unit Price', 
+        kind: 'Text',
+        width: 80,
+        source: 'PurchasePricePerUnit',
+        sortType: 'money',
+        formatter: (purchasePricePerUnit) => (purchasePricePerUnit.format())
+    },
+    {
+        title: 'Tax',
+        kind: 'Text',
+        width: 80,
+        source: 'ItemSubtotalTax',
+        sortType: 'money',
+        formatter: (itemSubtotalTax) => (itemSubtotalTax.format())
+    },
+    {
+        title: 'Price',
+        kind: 'Text',
+        width: 80,
+        source: 'ItemTotal',
+        sortType: 'money',
+        formatter: (itemTotal) => (itemTotal.format())
+    },
+    { 
+        title: 'OrderID', 
+        kind: 'Text',
+        width: 175,
+        source: 'OrderID',
+        sortType: 'text'
+    },
+];
 
 const cleanCategory = (inputTitle) => {
     const outputTitle = inputTitle.toLowerCase().replace(/_/g, ' ');
@@ -25,12 +75,10 @@ export default function ByCategory() {
             if (!byCategory[theCategory]) {
                 byCategory[theCategory] = {
                     total: currency(0),
-                    records: [],
-                    asinObj: {}
+                    records: []
                 }
-            }
-            byCategory[theCategory].asinObj[orderObj.ASINISBN] = true;
-            byCategory[theCategory].records.push(orderObj.OrderID);
+            };
+            byCategory[theCategory].records.push(orderObj);
             byCategory[theCategory].total = byCategory[theCategory].total.add(orderObj.ItemTotal);
         }
     });
@@ -50,12 +98,14 @@ export default function ByCategory() {
                     </div>
                     <div className={styles.column}>
                         <h3>
-                            <span className={ styles.ucFirst}>{cleanCategory(category)}</span>
+                            <span className={styles.ucFirst}>{cleanCategory(category)}</span>
                         </h3>
                         <div className={styles.row}>
-                        {Object.keys(byCategory[category].asinObj).map(ASINISBN => (
-                            <ImageByASINISBN key={`mostCommonByAsin_${ASINISBN}_${category}`} ASINISBN={ASINISBN} orderArray={orderArray} format='_SL70_' />
-                        ))}
+                            <OrderTable 
+                                records={byCategory[category].records} 
+                                columns={columns}
+                                divId={`byCategory_${category}`}
+                            />
                         </div>
                         
                     </div>

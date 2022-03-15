@@ -14,3 +14,8 @@ a {
 * {
   box-sizing: border-box;
 }
+
+
+.dvn-scroller {
+  overflow: hidden !important;
+}

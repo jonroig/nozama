@@ -7,13 +7,11 @@ import {
     GridCellKind
   } from "@glideapps/glide-data-grid";
 
-  import styles from '../styles/OrderTable.module.css';
-
+import styles from '../styles/OrderTable.module.css';
 
 const affiliateId = 'nozama072-20';
-
     
-export default function OrderTable({records, columns, divId, tableWidth = 595}) {
+export default function OrderTable({records, columns, divId}) {
     const [sortColumn, setSortColumn] = useState('OrderDate');
     const [sortDirection, setSortDirection] = useState('DESC');
     const [expanded, setExpanded] = useState(false);
@@ -31,12 +29,19 @@ export default function OrderTable({records, columns, divId, tableWidth = 595}) 
 
     const outputRows = sortDirection === 'ASC' ? sortedRows : sortedRows.reverse();
 
+    let tableWidth = 0;
+    columns.forEach(columnObj => {
+        tableWidth = tableWidth + columnObj.width;
+    });
 
     const sizeChangeClick = () => {
         const newExpanded = !expanded;
         setExpanded(newExpanded);
         if (!newExpanded) {
             const elmnt = document.getElementById(divId);
+            if (!elmnt) {
+                return;
+            }
             elmnt.scrollIntoView();
         }
     }
@@ -75,8 +80,8 @@ export default function OrderTable({records, columns, divId, tableWidth = 595}) 
         return outputObj;
     }
 
-    const biggestHeight = (278 / 8) * sortedRows.length;
-    const smallestHeight = (278 / 2);
+    const biggestHeight = (sortedRows.length * 50) + 40;
+    const smallestHeight = 185;
     let outputHeight = biggestHeight;
     if (!expanded) {
         outputHeight = smallestHeight;
@@ -95,6 +100,8 @@ export default function OrderTable({records, columns, divId, tableWidth = 595}) 
                     rows={sortedRows.length} 
                     onCellClicked={cellClicked}
                     onHeaderClicked={headerClicked}
+                    trailingRowOptions={false}
+                    rowHeight={50}
                 />
             </DataEditorContainer>
             <div onClick={sizeChangeClick} className={styles.expandContract} style={{width: tableWidth}}>

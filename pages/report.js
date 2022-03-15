@@ -13,13 +13,19 @@ import MostExpensive from '../components/reportModules/mostExpensive';
 // import MostCommon from '../components/reportModules/mostCommon';
 import ByYear from '../components/reportModules/byYear';
 import ByDay from '../components/reportModules/byDay';
-import ByCategory from '../components/reportModules/byCategory';
+// import ByCategory from '../components/reportModules/byCategory';
 import AccumulationByDay from '../components/reportModules/accumulationByDay';
 
 const MostCommon = dynamic(
     () => import('../components/reportModules/mostCommon'),
     { ssr: false }
   );
+
+const ByCategory = dynamic(
+    () => import('../components/reportModules/byCategory'),
+    { ssr: false }
+);
+
 
 
 
