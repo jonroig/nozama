@@ -1,11 +1,13 @@
 import currency  from 'currency.js';
 import date from 'date-and-time';
+import {useState} from 'react';
 
 import AmznImage from "../amznImage";
 import AmznLink from '../amznLink';
 import styles from '../../styles/Reports.module.css';
 import OrderTable from '../orderTable';
 import ImageByASINISBN from '../imageByASINISBN';
+import Link from 'next/link';
 
 const columns = [
     { 
@@ -57,9 +59,33 @@ const columns = [
     },
 ];
 
+const baseCount = 10;
+
 export default function MostCommon({orderArray}) {
+    const [commonCount, setCommonCount] = useState(baseCount);
+    const [sortBy, setSortBy] = useState('common');
+
+    const sortByCommon = () => {
+        setSortBy('common');
+    };
+
+    const sortBySpend = () => {
+        setSortBy('spend');
+    };
+
+    const showMore = () => {
+        setCommonCount(commonCount + baseCount);
+    };
+
+    const showLess = () => {
+        setCommonCount(commonCount - baseCount);
+    };
+
     const tmpAsinCountObj = {};
     orderArray.forEach(orderObj => {
+        if (!orderObj.Title) {
+            return;
+        }
         if (!tmpAsinCountObj[orderObj.ASINISBN]) {
             tmpAsinCountObj[orderObj.ASINISBN] = {
                 total: currency(0), 
@@ -73,17 +99,32 @@ export default function MostCommon({orderArray}) {
     });
     
     const mostCommon = [];
-    const sortedTmpAsinCountArray = Object.keys(tmpAsinCountObj).sort((a,b) => (tmpAsinCountObj[b].records.length-tmpAsinCountObj[a].records.length));
+    const sortedTmpAsinCountArray = Object.keys(tmpAsinCountObj).sort((a,b) => {
+        if (sortBy === 'common') {
+            return tmpAsinCountObj[b].records.length-tmpAsinCountObj[a].records.length;
+        }
+        else if (sortBy === 'spend') {
+            return tmpAsinCountObj[b].total.value > tmpAsinCountObj[a].total.value ? 1:-1;
+        }
+    });
 
     sortedTmpAsinCountArray.forEach(ASINISBN => {
         mostCommon.push(tmpAsinCountObj[ASINISBN])
     });
 
-    const tmpRecords = mostCommon.slice(0, 10);
+    const tmpRecords = mostCommon.slice(0, commonCount);
+    const shouldShowMore = commonCount < mostCommon.length;
+    const shouldShowLess = mostCommon.length > baseCount && commonCount > baseCount;
     
     return (
         <>
             <h2>Most Common</h2>
+            Sort: 
+            <>
+                <div onClick={sortByCommon} href="#">Most Common</div>
+                <div onClick={sortBySpend} href="#">Most Money</div>
+            </>
+            
             {tmpRecords.map(record => (
                 <div key={`mostCommon_${record.ASINISBN}`} id={`mostCommon_${record.ASINISBN}`} className={styles.commonRow}>
                     <div className={styles.countColumn}>
@@ -105,6 +146,15 @@ export default function MostCommon({orderArray}) {
                     </div>
                 </div>
             ))}
+            <>
+                {shouldShowMore && (
+                    <div onClick={showMore}>More...</div>
+                )}
+                {shouldShowLess && (
+                    <div onClick={showLess}>...Less</div>
+                )}
+            </>
+            
         </>
     );
 }
