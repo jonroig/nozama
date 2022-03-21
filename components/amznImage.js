@@ -11,12 +11,9 @@ export default function AmznImage({ASINISBN, title = '', format = '_SL200_'}) {
     const trackHref= `https://ir-na.amazon-adsystem.com/e/ir?t=${affiliateId}&language=en_US&l=li2&o=1&a=${ASINISBN}`;
     return (
         <>  
-            <div className={styles.amznImageFrame}>
-                <a href={linkHref} target="_blank" rel="noreferrer" title={title}>
-                    <img border="0" src={imgHref} alt={title} className={styles.amznImage}/>
-                </a>
-            </div>
-            <img src="" width="1" height="1" border="0" alt="" style={{border : 'none !important', margin:'0px !important'}} />
+            <a href={linkHref} target="_blank" rel="noreferrer" title={title}>
+                <img border="0" src={imgHref} alt={title} className={styles.amznImage}/>
+            </a>
         </>
     );
 }

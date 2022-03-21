@@ -116,7 +116,7 @@ export default function MostCommon({orderArray}) {
     
     return (
         <>
-            <h2>Most Common</h2>
+            <h1 className={styles.areaHead}>Most Common</h1>
             Sort: 
             <>
                 <div onClick={sortByCommon} href="#">Most Common</div>
@@ -140,7 +140,7 @@ export default function MostCommon({orderArray}) {
                                 format='_SL80_'
                             />
                         </div>
-                        <div className={styles.cell}>
+                        <div className={[styles.cell, styles.moneyzone].join(' ')}>
                             <span className={styles.countColumn}>
                                 {record.records.length} 
                             </span>

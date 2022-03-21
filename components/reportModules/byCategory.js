@@ -141,7 +141,7 @@ export default function ByCategory() {
 
     return (
         <>
-            <h2>By Category</h2>
+            <h2 className={styles.areaHead}>By Category</h2>
             Sort: 
             <>
                 <span onClick={sortByCount} className={countButtonClassname}>Most Items</span>

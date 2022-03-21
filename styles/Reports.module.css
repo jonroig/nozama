@@ -104,7 +104,7 @@
 
 .table {display:block; }
 .row { display:block;}
-.cell {display:inline-block;}
+.cell {display:inline-block; vertical-align: top;}
 
 .countColumn {
     font-size: 3.2rem;
@@ -120,9 +120,20 @@
 .headline {
     font-size: 3rem;
     height: 0.2rem;
+   
 }
 
 .commonHeadline {
     font-size: 2rem;
-    height: 0.2rem;
+    margin: 50px 0px 5px 0px;
+}
+
+.moneyzone {
+    padding: 0 0 20px 20px;
+    margin-top: -0.2rem;
+}
+
+.areaHead {
+    font-size: 5rem;
+    margin-bottom: 0px;
 }

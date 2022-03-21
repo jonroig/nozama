@@ -131,7 +131,7 @@ export default function OrderTable({records, columns, divId}) {
             <DataEditorContainer 
                 width={tableWidth} 
                 height={outputHeight} 
-                style={{border: '1px solid black'}}
+                style={{border: '1px solid black', marginTop: '1rem'}}
             >
                 <DataEditor 
                     getCellContent={getData} 
