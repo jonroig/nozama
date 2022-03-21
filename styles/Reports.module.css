@@ -13,13 +13,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    padding: 1rem 0;
-}
+
 
 .commonRow {
     display: flex;
@@ -30,9 +24,7 @@
 }
 
 .otherRow {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: table;    
     width: 100%;
     padding: 1rem 0;
 }
@@ -45,17 +37,9 @@
     font-size: 1.5rem;
 }
 
-.column h3 {
-    margin-top: 10px;
-}
 
-.countColumn {
-    font-size: 4rem;
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 1;
-}
+
+
 
 .mostExpensiveCostColumn {
     font-size: 1.5rem;
@@ -66,9 +50,7 @@
 }
 
 
-.totalSpend {
-    font-size: 1.25rem;
-}
+
 
 .amznImageFrame {
     display: flex;
@@ -117,4 +99,30 @@
     text-align: center;
     cursor: pointer;
     padding: 5px;
+}
+
+
+.table {display:block; }
+.row { display:block;}
+.cell {display:inline-block;}
+
+.countColumn {
+    font-size: 3.2rem;
+    float: left;
+}
+
+.totalSpend {
+    font-size: 1.25rem;
+    margin: 0.3rem 20px auto 20px;
+    float: left;
+}
+
+.headline {
+    font-size: 3rem;
+    height: 0.2rem;
+}
+
+.commonHeadline {
+    font-size: 2rem;
+    height: 0.2rem;
 }

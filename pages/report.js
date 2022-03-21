@@ -61,7 +61,7 @@ export default function Report() {
             <AccumulationByDay orderArray={outputArray} />
             <MostCommon orderArray={outputArray} />
             <ByCategory orderArray={outputArray} />
-            <MostExpensive orderArray={outputArray} />
+            {/* <MostExpensive orderArray={outputArray} /> */}
 
             <div onClick={clearReport} className={styles.clearReport}>
                 Clear report

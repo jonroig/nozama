@@ -1,14 +1,28 @@
 import currency  from 'currency.js';
 import date from 'date-and-time';
 import { useSelector } from 'react-redux';
+import {useState} from 'react';
 
-import AmznImage from "../amznImage";
-import AmznLink from '../amznLink';
-import ImageByASINISBN from '../imageByASINISBN';
 import styles from '../../styles/Reports.module.css';
 import OrderTable from '../orderTable';
 
+
 const columns = [
+    { 
+        title: '', 
+        kind: 'Image',
+        width: 75,
+        source: 'ASINISBN',
+        clickAction: 'product'
+    },
+    { 
+        title: 'Item', 
+        kind: 'Text',
+        width: 175,
+        source: 'Title',
+        sortType: 'text',
+        clickAction: 'product'
+    },
     { 
         title: 'Date', 
         kind: 'Text',
@@ -54,7 +68,8 @@ const columns = [
         kind: 'Text',
         width: 175,
         source: 'OrderID',
-        sortType: 'text'
+        sortType: 'text',
+        clickAction: 'order'
     },
 ];
 
@@ -63,8 +78,29 @@ const cleanCategory = (inputTitle) => {
     return outputTitle;
 }
 
+const baseCount = 10;
 
 export default function ByCategory() {
+    const [categoryCount, setCategoryCount] = useState(baseCount);
+    const [sortBy, setSortBy] = useState('count');
+
+    const sortByCount = () => {
+        setSortBy('count');
+    };
+
+    const sortBySpend = () => {
+        setSortBy('spend');
+    };
+
+    const showMore = () => {
+        setCategoryCount(categoryCount + baseCount);
+    };
+
+    const showLess = () => {
+        setCategoryCount(categoryCount - baseCount);
+    };
+
+
     const state = useSelector((state) => state);
     const orderArray = state.orderArray || [];
     const byCategory = {};
@@ -83,34 +119,73 @@ export default function ByCategory() {
         }
     });
 
-    const sortedCategoryArray = Object.keys(byCategory).sort((a,b) => (byCategory[b].total.value-byCategory[a].total.value));
+    const countButtonClassname = null;
+    const moneyButtonClassname = null;
+    const sortedCategoryArray = Object.keys(byCategory).sort((a,b) => {
+        if (sortBy === 'count') {
+            countButtonClassname = 'selectedOption';
+            moneyButtonClassname = 'unselectedOption';
+            return byCategory[b].records.length - byCategory[a].records.length;
+        }
+        if (sortBy === 'spend') {
+            countButtonClassname = 'unselectedOption';
+            moneyButtonClassname = 'selectedOption';
+            return byCategory[b].total.value-byCategory[a].total.value;
+        }
+    });
+    
+    
+    const outputSortedCategoryArray = sortedCategoryArray.slice(0, categoryCount);
+    const shouldShowMore = categoryCount < sortedCategoryArray.length;
+    const shouldShowLess = categoryCount.length > baseCount && categoryCount > baseCount;
+
     return (
         <>
             <h2>By Category</h2>
-            {sortedCategoryArray.map(category => (
-                <div key={category} className={styles.otherRow}>
-                    <div className={styles.countColumn}>
-                        {byCategory[category].records.length} 
-                        <div className={styles.totalSpend}>
-                            items<br/>
-                            {byCategory[category].total.format()}
+            Sort: 
+            <>
+                <span onClick={sortByCount} className={countButtonClassname}>Most Items</span>
+                <span onClick={sortBySpend} className={moneyButtonClassname}>Most Money</span>
+            </>
+            {outputSortedCategoryArray.map(category => (
+                <div key={category} className={styles.table}>
+                    
+                    <div className={styles.row}>
+                        <div className={styles.cell}>
+                            <h3 className={[styles.ucFirst, styles.headline].join(' ')}>
+                                {cleanCategory(category)}
+                            </h3>
                         </div>
                     </div>
-                    <div className={styles.column}>
-                        <h3>
-                            <span className={styles.ucFirst}>{cleanCategory(category)}</span>
-                        </h3>
-                        <div className={styles.row}>
-                            <OrderTable 
-                                records={byCategory[category].records} 
-                                columns={columns}
-                                divId={`byCategory_${category}`}
-                            />
+                    <div className={styles.row}>
+                        <div className={styles.cell}>
+                            <span className={styles.countColumn}>
+                                {byCategory[category].records.length} 
+                            </span>
+                            <span className={styles.totalSpend}>
+                                items <br/>
+                                {byCategory[category].total.format()}
+                            </span>
                         </div>
-                        
+                    </div>
+
+                    <div className={styles.row}>
+                        <OrderTable 
+                            records={byCategory[category].records} 
+                            columns={columns}
+                            divId={`byCategory`}
+                        />
                     </div>
                 </div>
             ))}
+            <>
+                {shouldShowMore && (
+                    <div className='moreEntries' onClick={showMore}>More...</div>
+                )}
+                {shouldShowLess && (
+                    <div className={moreEntries} onClick={showLess}>...Less</div>
+                )}
+            </>
         </>
     );
 }

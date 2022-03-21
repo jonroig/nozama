@@ -2,12 +2,10 @@ import currency  from 'currency.js';
 import date from 'date-and-time';
 import {useState} from 'react';
 
-import AmznImage from "../amznImage";
 import AmznLink from '../amznLink';
+import AmznImage from '../amznImage';
 import styles from '../../styles/Reports.module.css';
 import OrderTable from '../orderTable';
-import ImageByASINISBN from '../imageByASINISBN';
-import Link from 'next/link';
 
 const columns = [
     { 
@@ -126,22 +124,37 @@ export default function MostCommon({orderArray}) {
             </>
             
             {tmpRecords.map(record => (
-                <div key={`mostCommon_${record.ASINISBN}`} id={`mostCommon_${record.ASINISBN}`} className={styles.commonRow}>
-                    <div className={styles.countColumn}>
-                        {record.records.length} 
-                        <div className={styles.totalSpend}>
-                            {record.total.format()}
-                        </div>
-                        <div>
-                       
+                <div key={`mostCommon_${record.ASINISBN}`} id={`mostCommon_${record.ASINISBN}`} className={styles.table}>
+                     <div className={styles.row}>
+                        <div className={styles.cell}>
+                            <h3 className={[styles.ucFirst, styles.commonHeadline].join(' ')}>
+                                <AmznLink record={record}/>
+                            </h3>
                         </div>
                     </div>
-                    <div className={styles.column}>
-                        <h3><AmznLink record={record} /></h3>
+                    <div className={styles.row}>
+                        <div className={styles.cell}>
+                            <AmznImage 
+                                ASINISBN={record.ASINISBN} 
+                                title={record.title}
+                                format='_SL80_'
+                            />
+                        </div>
+                        <div className={styles.cell}>
+                            <span className={styles.countColumn}>
+                                {record.records.length} 
+                            </span>
+                            <span className={styles.totalSpend}>
+                                items <br/>
+                                {record.total.format()}
+                            </span>
+                        </div>
+                    </div>
+                    <div className={styles.row}>
                         <OrderTable 
                             records={record.records} 
                             columns={columns}
-                            divId={`mostCommon_${record.ASINISBN}`}
+                            divId={`mostCommon`}
                         />
                     </div>
                 </div>
