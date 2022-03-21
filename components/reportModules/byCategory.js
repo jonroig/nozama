@@ -104,7 +104,6 @@ export default function ByCategory() {
     const state = useSelector((state) => state);
     const orderArray = state.orderArray || [];
     const byCategory = {};
-
     orderArray.forEach(orderObj => {
         const theCategory = orderObj.Category || false;
         if (theCategory) {
@@ -118,6 +117,7 @@ export default function ByCategory() {
             byCategory[theCategory].total = byCategory[theCategory].total.add(orderObj.ItemTotal);
         }
     });
+
 
     const countButtonClassname = null;
     const moneyButtonClassname = null;

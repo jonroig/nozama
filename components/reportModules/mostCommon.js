@@ -53,7 +53,8 @@ const columns = [
         kind: 'Text',
         width: 175,
         source: 'OrderID',
-        sortType: 'text'
+        sortType: 'text',
+        clickAction: 'order'
     },
 ];
 
@@ -79,6 +80,7 @@ export default function MostCommon({orderArray}) {
         setCommonCount(commonCount - baseCount);
     };
 
+
     const tmpAsinCountObj = {};
     orderArray.forEach(orderObj => {
         if (!orderObj.Title) {
@@ -96,20 +98,29 @@ export default function MostCommon({orderArray}) {
         tmpAsinCountObj[orderObj.ASINISBN].records.push(orderObj);
     });
     
-    const mostCommon = [];
+    
+    const countButtonClassname = null;
+    const moneyButtonClassname = null;
     const sortedTmpAsinCountArray = Object.keys(tmpAsinCountObj).sort((a,b) => {
         if (sortBy === 'common') {
+            countButtonClassname = 'selectedOption';
+            moneyButtonClassname = 'unselectedOption';
             return tmpAsinCountObj[b].records.length-tmpAsinCountObj[a].records.length;
         }
         else if (sortBy === 'spend') {
+            countButtonClassname = 'unselectedOption';
+            moneyButtonClassname = 'selectedOption';
             return tmpAsinCountObj[b].total.value > tmpAsinCountObj[a].total.value ? 1:-1;
         }
     });
 
+
+    const mostCommon = [];
     sortedTmpAsinCountArray.forEach(ASINISBN => {
         mostCommon.push(tmpAsinCountObj[ASINISBN])
     });
 
+    
     const tmpRecords = mostCommon.slice(0, commonCount);
     const shouldShowMore = commonCount < mostCommon.length;
     const shouldShowLess = mostCommon.length > baseCount && commonCount > baseCount;
@@ -119,8 +130,8 @@ export default function MostCommon({orderArray}) {
             <h1 className={styles.areaHead}>Most Common</h1>
             Sort: 
             <>
-                <div onClick={sortByCommon} href="#">Most Common</div>
-                <div onClick={sortBySpend} href="#">Most Money</div>
+                <span onClick={sortByCommon} href="#" className={countButtonClassname}>Most Common</span>
+                <span onClick={sortBySpend} href="#" className={moneyButtonClassname}>Most Money</span>
             </>
             
             {tmpRecords.map(record => (

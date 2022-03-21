@@ -22,8 +22,8 @@ const urlFromASINISBN = (ASINISBN => (
     `https://www.amazon.com/dp/${ASINISBN}?tag=${affiliateId}`
 ));
 
-const orderUrl = (orderId => (
-    `https://amazonurl`
+const orderUrlFromOrderId = (orderId => (
+    `https://www.amazon.com/gp/your-account/order-details/?ie=UTF8&orderID=${orderId}&tag=${affiliateId}`
 ));
 
     
@@ -64,7 +64,16 @@ export default function OrderTable({records, columns, divId}) {
     const cellClicked = (cell) => {
         const [column, row] = cell;
         const columnObj = columns[column];
-        console.log(columnObj)
+        if (columnObj.clickAction && columnObj.clickAction === 'order') {
+            const data = outputRows[row];
+            const orderUrl = orderUrlFromOrderId(data.OrderID);
+            window.open(orderUrl);
+        }
+        if (columnObj.clickAction && columnObj.clickAction === 'product') {
+            const data = outputRows[row];
+            const itemUrl = urlFromASINISBN(data.ASINISBN);
+            window.open(itemUrl);
+        }
 
     };
 
