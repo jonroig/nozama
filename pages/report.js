@@ -1,8 +1,11 @@
-const date = require('date-and-time');
+import {useState} from 'react';
+import date from 'date-and-time';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 import styles from '../styles/Reports.module.css';
 import { loadData } from '../actions';
@@ -38,7 +41,7 @@ export default function Report() {
         if (!state || !state.orderArray || state.orderArray.length === 0) {
             router.push('/');
         }
-    });
+    },[]);
 
     const clearReport = () => {
         if (typeof window !== "undefined") {
@@ -52,16 +55,35 @@ export default function Report() {
     console.log(outputArray);
     return (
         <div className={styles.container}> 
-            <div onClick={clearReport} className={styles.clearReport}>
-                Clear report
-            </div>        
-            <TotalPurchases orderArray={outputArray} />
-            <ByYear orderArray={outputArray} />
-            <ByDay orderArray={outputArray} />
-            <AccumulationByDay orderArray={outputArray} />
-            <MostCommon orderArray={outputArray} />
-            <ByCategory orderArray={outputArray} />
-            {/* <MostExpensive orderArray={outputArray} /> */}
+            <Tabs>
+                <TabList>
+                    <Tab>Main</Tab>
+                    <Tab>By Year</Tab>
+                    <Tab>By Day</Tab>
+                    <Tab>Over Time</Tab>
+                    <Tab>Most Common</Tab>
+                    <Tab>By Category</Tab>
+                </TabList>
+
+                <TabPanel>
+                    <TotalPurchases orderArray={outputArray} />
+                </TabPanel>
+                <TabPanel>
+                    <ByYear orderArray={outputArray} />
+                </TabPanel>
+                <TabPanel>
+                    <ByDay orderArray={outputArray} />
+                </TabPanel>
+                <TabPanel>
+                    <AccumulationByDay orderArray={outputArray} />
+                </TabPanel>
+                <TabPanel>
+                    <MostCommon orderArray={outputArray} />
+                </TabPanel>
+                <TabPanel>
+                    <ByCategory orderArray={outputArray} />
+                </TabPanel>
+            </Tabs>
 
             <div onClick={clearReport} className={styles.clearReport}>
                 Clear report

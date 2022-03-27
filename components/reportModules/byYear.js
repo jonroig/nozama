@@ -1,7 +1,6 @@
 import currency  from 'currency.js';
 import date from 'date-and-time';
 
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,6 +11,8 @@ import {
   Legend
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+
+import styles from '../../styles/Reports.module.css';
 
 ChartJS.register(
   CategoryScale,
@@ -75,7 +76,8 @@ export default function ByYear({orderArray}) {
 
     return (
         <>
-            <Bar options={options} data={data} />
+          <h1 className={styles.areaHead}>Spending By Year</h1>
+          <Bar options={options} data={data} />
         </>
     );
 }

@@ -11,7 +11,6 @@ import {
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 import styles from '../styles/OrderTable.module.css';
-
 const affiliateId = 'nozama072-20';
 
 const imgFromASINISBN = (ASINISBN => (
@@ -22,11 +21,15 @@ const urlFromASINISBN = (ASINISBN => (
     `https://www.amazon.com/dp/${ASINISBN}?tag=${affiliateId}`
 ));
 
+const urlFromCategory = (category => (
+    `https://www.amazon.com/s?k=${category}&tag=${affiliateId}`
+));
+
 const orderUrlFromOrderId = (orderId => (
     `https://www.amazon.com/gp/your-account/order-details/?ie=UTF8&orderID=${orderId}&tag=${affiliateId}`
 ));
 
-    
+
 export default function OrderTable({records, columns, divId}) {
     const [sortColumn, setSortColumn] = useState('OrderDate');
     const [sortDirection, setSortDirection] = useState('DESC');
@@ -74,6 +77,12 @@ export default function OrderTable({records, columns, divId}) {
             const itemUrl = urlFromASINISBN(data.ASINISBN);
             window.open(itemUrl);
         }
+        if (columnObj.clickAction && columnObj.clickAction === 'category') {
+            const data = outputRows[row];
+            const categoryUrl = urlFromCategory(data.Category);
+            window.open(categoryUrl);
+        }
+
 
     };
 
@@ -131,9 +140,14 @@ export default function OrderTable({records, columns, divId}) {
     const shouldShowExpand = sortedRows.length > 3;
 
     let tableWidth = 0;
+    const maxWidth = window.innerWidth - 60;
     internalColumns.forEach(columnObj => {
         tableWidth = tableWidth + columnObj.width;
     });
+    if (tableWidth > maxWidth) {
+        tableWidth = maxWidth;
+    }
+    
 
     return (
         <div id={uniqueDivId}>

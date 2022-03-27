@@ -17,7 +17,8 @@ a {
 
 
 .dvn-scroller {
-  overflow: hidden !important;
+  overflow-y: hidden !important;
+  overflow-x: scroll !important;
 }
 
 

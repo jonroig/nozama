@@ -24,6 +24,7 @@
     "react-papaparse": "^4.0.2",
     "react-redux": "^7.2.6",
     "react-responsive-carousel": "^3.2.23",
+    "react-tabs": "^4.0.1",
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",

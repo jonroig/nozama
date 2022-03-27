@@ -141,7 +141,7 @@ export default function ByCategory() {
 
     return (
         <>
-            <h2 className={styles.areaHead}>By Category</h2>
+            <h1 className={styles.areaHead}>By Category</h1>
             Sort: 
             <>
                 <span onClick={sortByCount} className={countButtonClassname}>Most Items</span>
@@ -181,9 +181,6 @@ export default function ByCategory() {
             <>
                 {shouldShowMore && (
                     <div className='moreEntries' onClick={showMore}>More...</div>
-                )}
-                {shouldShowLess && (
-                    <div className={moreEntries} onClick={showLess}>...Less</div>
                 )}
             </>
         </>

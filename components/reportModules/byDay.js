@@ -2,26 +2,29 @@ import currency  from 'currency.js';
 import date from 'date-and-time';
 
 import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-  } from 'chart.js';
-  import { Bar } from 'react-chartjs-2';
-  
-  ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-  );
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+} from 'chart.js';
 
-  
+import { Bar } from 'react-chartjs-2';
+
+import styles from '../../styles/Reports.module.css';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+
 
 export default function ByDay({orderArray}) {
 
@@ -75,6 +78,10 @@ export default function ByDay({orderArray}) {
       };
 
     return (
-        <Bar options={options} data={data} />
+        <>
+          <h1 className={styles.areaHead}>Spending By Day</h1>
+          <Bar options={options} data={data} />
+        </>
+        
     );
 }

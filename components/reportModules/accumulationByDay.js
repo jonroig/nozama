@@ -14,6 +14,8 @@ import {
 
 import { Line } from 'react-chartjs-2';
 
+import styles from '../../styles/Reports.module.css';
+
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -72,6 +74,10 @@ export default function AccumulationByDay({orderArray}) {
     };
 
     return (
-        <Line options={options} data={data} />
+        <>
+            <h1 className={styles.areaHead}>Spending Over Time</h1>
+            <Line options={options} data={data} />
+        </>
+        
     );
 }
