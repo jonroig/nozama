@@ -7,7 +7,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { usePapaParse } from 'react-papaparse';
 import { useRouter } from 'next/router';
 
-import { loadData } from '../actions';
+
+import { loadAmzn, loadData } from '../actions';
 import { processCSVFromJson } from '../lib/processCSV';
 import styles from '../styles/Home.module.css';
 import { processCSV } from '../lib/processCSV';
@@ -26,12 +27,17 @@ export default function Home() {
   const { readString } = usePapaParse();
 
 
-  useEffect(() => {
+  useEffect(async () => {
     const jsonOrderArray = localStorage.getItem('orderArray');
     if (jsonOrderArray) {
       const orderArray = processCSVFromJson(JSON.parse(jsonOrderArray));
       dispatch(loadData(orderArray));
     }
+
+    const response = await fetch('/api/amzn');
+    const amznData = await response.json();
+    console.log('amznData', amznData);
+    dispatch(loadAmzn(amznData));
   }, [dispatch]);
 
   const doDemo = async () => {

@@ -5,4 +5,12 @@ export const loadData = (orderArray) => (dispatch) => {
         type: types.LOAD,
         payload: orderArray
     });
+};
+
+export const loadAmzn = (amznData) => (dispatch) => {
+    console.log('amznData', amznData);
+    dispatch({
+        type: types.AMZNLOAD,
+        payload: amznData
+    });
 }

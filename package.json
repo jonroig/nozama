@@ -28,8 +28,12 @@
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
+    "sql-template-strings": "^2.2.2",
+    "sqlite": "^4.0.25",
+    "sqlite3": "^5.0.2",
     "styled-components": "^5.3.3",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "yahoo-finance2": "^2.3.0"
   },
   "devDependencies": {
     "eslint": "8.10.0",

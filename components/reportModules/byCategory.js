@@ -5,6 +5,7 @@ import {useState} from 'react';
 
 import styles from '../../styles/Reports.module.css';
 import OrderTable from '../orderTable';
+import { cleanCategory } from '../../lib/cleanCategory';
 
 
 const columns = [
@@ -71,12 +72,67 @@ const columns = [
         sortType: 'text',
         clickAction: 'order'
     },
+    {
+        title: 'List Price',
+        kind: 'Text',
+        width: 80,
+        source: 'ListPricePerUnit',
+        sortType: 'money',
+        formatter: (itemTotal) => (itemTotal.format())
+    },
+    {
+        title: 'Seller',
+        kind: 'Text',
+        width: 150,
+        source: 'Seller',
+        sortType: 'text'
+    },
+    {
+        title: 'Category',
+        kind: 'Text',
+        width: 150,
+        source: 'Category',
+        sortType: 'text',
+        clickAction: 'category',
+        formatter: (category) => (cleanCategory(category))
+    },
+    {
+        title: 'Name',
+        kind: 'Text',
+        width: 150,
+        source: 'ShippingAddressName',
+        sortType: 'text'
+    },
+    {
+        title: 'Address',
+        kind: 'Text',
+        width: 150,
+        source: 'ShippingAddressStreet1',
+        sortType: 'text'
+    },
+    {
+        title: 'Address 2',
+        kind: 'Text',
+        width: 150,
+        source: 'ShippingAddressStreet2',
+        sortType: 'text'
+    },
+    {
+        title: 'City',
+        kind: 'Text',
+        width: 150,
+        source: 'ShippingAddressCity',
+        sortType: 'text'
+    },
+    {
+        title: 'Zip',
+        kind: 'Text',
+        width: 80,
+        source: 'ShippingAddressZip',
+        sortType: 'text'
+    }
 ];
 
-const cleanCategory = (inputTitle) => {
-    const outputTitle = inputTitle.toLowerCase().replace(/_/g, ' ');
-    return outputTitle;
-}
 
 const baseCount = 10;
 

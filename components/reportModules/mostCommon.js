@@ -70,7 +70,7 @@ const columns = [
         kind: 'Text',
         width: 150,
         source: 'Seller',
-        sortType: 'text',
+        sortType: 'text'
     },
     {
         title: 'Category',
@@ -86,35 +86,35 @@ const columns = [
         kind: 'Text',
         width: 150,
         source: 'ShippingAddressName',
-        sortType: 'text',
+        sortType: 'text'
     },
     {
         title: 'Address',
         kind: 'Text',
         width: 150,
         source: 'ShippingAddressStreet1',
-        sortType: 'text',
+        sortType: 'text'
     },
     {
         title: 'Address 2',
         kind: 'Text',
         width: 150,
         source: 'ShippingAddressStreet2',
-        sortType: 'text',
+        sortType: 'text'
     },
     {
         title: 'City',
         kind: 'Text',
         width: 150,
         source: 'ShippingAddressCity',
-        sortType: 'text',
+        sortType: 'text'
     },
     {
         title: 'Zip',
         kind: 'Text',
         width: 80,
         source: 'ShippingAddressZip',
-        sortType: 'text',
+        sortType: 'text'
     }
 ];
 

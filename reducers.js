@@ -10,10 +10,21 @@ const reportReducer = (state = [], { type, payload }) => {
         default:
             return state;
     }
-}
+};
+
+const amznReducer = (state = [], { type, payload }) => {
+    switch (type) {
+        case types.AMZNLOAD:
+            return payload;
+        default:
+            return state;
+    }
+};
+
 
 const reducers = {
-  orderArray: reportReducer
+    orderArray: reportReducer,
+    amznArray: amznReducer
 };
 
 export default combineReducers(reducers)

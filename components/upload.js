@@ -9,9 +9,7 @@ import {
 
 import { useDispatch } from 'react-redux';
 import { loadData } from '../actions';
-
 import { processCSV } from '../lib/processCSV';
-
 
 
 const GREY = '#CCC';
