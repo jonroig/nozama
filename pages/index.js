@@ -12,6 +12,7 @@ import { loadAmzn, loadData } from '../actions';
 import { processCSVFromJson } from '../lib/processCSV';
 import styles from '../styles/Home.module.css';
 import { processCSV } from '../lib/processCSV';
+import AmznStock from '../components/amznStock';
 
 
 const Upload = dynamic(
@@ -36,7 +37,6 @@ export default function Home() {
 
     const response = await fetch('/api/amzn');
     const amznData = await response.json();
-    console.log('amznData', amznData);
     dispatch(loadAmzn(amznData));
   }, [dispatch]);
 
@@ -67,11 +67,8 @@ export default function Home() {
       <div></div>
       
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          NOZAMA
-        </h1>
         <h2 className={styles.subTitle}>... a look back at your Amazon purchases...</h2>
-
+        <AmznStock/>
         {showUploadButton && (
           <>
             <p className={styles.description}>
