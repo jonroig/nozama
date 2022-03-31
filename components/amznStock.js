@@ -1,22 +1,61 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import currency from 'currency.js';
+import { Modal } from 'react-responsive-modal';
+import DatePicker from "react-datepicker";
+
+import 'react-responsive-modal/styles.css';
+import "react-datepicker/dist/react-datepicker.css";
+
 
 const AmznStock = ({ amznArray }) => {
-    const [quantity, setQuantity] = useState(100);
+    const [stockQuantity, setstockQuantity] = useState(100);
     const [startDate, setStartDate] = useState('1997-05-14');
+    const [open, setOpen] = useState(false);
+    const [beginPrice, setBeginPrice] = useState(1.958333);
+    const [currentPrice, setCurrentPrice] = useState(666);
+    const [currentDate, setCurrentDate] = useState('1997-05-14');
+    const [editField, setEditField] = useState(null);
 
-    let beginPrice = 1.958333;
-    let currentPrice = 666;
-    let currentDate = '1997-05-14';
-    
-    if (amznArray.length) {
-        beginPrice = amznArray[0].close;
-        currentPrice = amznArray[amznArray.length -1].close;
-        currentDate = amznArray[amznArray.length -1].theDate;
+    useEffect(() => {
+        if (amznArray.length) {
+            setBeginPrice(amznArray[0].close);
+            setCurrentPrice(amznArray[amznArray.length -1].close);
+            setCurrentDate(amznArray[amznArray.length -1].theDate);
+        }
+    },[amznArray]);
+
+    // modal control
+    const onOpenModal = () => setOpen(true);
+    const onCloseModal = () => setOpen(false);
+
+    // stock quantity
+    const openChangeStockQuantity = () => {
+        setOpen(true);
+        setEditField('stockQuantity');
     }
-    const beginCost = quantity * beginPrice;
-    const currrentValue = quantity * currentPrice;
+    const onChangeStockQuantity = (e) => {
+        setstockQuantity(e.target.value.replace(/\D/g,''));
+    }
+    
+    // start date
+    const openChangeStartDate = () => {
+        setOpen(true);
+        setEditField('startDate');
+    }
+    const onChangeStartDate = (date) => {
+        const newDateObj = amznArray.find(amznObj => amznObj.timestamp === date.getTime());
+        if (newDateObj) {
+            setStartDate(newDateObj.theDate);
+            setBeginPrice(newDateObj.close);
+        }
+        
+        setOpen(false);
+    }
+    
+
+    const beginCost = stockQuantity * beginPrice;
+    const currrentValue = stockQuantity * currentPrice;
     const increasePercent = (currrentValue/beginCost).toFixed(2);
 
     const currentPriceCurrency = currency(currentPrice);
@@ -30,8 +69,8 @@ const AmznStock = ({ amznArray }) => {
             <p>
                 <strong>Fun fact!</strong>
                 {' '}Did you know that if you bought 
-                {' '}{quantity} shares of AMZN on 
-                {' '}{startDate}, the price would have been 
+                {' '}<span onClick={openChangeStockQuantity}>{stockQuantity}</span> shares of AMZN on 
+                {' '}<span onClick={openChangeStartDate}>{startDate}</span>, the price would have been 
                 {' '}{beginPriceCurrency.format()} and it would have 
                 cost you
                 {' '}{beginCostCurrency.format()}.
@@ -45,8 +84,27 @@ const AmznStock = ({ amznArray }) => {
                 {' '}<strong>{currentValueCurrency.format()}!</strong>
             </p>
             <p>
-                That's a <strong>{increasePercent}%</strong> increase!
+                That&apos;s a <strong>{increasePercent}%</strong> increase!
             </p>
+
+            <button onClick={onOpenModal}>Open modal</button>
+            <Modal open={open} onClose={onCloseModal} center>
+                {editField === 'stockQuantity' && (
+                    <div>
+                        <h2>Edit Quantity</h2>
+                        Stock quantity:
+                         <input onChange={onChangeStockQuantity} />
+                    </div>
+                )}
+                {editField === 'startDate' && (
+                    <div style={{height: 300, width: 200}}>
+                        <DatePicker 
+                            selected={new Date(startDate)} 
+                            onChange={(date) => onChangeStartDate(date)} />
+                    </div>
+                )}
+                
+            </Modal>
         </div>
     )
 }
@@ -56,3 +114,5 @@ const mapStateToProps = (state) => (
 )
 
 export default connect(mapStateToProps)(AmznStock);
+
+
