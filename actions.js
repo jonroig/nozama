@@ -8,7 +8,6 @@ export const loadData = (orderArray) => (dispatch) => {
 };
 
 export const loadAmzn = (amznData) => (dispatch) => {
-    console.log('amznData', amznData);
     dispatch({
         type: types.AMZNLOAD,
         payload: amznData

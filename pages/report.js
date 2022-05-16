@@ -29,6 +29,11 @@ const ByCategory = dynamic(
     { ssr: false }
 );
 
+const Stocks = dynamic(
+    () => import('../components/reportModules/stocks'),
+    { ssr: false }
+);
+
 
 
 
@@ -52,21 +57,26 @@ export default function Report() {
     }
     
     const outputArray = state.orderArray;
-    console.log(outputArray);
+    const amznArray = state.amznArray;
     return (
         <div className={styles.container}> 
             <Tabs>
                 <TabList>
                     <Tab>Main</Tab>
+                    <Tab>Stock</Tab>
                     <Tab>By Year</Tab>
                     <Tab>By Day</Tab>
                     <Tab>Over Time</Tab>
                     <Tab>Most Common</Tab>
                     <Tab>By Category</Tab>
+                    
                 </TabList>
 
                 <TabPanel>
-                    <TotalPurchases orderArray={outputArray} />
+                    <TotalPurchases orderArray={outputArray} amznArray={amznArray} />
+                </TabPanel>
+                <TabPanel>
+                    <Stocks orderArray={outputArray} amznArray={amznArray} />
                 </TabPanel>
                 <TabPanel>
                     <ByYear orderArray={outputArray} />

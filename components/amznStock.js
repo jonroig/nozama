@@ -3,19 +3,23 @@ import { connect } from 'react-redux';
 import currency from 'currency.js';
 import { Modal } from 'react-responsive-modal';
 import DatePicker from "react-datepicker";
+import date from 'date-and-time';
 
 import 'react-responsive-modal/styles.css';
 import "react-datepicker/dist/react-datepicker.css";
 
 
 const AmznStock = ({ amznArray }) => {
+    const today = new Date();
     const [stockQuantity, setstockQuantity] = useState(100);
     const [startDate, setStartDate] = useState('1997-05-14');
     const [open, setOpen] = useState(false);
     const [beginPrice, setBeginPrice] = useState(1.958333);
     const [currentPrice, setCurrentPrice] = useState(666);
     const [currentDate, setCurrentDate] = useState('1997-05-14');
+    const [currentDisplayDate, setCurrentDisplayDate] = useState(date.format(today, 'YYYY-MM-DD'));
     const [editField, setEditField] = useState(null);
+    
 
     useEffect(() => {
         if (amznArray.length) {
@@ -48,6 +52,7 @@ const AmznStock = ({ amznArray }) => {
         if (newDateObj) {
             setStartDate(newDateObj.theDate);
             setBeginPrice(newDateObj.close);
+            setCurrentDisplayDate(newDateObj.theDate);
         }
         
         setOpen(false);
@@ -69,14 +74,14 @@ const AmznStock = ({ amznArray }) => {
             <p>
                 <strong>Fun fact!</strong>
                 {' '}Did you know that if you bought 
-                {' '}<span onClick={openChangeStockQuantity}>{stockQuantity}</span> shares of AMZN on 
-                {' '}<span onClick={openChangeStartDate}>{startDate}</span>, the price would have been 
+                {' '}<a onClick={openChangeStockQuantity} className='stockLink'>{stockQuantity}</a> shares of AMZN on 
+                {' '}<a onClick={openChangeStartDate} className='stockLink'>{startDate}</a>, the price would have been 
                 {' '}{beginPriceCurrency.format()} and it would have 
                 cost you
                 {' '}{beginCostCurrency.format()}.
             </p>
             <p>
-                Today ({currentDate}), AMZN is worth
+                Today ({currentDisplayDate}), AMZN is worth
                 {' '}{currentPriceCurrency.format()}/share.
             </p>
             <p>
@@ -97,7 +102,7 @@ const AmznStock = ({ amznArray }) => {
                     </div>
                 )}
                 {editField === 'startDate' && (
-                    <div style={{height: 300, width: 200}}>
+                    <div style={{height: 275, width: 200}}>
                         <DatePicker 
                             selected={new Date(startDate)} 
                             onChange={(date) => onChangeStartDate(date)} />

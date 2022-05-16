@@ -44,3 +44,8 @@ a {
     width: 75%;
     margin: 20px auto 20px auto;
 }
+
+.stockLink {
+  text-decoration: underline;
+  background-color: lightblue;
+}

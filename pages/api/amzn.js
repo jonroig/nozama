@@ -28,7 +28,6 @@ const getStockData = async (todayString) => {
     };
     const results = await yahooFinance.historical('AMZN', queryOptions);
     const output = results.map(resultObj => {
-        console.log('resultObj', resultObj);
         const dateObj = Date.parse(resultObj.date);
         return ({
             timestamp: Date.parse(resultObj.date),
@@ -53,7 +52,6 @@ export default async function amzn(req, res) {
     const todayString = date.format(now, 'YYYY-MM-DD');
     let rows = await getDatabaseData(db, todayString);
     if (!rows) {
-        console.log('updating amzn db');
         const newStockData = await getStockData(todayString);
         await updateDb(db, todayString, newStockData);
         rows = await getDatabaseData(db, todayString);

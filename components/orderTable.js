@@ -127,7 +127,6 @@ export default function OrderTable({records, columns, divId}) {
             outputObj.data = data;
         }
 
-        // console.log(outputObj)
         return outputObj;
     }
 

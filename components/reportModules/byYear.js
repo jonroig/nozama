@@ -50,8 +50,8 @@ export default function ByYear({orderArray}) {
         title: {
           display: true,
           text: 'Spending By Year',
-        },
-      },
+        }
+      }
     };
       
     const labels = Object.keys(yearObj);
@@ -70,8 +70,8 @@ export default function ByYear({orderArray}) {
               'rgba(0,0,0)',
               'rgba(35,47,62)'
           ]
-        },
-      ],
+        }
+      ]
     };
 
     return (
