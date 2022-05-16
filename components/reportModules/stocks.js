@@ -63,7 +63,7 @@ export default function Stock({orderArray, amznArray}) {
 
         purchaseStockArray.push(tmpObj);
     });
-    
+
     let currentStockPrice = currency(0);
     if (amznArray && amznArray.length > 0) {
         currentStockPrice = amznArray[amznArray.length -1].close;
@@ -102,7 +102,7 @@ export default function Stock({orderArray, amznArray}) {
                 That would have purchased {outputNumberOfShares} shares.
             </div>
             <div>
-                Today that's worth {totalStockValue.format()}
+                Today that &apos;s worth {totalStockValue.format()}
             </div>
             <Bar options={options} data={data} />
         </div>
