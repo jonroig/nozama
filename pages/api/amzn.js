@@ -1,26 +1,14 @@
 import yahooFinance from 'yahoo-finance2';
 import date from 'date-and-time';
-import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
-import SQL from 'sql-template-strings';
+import NodeCache from 'node-cache';
+const myCache = new NodeCache();
 
 
 
-const openDb =  async () => {
-    return open({
-        filename: './db/amzn.sqlite3',
-        driver: sqlite3.cached.Database
-    });
-};
-
-
-const getDatabaseData = async (db, todayString) => {
-    const result = await db.get(SQL`SELECT * FROM amzn WHERE lastUpdate = ${todayString}`);
-    return result;
-};
 
 
 const getStockData = async (todayString) => {
+    console.log(`getting stock data for ${todayString}`)
     const queryOptions = {
         period1: '1997-05-14',
         period2: todayString,
@@ -39,25 +27,21 @@ const getStockData = async (todayString) => {
 };
 
 
-const updateDb = async (db, todayString, newStockData) => {
-    const jsonData = JSON.stringify(newStockData);
-    const updateString = `UPDATE amzn SET lastupdate = '${todayString}', stockdata = '${jsonData}' `;
-    return await db.exec(updateString);
+const updateCache = async (todayString, newStockData) => {
+    myCache.set( todayString, newStockData, [ 86400 ] )
 };
 
 
 export default async function amzn(req, res) {
-    const db = await openDb();
     const now = new Date();
     const todayString = date.format(now, 'YYYY-MM-DD');
-    let rows = await getDatabaseData(db, todayString);
-    if (!rows) {
+    let stockData = await myCache.get(todayString);
+    if (!stockData) {
         const newStockData = await getStockData(todayString);
-        await updateDb(db, todayString, newStockData);
-        rows = await getDatabaseData(db, todayString);
+        await updateCache(todayString, newStockData);
+        stockData = await myCache.get(todayString);
     }
-    const jsonStockData = rows.stockdata;
-    const stockData = JSON.parse(jsonStockData);
+
     return res.status(200).json(stockData);    
 }
   
