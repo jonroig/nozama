@@ -92,7 +92,6 @@ const AmznStock = ({ amznArray }) => {
                 That&apos;s a <strong>{increasePercent}%</strong> increase!
             </p>
 
-            <button onClick={onOpenModal}>Open modal</button>
             <Modal open={open} onClose={onCloseModal} center>
                 {editField === 'stockQuantity' && (
                     <div>
