@@ -1,115 +1,123 @@
 import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import currency from 'currency.js';
-import { Modal } from 'react-responsive-modal';
-import DatePicker from "react-datepicker";
 import date from 'date-and-time';
+import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
 
-import 'react-responsive-modal/styles.css';
-import "react-datepicker/dist/react-datepicker.css";
+import styles from '../styles/Stock.module.scss';
 
 
 const AmznStock = ({ amznArray }) => {
     const today = new Date();
+    const tomorrow = new Date(today)
+    tomorrow.setDate(tomorrow.getDate() + 1)
+    const tomorrowYear = tomorrow.getFullYear();
+    const disabledDays = [
+        { 
+            from: new Date(1997, 0, 0), 
+            to: new Date(1997, 4, 13)
+        },
+        {
+            from: tomorrow,
+            to: new Date(tomorrowYear, 12, 31)
+        }
+    ];
+
+    const [startDate, setStartDate] = useState(new Date(1997, 4, 14));
     const [stockQuantity, setstockQuantity] = useState(100);
-    const [startDate, setStartDate] = useState('1997-05-14');
-    const [open, setOpen] = useState(false);
     const [beginPrice, setBeginPrice] = useState(1.958333);
     const [currentPrice, setCurrentPrice] = useState(666);
-    const [currentDate, setCurrentDate] = useState('1997-05-14');
-    const [currentDisplayDate, setCurrentDisplayDate] = useState(date.format(today, 'YYYY-MM-DD'));
-    const [editField, setEditField] = useState(null);
-    
 
     useEffect(() => {
         if (amznArray.length) {
             setBeginPrice(amznArray[0].close);
             setCurrentPrice(amznArray[amznArray.length -1].close);
-            setCurrentDate(amznArray[amznArray.length -1].theDate);
         }
     },[amznArray]);
 
-    // modal control
-    const onOpenModal = () => setOpen(true);
-    const onCloseModal = () => setOpen(false);
-
     // stock quantity
-    const openChangeStockQuantity = () => {
-        setOpen(true);
-        setEditField('stockQuantity');
-    }
     const onChangeStockQuantity = (e) => {
+        e.preventDefault();
         setstockQuantity(e.target.value.replace(/\D/g,''));
+    };
+
+    const onChangeDate = (newDate) => {
+        setStartDate(newDate);
+        const tmpArray = amznArray.filter(amznObj => (
+            amznObj.timestamp <= newDate.getTime() + 86400000
+        ));
+        setBeginPrice(tmpArray[tmpArray.length -1].close);
     }
-    
-    // start date
-    const openChangeStartDate = () => {
-        setOpen(true);
-        setEditField('startDate');
-    }
-    const onChangeStartDate = (date) => {
-        const newDateObj = amznArray.find(amznObj => amznObj.timestamp === date.getTime());
-        if (newDateObj) {
-            setStartDate(newDateObj.theDate);
-            setBeginPrice(newDateObj.close);
-            setCurrentDisplayDate(newDateObj.theDate);
-        }
-        
-        setOpen(false);
-    }
-    
 
     const beginCost = stockQuantity * beginPrice;
     const currrentValue = stockQuantity * currentPrice;
-    const increasePercent = (currrentValue/beginCost).toFixed(2);
+    const changePercent = currrentValue > beginCost ? 
+        `+ ${(currrentValue/beginCost).toFixed(2)}%` :
+        `- ${(beginCost/currrentValue).toFixed(2)}%`;
+
 
     const currentPriceCurrency = currency(currentPrice);
     const currentValueCurrency = currency(currrentValue);
     const beginPriceCurrency = currency(beginPrice);
     const beginCostCurrency = currency(beginCost);
 
+    const dt = new Date();
     return (
-
-        <div>
-            <p>
-                <strong>Fun fact!</strong>
-                {' '}Did you know that if you bought 
-                {' '}<a onClick={openChangeStockQuantity} className='stockLink'>{stockQuantity}</a> shares of AMZN on 
-                {' '}<a onClick={openChangeStartDate} className='stockLink'>{startDate}</a>, the price would have been 
-                {' '}{beginPriceCurrency.format()} and it would have 
-                cost you
-                {' '}{beginCostCurrency.format()}.
-            </p>
-            <p>
-                Today ({currentDisplayDate}), AMZN is worth
-                {' '}{currentPriceCurrency.format()}/share.
-            </p>
-            <p>
-                That investment would be worth 
-                {' '}<strong>{currentValueCurrency.format()}!</strong>
-            </p>
-            <p>
-                That&apos;s a <strong>{increasePercent}%</strong> increase!
-            </p>
-
-            <Modal open={open} onClose={onCloseModal} center>
-                {editField === 'stockQuantity' && (
-                    <div>
-                        <h2>Edit Quantity</h2>
-                        Stock quantity:
-                         <input onChange={onChangeStockQuantity} />
+    <>
+        <div className={styles.table}>
+            <div className={styles.tr}>
+                <div className={styles.td}>
+                    <div className={styles.tr}>
+                        <div className={styles.tdLeft }>AMZN shares</div>
+                        <div className={styles.tdRight}><input type="text" value={stockQuantity} onChange={onChangeStockQuantity}/></div>
                     </div>
-                )}
-                {editField === 'startDate' && (
-                    <div style={{height: 275, width: 200}}>
-                        <DatePicker 
-                            selected={new Date(startDate)} 
-                            onChange={(date) => onChangeStartDate(date)} />
+                    <div className={styles.tr}>
+                        <div className={styles.tdLeft}>Date</div>
+                        <div className={styles.tdRight}>{date.format(startDate, 'YYYY-MM-DD')}</div>
                     </div>
-                )}
-                
-            </Modal>
+                    <div className={styles.tr}>
+                        <div className={styles.tdLeft}>Cost/share</div>
+                        <div className={styles.tdRight}>{beginPriceCurrency.format()}</div>
+                    </div>
+                    <div className={styles.tr}>
+                        <div className={styles.tdLeft}>Total cost</div>
+                        <div className={styles.tdRight}>{beginCostCurrency.format()}</div>
+                    </div>
+                    <div className={styles.tr}>
+                        <div className={styles.tdLeft}>Today</div>
+                        <div className={styles.divider}>&nbsp;</div>
+                    </div>
+                    <div className={styles.tr}>
+                        <div className={styles.tdLeft}>AMZN/share</div>
+                        <div className={styles.tdRight}>{currentPriceCurrency.format()}</div>
+                    </div>
+                    <div className={styles.tr}>
+                        <div className={styles.tdLeft}>Total</div>
+                        <div className={styles.tdRight}>{currentValueCurrency.format()}</div>
+                    </div>
+                    <div className={styles.tr}>
+                        <div className={styles.tdLeft}>&nbsp;</div>
+                        <div className={styles.tdRight}>{changePercent}</div>
+                    </div>
+                </div>
+                <div className={styles.td}>
+                    <DayPicker 
+                        fromYear={1997}
+                        toYear={date.format(today, 'YYYY')}
+                        captionLayout="dropdown" 
+                        mode="single"
+                        selected={startDate}
+                        onSelect={onChangeDate}
+                        required
+                        disabled={disabledDays}
+                        defaultMonth={new Date(1997, 4)}
+                    />
+                </div>
+            </div>
+            
         </div>
+    </>
     )
 }
 

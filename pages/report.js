@@ -1,6 +1,4 @@
-import {useState} from 'react';
-import date from 'date-and-time';
-import { useSelector, useDispatch } from 'react-redux';
+;import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import dynamic from 'next/dynamic';

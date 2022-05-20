@@ -163,7 +163,7 @@ export default function CSVReader() {
                 </div>
               </>
             ) : (
-              'Select AMZN CSV'
+              'Select AMZN csv'
             )}
           </div>
         </>

@@ -1,0 +1,30 @@
+.table {
+    display:table;
+    border: 1px solid black;
+    padding: 20px;
+
+    .tr {
+        display: table-row;
+    }
+
+    .td {
+        display: table-cell;
+    }
+
+    .tdLeft {
+        display: table-cell;
+        padding: 10px;
+        text-align: right;
+    }
+    
+    .tdRight {
+        display: table-cell;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .divider {
+        border-bottom: 1px solid black;
+    }
+}
+

@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { usePapaParse } from 'react-papaparse';
 import { useRouter } from 'next/router';
 
-
 import { loadAmzn, loadData } from '../actions';
 import { processCSVFromJson } from '../lib/processCSV';
 import styles from '../styles/Home.module.css';
@@ -68,7 +67,7 @@ export default function Home() {
       
       <main className={styles.main}>
         <h2 className={styles.subTitle}>... a look back at your Amazon purchases...</h2>
-        <AmznStock/>
+     
         {showUploadButton && (
           <>
             <p className={styles.description}>
@@ -86,11 +85,11 @@ export default function Home() {
               <Link href="/report" >
                 View your report
               </Link>
-              
             </p>
           </>
         )}
-        
+        <h2>AMZN Stock Calculator</h2>
+        <AmznStock/>
         <br/><br/><br/><br/>
 
         <div className={styles.grid}>
