@@ -32,7 +32,7 @@ function Wtf() {
             {' '}<Link href="https://jonroig.com"><a>Jon Roig</a></Link>.
           </p>
           <p>
-            It's still a little rough around the edges, but we hope that you find it 
+            It&apos;s still a little rough around the edges, but we hope that you find it 
             as useful as we have. Frankly, it was a little disturbing to see 
             how much we&apos;d spent since the beginning of the pandemic.
           </p>

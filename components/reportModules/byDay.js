@@ -31,11 +31,10 @@ export default function ByDay({orderArray}) {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top',
+        display: false
       },
       title: {
-        display: true,
-        text: 'Spending By Day',
+        display: false
       }
     }
   };

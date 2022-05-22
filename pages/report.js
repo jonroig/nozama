@@ -59,19 +59,16 @@ export default function Report() {
                 <Tabs>
                     <TabList>
                         <Tab>Main</Tab>
-                        <Tab>Stock</Tab>
                         <Tab>By Year</Tab>
                         <Tab>By Day</Tab>
                         <Tab>Over Time</Tab>
                         <Tab>Most Common</Tab>
                         <Tab>By Category</Tab>
+                        <Tab>Stock</Tab>
                     </TabList>
 
                     <TabPanel>
                         <TotalPurchases orderArray={outputArray} amznArray={amznArray} />
-                    </TabPanel>
-                    <TabPanel>
-                        <Stocks orderArray={outputArray} amznArray={amznArray} />
                     </TabPanel>
                     <TabPanel>
                         <ByYear orderArray={outputArray} />
@@ -87,6 +84,9 @@ export default function Report() {
                     </TabPanel>
                     <TabPanel>
                         <ByCategory orderArray={outputArray} />
+                    </TabPanel>
+                    <TabPanel>
+                        <Stocks orderArray={outputArray} amznArray={amznArray} />
                     </TabPanel>
                 </Tabs>
             </div>

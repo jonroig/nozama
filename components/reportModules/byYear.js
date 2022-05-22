@@ -45,11 +45,10 @@ export default function ByYear({orderArray}) {
       responsive: true,
       plugins: {
         legend: {
-          position: 'top',
+          display: false
         },
         title: {
-          display: true,
-          text: 'Spending By Year',
+          display: false
         }
       }
     };

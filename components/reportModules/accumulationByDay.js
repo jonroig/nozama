@@ -30,12 +30,11 @@ const options = {
     responsive: true,
     plugins: {
         legend: {
-            position: 'top',
+            display: false
         },
         title: {
-            display: true,
-            text: 'Chart.js Line Chart',
-        },
+            display: false,
+        }
     },
 };
 

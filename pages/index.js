@@ -71,7 +71,7 @@ export default function Home() {
         {showUploadButton && (
           <>
             <p className={styles.importLine }>
-              Import <Link href="/amazonpurchasehistory">Amazon Order History Report</Link>
+              Import <Link href="/amazonpurchasehistory"><a>Amazon Order History Report</a></Link>
             </p>
             <Upload/>
           </>

@@ -32,11 +32,10 @@ export default function Stock({orderArray, amznArray}) {
         responsive: true,
         plugins: {
             legend: {
-                position: 'top',
+                display: false
             },
             title: {
-                display: true,
-                text: 'Stocks, Owner per Day'
+                display: false
             }
         }
     };
