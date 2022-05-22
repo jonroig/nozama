@@ -1,32 +1,30 @@
 import {useState} from 'react';
 import { v4 as uuidv4 } from 'uuid';
-
 import {
     DataEditor,
     DataEditorContainer,
     GridCell,
     GridCellKind
-  } from "@glideapps/glide-data-grid";
+} from "@glideapps/glide-data-grid";
 
+import config from '../config';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-
 import styles from '../styles/OrderTable.module.css';
-const affiliateId = 'nozama072-20';
 
 const imgFromASINISBN = (ASINISBN => (
-    `https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=${ASINISBN}&Format=_SL300_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1&tag=${affiliateId}&language=en_US`
+    `https://ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=${ASINISBN}&Format=_SL300_&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1&tag=${config.affiliateId}&language=en_US`
 ));
 
 const urlFromASINISBN = (ASINISBN => (
-    `https://www.amazon.com/dp/${ASINISBN}?tag=${affiliateId}`
+    `https://www.amazon.com/dp/${ASINISBN}?tag=${config.affiliateId}`
 ));
 
 const urlFromCategory = (category => (
-    `https://www.amazon.com/s?k=${category}&tag=${affiliateId}`
+    `https://www.amazon.com/s?k=${category}&tag=${config.affiliateId}`
 ));
 
 const orderUrlFromOrderId = (orderId => (
-    `https://www.amazon.com/gp/your-account/order-details/?ie=UTF8&orderID=${orderId}&tag=${affiliateId}`
+    `https://www.amazon.com/gp/your-account/order-details/?ie=UTF8&orderID=${orderId}&tag=${config.affiliateId}`
 ));
 
 

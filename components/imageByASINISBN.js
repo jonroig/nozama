@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import AmznImage from "./amznImage";
+import config from '../config';
 
 export default function ImageByASINISBN({ASINISBN, orderArray, format = '_SL200_'}) {
     const [shouldDisplay, setShouldDisplay] = useState(true);
@@ -10,10 +11,9 @@ export default function ImageByASINISBN({ASINISBN, orderArray, format = '_SL200_
         return (<></>);
     }
     
-    const affiliateId = 'nozama072-20';
-    const linkHref = `https://www.amazon.com/dp/${outputObj.ASINISBN}?tag=${affiliateId}`;
-    const imgHref = `//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=${outputObj.ASINISBN}&Format=${format}&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1&tag=${affiliateId}&language=en_US`;
-    const trackHref= `https://ir-na.amazon-adsystem.com/e/ir?t=${affiliateId}&language=en_US&l=li2&o=1&a=${outputObj.ASINISBN}`;
+    const linkHref = `https://www.amazon.com/dp/${outputObj.ASINISBN}?tag=${config.affiliateId}`;
+    const imgHref = `//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=${outputObj.ASINISBN}&Format=${format}&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1&tag=${config.affiliateId}&language=en_US`;
+    const trackHref= `https://ir-na.amazon-adsystem.com/e/ir?t=${config.affiliateId}&language=en_US&l=li2&o=1&a=${outputObj.ASINISBN}`;
     
     return (
         <>  

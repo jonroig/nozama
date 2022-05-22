@@ -47,6 +47,9 @@ export default function Stock({orderArray, amznArray}) {
     const purchaseStockArray = [];
 
     orderArray.forEach(orderObj => {
+        if (!orderObj.OrderDate) {
+            return;
+        } 
         totalSpend = totalSpend.add(orderObj.ItemTotal);
         const stockPrice = getStockPricePerDay(orderObj.OrderDate, amznArray);
         const numShares = orderObj.ItemTotal.value / stockPrice;
@@ -94,17 +97,20 @@ export default function Stock({orderArray, amznArray}) {
 
     return (
         <div>
-            <h3>Stock</h3>
-            <div>
-                You spent {totalSpend.format()} total.
-            </div>
-            <div>
-                That would have purchased {outputNumberOfShares} shares.
-            </div>
-            <div>
-                Today that &apos;s worth {totalStockValue.format()}
-            </div>
+            <h1 className={styles.areaHead}>Stock</h1>
+            
             <Bar options={options} data={data} />
+            <div>
+                <p>
+                    You spent {totalSpend.format()} total.
+                </p>
+                <p>
+                    That would have purchased {outputNumberOfShares} shares.
+                </p>
+                <p>
+                    Today that&apos;s worth {totalStockValue.format()}
+                </p>
+            </div>
         </div>
     );
 }

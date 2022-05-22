@@ -11,6 +11,9 @@ export default function TotalPurchaes({orderArray, amznArray}) {
     };
 
     orderArray.forEach(orderObj => {
+        if (!orderObj.OrderDate) {
+            return;
+        } 
         const stockPrice = getStockPricePerDay(orderObj.OrderDate, amznArray);
         const numShares = orderObj.ItemTotal.value / stockPrice;
         totalObj.totalShares = totalObj.totalShares + numShares;

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from '../styles/Home.module.css'
 
 export default function Footer() {
@@ -7,7 +8,7 @@ export default function Footer() {
                 Straight outta Scottsdale!
             </div>
             <div>
-                By Jon Roig
+                Ⓒ <Link href="https://jonroig.com"><a>Jon Roig</a></Link> 2022
             </div>
       </footer>
     );

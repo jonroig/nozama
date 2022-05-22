@@ -1,12 +1,10 @@
 import React, { useState, CSSProperties } from 'react';
 import { useRouter } from 'next/router';
-import lzutf8 from 'lzutf8';
 import {
   useCSVReader,
   lightenDarkenColor,
   formatFileSize,
 } from 'react-papaparse';
-
 import { useDispatch } from 'react-redux';
 import { loadData } from '../actions';
 import { processCSV } from '../lib/processCSV';
@@ -32,7 +30,8 @@ const styles = {
     justifyContent: 'center',
     padding: 20,
     cursor: 'pointer',
-    backgroundColor: 'honeydew'
+    backgroundColor: '#00C69A',
+    fontWeight: 'bold'
   },
   file: {
     background: 'linear-gradient(to bottom, #EEE, #DDD)',
@@ -98,14 +97,10 @@ export default function CSVReader() {
   const router = useRouter();
   return (
     <CSVReader
-      
       onUploadAccepted={(results) => {
         const orderArray = processCSV(results.data);
         setZoneHover(false);
         dispatch(loadData(orderArray));
-        if (typeof window !== "undefined") {
-          localStorage.setItem('orderArray', JSON.stringify(orderArray));
-        }
         router.push('/report');
         
       }}
@@ -164,7 +159,7 @@ export default function CSVReader() {
                 </div>
               </>
             ) : (
-              'Select AMZN csv'
+              '⮑ Select AMZN csv ⮐'
             )}
           </div>
         </>

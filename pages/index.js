@@ -28,7 +28,6 @@ export default function Home() {
 
 
   useEffect(async () => {
-    
     const fetchData = async () => {
       const response = await fetch('/api/amzn');
       const amznData = await response.json();
@@ -64,11 +63,11 @@ export default function Home() {
       <div></div>
       
       <main className={styles.main}>
-        <h2 className={styles.subTitle}>... a look back at your Amazon purchases...</h2>
+        <h1 className={styles.subTitle}>... a look back at your Amazon purchases...</h1>
         <Image src="/413.jpg" width='1200' height='800' layout='responsive' alt='About Nozama.dev'/>
         {showUploadButton && (
           <>
-            <p className={styles.description}>
+            <p className={styles.importLine }>
               Import <Link href="/amazonpurchasehistory">Amazon Order History Report</Link>
             </p>
             <Upload/>

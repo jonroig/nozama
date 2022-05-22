@@ -10,8 +10,6 @@ function Privacy() {
           <meta name="description" content="Analyze your Amazon purchase history." />
           <link rel="icon" href="/favicon.ico" />
         </Head>
-
-        <div></div>
         
         <main className={styles.main}>
           <h1 className={styles.title}>Privacy</h1>
@@ -20,12 +18,6 @@ function Privacy() {
           <p>
             Your purchase history is not uploaded to our central servers, nor does 
             Nozama attempt to retain your data in any way.
-          </p>
-          <p>
-            For convenience&apos;s sake, Nozama does persist your data in your browser&apos;s{' '}
-            <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank" rel="noreferrer">localStorage</a>, 
-            so when you resume a session its waiting for you there, no 
-            need to get the app to re-read the purchzse history CSV.
           </p>
           <p>
             We do 3rd party tracking with Google Analytics and we load images

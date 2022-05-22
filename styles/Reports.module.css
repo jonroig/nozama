@@ -1,5 +1,6 @@
 .container {
     padding: 0 2rem;
+    min-height: 800px;
 }
 
 .main {
@@ -12,8 +13,6 @@
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
 }
-
-
 
 .commonRow {
     display: flex;
@@ -37,10 +36,6 @@
     font-size: 1.5rem;
 }
 
-
-
-
-
 .mostExpensiveCostColumn {
     font-size: 1.5rem;
     display: flex;
@@ -49,9 +44,6 @@
     flex: 1;
 }
 
-
-
-
 .amznImageFrame {
     display: flex;
     justify-content: center;
@@ -59,6 +51,7 @@
     width: 100%;
     height: 100%;
 }
+
 .amznImage {
     object-fit: contain;
 }
@@ -88,17 +81,6 @@
 
 .floatLeft {
     float: left;
-}
-
-.clearReport {
-    margin: auto;
-    border-style: dotted;
-    border-color: black;
-    border-width: 1px;
-    width: 100px;
-    text-align: center;
-    cursor: pointer;
-    padding: 5px;
 }
 
 
@@ -134,7 +116,7 @@
 
 .areaHead {
     font-size: 5rem;
-    margin-bottom: 0px;
+    margin: 0px;
 }
 
 .reportTab {

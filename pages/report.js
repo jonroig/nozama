@@ -3,8 +3,9 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+import Head from 'next/head';
 
+import 'react-tabs/style/react-tabs.css';
 import styles from '../styles/Reports.module.css';
 import { loadData } from '../actions';
 
@@ -12,6 +13,7 @@ import TotalPurchases from '../components/reportModules/totalPurchases';
 import ByYear from '../components/reportModules/byYear';
 import ByDay from '../components/reportModules/byDay';
 import AccumulationByDay from '../components/reportModules/accumulationByDay';
+
 
 const MostCommon = dynamic(
     () => import('../components/reportModules/mostCommon'),
@@ -39,57 +41,53 @@ export default function Report() {
             router.push('/');
         }
     },[]);
-
-    const clearReport = () => {
-        if (typeof window !== "undefined") {
-            localStorage.setItem('orderArray', JSON.stringify([]));
-            dispatch(loadData([]));
-        }
-        router.push('/');
-    }
     
     const outputArray = state.orderArray;
     const amznArray = state.amznArray;
     return (
-        <div className={styles.container}> 
-            <Tabs>
-                <TabList>
-                    <Tab>Main</Tab>
-                    <Tab>Stock</Tab>
-                    <Tab>By Year</Tab>
-                    <Tab>By Day</Tab>
-                    <Tab>Over Time</Tab>
-                    <Tab>Most Common</Tab>
-                    <Tab>By Category</Tab>
-                    
-                </TabList>
+        <>
+            <Head>
+                <title>Nozama: Report</title>
+                <meta name="description" content="Analyze your Amazon purchase history." />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
 
-                <TabPanel>
-                    <TotalPurchases orderArray={outputArray} amznArray={amznArray} />
-                </TabPanel>
-                <TabPanel>
-                    <Stocks orderArray={outputArray} amznArray={amznArray} />
-                </TabPanel>
-                <TabPanel>
-                    <ByYear orderArray={outputArray} />
-                </TabPanel>
-                <TabPanel>
-                    <ByDay orderArray={outputArray} />
-                </TabPanel>
-                <TabPanel>
-                    <AccumulationByDay orderArray={outputArray} />
-                </TabPanel>
-                <TabPanel>
-                    <MostCommon orderArray={outputArray} />
-                </TabPanel>
-                <TabPanel>
-                    <ByCategory orderArray={outputArray} />
-                </TabPanel>
-            </Tabs>
+            <div className={styles.container}> 
+                <Tabs>
+                    <TabList>
+                        <Tab>Main</Tab>
+                        <Tab>Stock</Tab>
+                        <Tab>By Year</Tab>
+                        <Tab>By Day</Tab>
+                        <Tab>Over Time</Tab>
+                        <Tab>Most Common</Tab>
+                        <Tab>By Category</Tab>
+                    </TabList>
 
-            <div onClick={clearReport} className={styles.clearReport}>
-                Clear report
+                    <TabPanel>
+                        <TotalPurchases orderArray={outputArray} amznArray={amznArray} />
+                    </TabPanel>
+                    <TabPanel>
+                        <Stocks orderArray={outputArray} amznArray={amznArray} />
+                    </TabPanel>
+                    <TabPanel>
+                        <ByYear orderArray={outputArray} />
+                    </TabPanel>
+                    <TabPanel>
+                        <ByDay orderArray={outputArray} />
+                    </TabPanel>
+                    <TabPanel>
+                        <AccumulationByDay orderArray={outputArray} />
+                    </TabPanel>
+                    <TabPanel>
+                        <MostCommon orderArray={outputArray} />
+                    </TabPanel>
+                    <TabPanel>
+                        <ByCategory orderArray={outputArray} />
+                    </TabPanel>
+                </Tabs>
             </div>
-        </div>
+        </>
+        
     );
 }

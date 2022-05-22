@@ -1,6 +1,4 @@
-
 export default function AmznLink({record}) {
-    const affiliateId = 'nozama072-20';
     if (!record) {
         return <></>
     }
