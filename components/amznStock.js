@@ -101,7 +101,7 @@ const AmznStock = ({ amznArray }) => {
                         <div className={styles.tdRight}>{changePercent}</div>
                     </div>
                 </div>
-                <div className={styles.td}>
+                <div className={styles.pickerBig}>
                     <DayPicker 
                         fromYear={1997}
                         toYear={date.format(today, 'YYYY')}
@@ -115,7 +115,19 @@ const AmznStock = ({ amznArray }) => {
                     />
                 </div>
             </div>
-            
+            <div className={styles.pickerSmall}>
+                <DayPicker 
+                    fromYear={1997}
+                    toYear={date.format(today, 'YYYY')}
+                    captionLayout="dropdown" 
+                    mode="single"
+                    selected={startDate}
+                    onSelect={onChangeDate}
+                    required
+                    disabled={disabledDays}
+                    defaultMonth={new Date(1997, 4)}
+                />
+            </div>
         </div>
     </>
     )
