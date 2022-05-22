@@ -43,7 +43,10 @@ function Wtf() {
             how much we&apos;d spent since the beginning of the pandemic.
           </p>
           <p>
-            This site makes money through affiliate links to Amazon. We don&apos;t collect
+            We are not affiliated with Amazon in any way.
+          </p>
+          <p>
+            ... but this site makes money through affiliate links to Amazon. We don&apos;t collect
             any information on you or your purchases whatsoever.
           </p>
           <p>
