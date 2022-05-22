@@ -41,7 +41,8 @@ function Wtf() {
             any information on you or your purchases whatsoever.
           </p>
           <p>
-            We're <Link href="https://github.com/jonroig/nozama"><a>Open Source</a></Link>, so feel free to check out the code, improve it by adding features 
+            We&apos;re <Link href="https://github.com/jonroig/nozama"><a>Open Source</a></Link>, 
+            so feel free to check out the code, improve it by adding features 
             or fixing bugs.
           </p>
           <p>
