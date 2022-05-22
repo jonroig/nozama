@@ -8,11 +8,17 @@ function Privacy() {
       <div className={styles.container}>
         <Head>
           <title>Nozama: Privacy</title>
-          <meta name="description" content="Analyze your Amazon purchase history." />
+          <meta name="description" content="Your Amazon shopping history belongs to you." />
           <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
           <link rel="manifest" href="/site.webmanifest" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@_nozama_" />
+          <meta name="twitter:creator" content="@runnr_az" />
+          <meta name="twitter:title" content="Nozama.dev... Privacy" />
+          <meta name="twitter:description" content="Your Amazon shopping history belongs to you."/>
+          <meta name="twitter:image" content="https://nozama.dev/colorcard.jpg"/>
         </Head>
         
         <main className={styles.main}>

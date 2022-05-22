@@ -115,20 +115,6 @@
 }
 
 .areaHead {
-    font-size: 4rem;
+    font-size: 2.7rem;
     margin: 0 0 20px 0;
-}
-
-.reportTab {
-    cursor: pointer;
-    padding: 8px 8px 8px 8px;
-    border-color: black;
-    border-style: solid;
-    border-width: 0 2px 2px 2px;
-    margin: 5px;
-}
-
-.reportTabSelected {
-    background-color: black;
-    color: yellow;
 }

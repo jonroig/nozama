@@ -48,7 +48,7 @@ export default function Report() {
         <>
             <Head>
                 <title>Nozama: Report</title>
-                <meta name="description" content="Analyze your Amazon purchase history." />
+                <meta name="description" content="Analyze your Amazon shopping history." />
                 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
                 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -56,7 +56,7 @@ export default function Report() {
             </Head>
 
             <div className={styles.container}> 
-                <Tabs>
+                <Tabs selectedTabClassName="reportTabSelected">
                     <TabList>
                         <Tab>Summary</Tab>
                         <Tab>By Year</Tab>

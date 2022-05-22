@@ -8,7 +8,6 @@ import { usePapaParse } from 'react-papaparse';
 import { useRouter } from 'next/router';
 
 import { loadAmzn, loadData } from '../actions';
-import { processCSVFromJson } from '../lib/processCSV';
 import styles from '../styles/Home.module.css';
 import { processCSV } from '../lib/processCSV';
 import AmznStock from '../components/amznStock';
@@ -61,6 +60,12 @@ export default function Home() {
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@_nozama_" />
+        <meta name="twitter:creator" content="@runnr_az" />
+        <meta name="twitter:title" content="Nozama.dev" />
+        <meta name="twitter:description" content="... a look back at your Amazon spending"/>
+        <meta name="twitter:image" content="https://nozama.dev/colorcard.jpg"/>
       </Head>
 
       <div></div>

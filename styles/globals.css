@@ -49,3 +49,8 @@ a {
   text-decoration: underline;
   background-color: lightblue;
 }
+
+.reportTabSelected {
+  background-color: grey;
+  color: white;
+}

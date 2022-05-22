@@ -8,17 +8,23 @@ function Amazonpurchasehistory() {
     return (
       <div className={styles.container}>
         <Head>
-          <title>Nozama: Get your Amazon Purchase History</title>
-          <meta name="description" content="Analyze your Amazon purchase history." />
+          <title>Nozama: Amazon Purchase History : Download / Export CSV</title>
+          <meta name="description" content="Your data belongs to you. A guide to exporting / downloading your Amazon shopping history" />
           <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
           <link rel="manifest" href="/site.webmanifest" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@_nozama_" />
+          <meta name="twitter:creator" content="@runnr_az" />
+          <meta name="twitter:title" content="Nozama.dev... Purchase history" />
+          <meta name="twitter:description" content="... a guide to exporting / downloading your Amazon shopping history"/>
+          <meta name="twitter:image" content="https://nozama.dev/colorcard.jpg"/>
         </Head>
         
         <main className={styles.main}>
-          <h1 className={styles.title}>AMZN Purchase History</h1>
-          <h2>Get a copy of your Amazon purchase history. Only takes 2 mins</h2>
+          <h1 className={styles.title}>Purchase History</h1>
+          <h2>You own your Amazon purchase history. Request a copy -- it only takes 2 mins</h2>
           <Image src='/RequestOrderHistoryReport.png' width='387' height='313' layout='fixed' alt='Export your Amazon purchase history'/>
           <ol>
             <li>Go to <a href={`https://www.amazon.com/gp/b2b/reports?tag=${config.affiliateId}`} target="_blank" rel="noreferrer">Order History Reports</a> in Your Account.</li>

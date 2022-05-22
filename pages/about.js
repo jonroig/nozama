@@ -15,6 +15,12 @@ function Wtf() {
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
           <link rel="manifest" href="/site.webmanifest" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:site" content="@_nozama_" />
+          <meta name="twitter:creator" content="@runnr_az" />
+          <meta name="twitter:title" content="Nozama.dev... about Nozama" />
+          <meta name="twitter:description" content="... wait. I spent how much at Amazon?"/>
+          <meta name="twitter:image" content="https://nozama.dev/colorcard.jpg"/>
         </Head>
         
         <main className={styles.main}>
