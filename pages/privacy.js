@@ -39,7 +39,7 @@ function Privacy() {
             Nozama makes its money as an Amazon Affiliate. 
           </p>
           <p>
-            Any time you on a product or service
+            Any time you click on a product or service
             listed on Nozama, a tracking code identifies us as the source and gives us a percentage
             of your future purchases depending on various conditions. 
           </p>
