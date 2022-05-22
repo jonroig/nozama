@@ -208,7 +208,7 @@ export default function ByCategory() {
                     
                     <div className={styles.row}>
                         <div className={styles.cell}>
-                            <h3 className={[styles.ucFirst, styles.headline].join(' ')}>
+                            <h3 className={[styles.ucFirst, styles.commonHeadline].join(' ')}>  
                                 {cleanCategory(category)}
                             </h3>
                         </div>

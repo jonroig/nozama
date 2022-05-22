@@ -58,7 +58,7 @@ export default function Report() {
             <div className={styles.container}> 
                 <Tabs>
                     <TabList>
-                        <Tab>Main</Tab>
+                        <Tab>Summary</Tab>
                         <Tab>By Year</Tab>
                         <Tab>By Day</Tab>
                         <Tab>Over Time</Tab>
