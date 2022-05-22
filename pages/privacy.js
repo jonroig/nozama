@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Image from 'next/image';
 
 import styles from '../styles/Otherpages.module.css';
 
@@ -16,6 +17,7 @@ function Privacy() {
         
         <main className={styles.main}>
           <h1 className={styles.title}>Privacy</h1>
+          <Image src='/witchcraft-011_0-14.png' width='666' height='541' layout='responsive' alt='Privacy'/>
           <h2>Your data is 100% private.</h2>
        
           <p>
