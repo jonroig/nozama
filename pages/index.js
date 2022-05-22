@@ -28,15 +28,13 @@ export default function Home() {
 
 
   useEffect(async () => {
-    const jsonOrderArray = localStorage.getItem('orderArray');
-    if (jsonOrderArray) {
-      const orderArray = processCSVFromJson(JSON.parse(jsonOrderArray));
-      dispatch(loadData(orderArray));
+    
+    const fetchData = async () => {
+      const response = await fetch('/api/amzn');
+      const amznData = await response.json();
+      dispatch(loadAmzn(amznData));
     }
-
-    const response = await fetch('/api/amzn');
-    const amznData = await response.json();
-    dispatch(loadAmzn(amznData));
+    fetchData();
   }, [dispatch]);
 
   const doDemo = async () => {
@@ -49,7 +47,7 @@ export default function Home() {
         router.push('/report');
       }
     }) 
-  }
+  };
 
   const state = useSelector((state) => state);
 
@@ -67,16 +65,13 @@ export default function Home() {
       
       <main className={styles.main}>
         <h2 className={styles.subTitle}>... a look back at your Amazon purchases...</h2>
-     
+        <Image src="/413.jpg" width='1200' height='800' layout='responsive' alt='About Nozama.dev'/>
         {showUploadButton && (
           <>
             <p className={styles.description}>
               Import <Link href="/amazonpurchasehistory">Amazon Order History Report</Link>
             </p>
             <Upload/>
-            <div className={styles.demoCSS} onClick={doDemo}>
-              &gt;&gt;&gt; demo csv &lt;&lt;&lt;
-            </div>
           </>
         )}
         {!showUploadButton && (
@@ -88,6 +83,16 @@ export default function Home() {
             </p>
           </>
         )}
+        <h2 className={styles.tighten}>Features</h2>
+        <ul className={styles.featureList}>
+          <li><a className={styles.demo} onClick={doDemo}>Demo</a> ⭅ Take Nozama for a test drive</li>
+          <li><Link href="/privacy"><a>Privacy focused / client-side only</a></Link>... no data is sent back to the server</li>
+          <li>Grouping: Amazon purchases by category and item</li>
+          <li>Sorting: Amazon purchases by spending or frequency</li>
+          <li>Spending graphs: Money spent by year, day, cumulative over time</li>
+          <li>Stock comparison: if you&apos;d spent your money on AMZN stock, how much would your investment be worth now?</li>
+          <li><Link href="https://github.com/jonroig/nozama"><a>Open source</a></Link>: Errors / ideas? PRs welcome</li>
+        </ul>
         <h2>AMZN Stock Calculator</h2>
         <AmznStock/>
         <br/><br/><br/><br/>
@@ -107,9 +112,9 @@ export default function Home() {
               </p>
             </a>
           </Link>
-          <Link href="/wtf">
+          <Link href="/about">
             <a className={styles.card}>
-              <h2>WTF? &rarr;</h2>
+              <h2>About &rarr;</h2>
               <p>What is Nozama and how does it work?</p>
             </a>
           </Link>

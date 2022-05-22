@@ -31,7 +31,8 @@ const styles = {
     height: '100%',
     justifyContent: 'center',
     padding: 20,
-    cursor: 'pointer'
+    cursor: 'pointer',
+    backgroundColor: 'honeydew'
   },
   file: {
     background: 'linear-gradient(to bottom, #EEE, #DDD)',
