@@ -24,6 +24,7 @@
 
 .featureList a {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .featureList .demo {

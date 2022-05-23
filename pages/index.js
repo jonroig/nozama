@@ -94,7 +94,21 @@ export default function Home() {
             </p>
           </>
         )}
+        <h2 className={styles.tighten}>Nozama decodes Amazon</h2>
+          
+        <ul className={styles.featureList}>
+          <li>How much did you spend at Amazon?</li>
+          <li>How much did your spending go up during the pandemic?</li>
+          <li>What do you buy the most of?</li>
+          <li>How much did you pay in taxes?</li>
+          <li><a onClick={doDemo}>Demo</a></li>
+        </ul>
         
+        <h2>Example: Spending By Year</h2>
+        <a onClick={doDemo}>
+          <Image src="/spendingbyyeargraph.png" width="600" height="308" layout='intrinsic'/>
+
+        </a>
         <h2 className={styles.tighten}>Features</h2>
         <ul className={styles.featureList}>
           <li><a className={styles.demo} onClick={doDemo}>Demo</a> ⭅ Take Nozama for a test drive</li>
