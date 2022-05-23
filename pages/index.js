@@ -12,9 +12,13 @@ import styles from '../styles/Home.module.css';
 import { processCSV } from '../lib/processCSV';
 import AmznStock from '../components/amznStock';
 
-
 const Upload = dynamic(
   () => import('../components/upload'),
+  { ssr: false }
+);
+
+const Share = dynamic(
+  () => import('../components/share'),
   { ssr: false }
 );
 
@@ -55,7 +59,7 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>Nozama... a look back at your Amazon purchase history</title>
-        <meta name="description" content="Analyze your Amazon purchase history." />
+        <meta name="description" content="Analyze your Amazon shopping." />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -67,7 +71,7 @@ export default function Home() {
         <meta name="twitter:description" content="... a look back at your Amazon spending"/>
         <meta name="twitter:image" content="https://nozama.dev/colorcard.jpg"/>
       </Head>
-
+      <div id="fb-root"></div>
       <div></div>
       
       <main className={styles.main}>
@@ -90,6 +94,7 @@ export default function Home() {
             </p>
           </>
         )}
+        
         <h2 className={styles.tighten}>Features</h2>
         <ul className={styles.featureList}>
           <li><a className={styles.demo} onClick={doDemo}>Demo</a> ⭅ Take Nozama for a test drive</li>
@@ -100,6 +105,10 @@ export default function Home() {
           <li>Stock comparison: if you&apos;d spent your money on AMZN stock, how much would your investment be worth now?</li>
           <li><Link href="https://github.com/jonroig/nozama"><a>Open source</a></Link>: Errors / ideas? PRs welcome</li>
         </ul>
+        
+        <h2>Share</h2>
+        <Share />
+
         <h2>AMZN Stock Calculator</h2>
         <AmznStock/>
         <br/><br/><br/><br/>

@@ -5,6 +5,7 @@ export default function Layout({ children }) {
     return (
       <>
         <Navbar />
+        <div id="fb-root"></div>
         <main>{children}</main>
         <Footer />
       </>
