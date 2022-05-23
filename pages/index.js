@@ -59,7 +59,7 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>Nozama... a look back at your Amazon purchase history</title>
-        <meta name="description" content="Analyze your Amazon shopping." />
+        <meta name="description" content="Analyze your Amazon shopping. Slice and dice your past spending... where is all your money going?" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -68,7 +68,7 @@ export default function Home() {
         <meta name="twitter:site" content="@_nozama_" />
         <meta name="twitter:creator" content="@runnr_az" />
         <meta name="twitter:title" content="Nozama.dev" />
-        <meta name="twitter:description" content="... a look back at your Amazon spending"/>
+        <meta name="twitter:description" content="... a look back at your Amazon spending. Slice and dice your past spending... where is all your money going?"/>
         <meta name="twitter:image" content="https://nozama.dev/colorcard.jpg"/>
       </Head>
       <div id="fb-root"></div>
@@ -98,6 +98,7 @@ export default function Home() {
         <h2 className={styles.tighten}>Features</h2>
         <ul className={styles.featureList}>
           <li><a className={styles.demo} onClick={doDemo}>Demo</a> ⭅ Take Nozama for a test drive</li>
+          <li>Where is all your money going? Slice and dice your past spending</li>
           <li><Link href="/privacy"><a>Privacy focused / client-side only</a></Link>... no data is sent back to the server</li>
           <li>Grouping: Amazon purchases by category and item</li>
           <li>Sorting: Amazon purchases by spending or frequency</li>
