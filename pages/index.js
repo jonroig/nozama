@@ -124,7 +124,7 @@ export default function Home() {
         <h2>Share</h2>
         <Share />
         <div style={{paddingLeft: 30 }}>
-          <a href="https://www.producthunt.com/posts/nozama?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-nozama" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=347409&theme=light" alt="Nozama - &#0046;&#0046;&#0046;&#0032;a&#0032;look&#0032;back&#0032;at&#0032;your&#0032;Amazon&#0032;purchases | Product Hunt" style={{width: '250px', height: '54px'}} width="250" height="54" /></a>
+          <a href="https://www.producthunt.com/posts/nozama?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-nozama" target="_blank" rel="noreferrer" ><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=347409&theme=light" alt="Nozama - &#0046;&#0046;&#0046;&#0032;a&#0032;look&#0032;back&#0032;at&#0032;your&#0032;Amazon&#0032;purchases | Product Hunt" style={{width: '250px', height: '54px'}} width="250" height="54" /></a>
         </div>
         
         <h2>AMZN Stock Calculator</h2>
