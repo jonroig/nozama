@@ -8,8 +8,8 @@ function Amazonpurchasehistory() {
     return (
       <div className={styles.container}>
         <Head>
-          <title>Nozama: Amazon Purchase History : Download / Export CSV</title>
-          <meta name="description" content="Your data belongs to you. A guide to exporting / downloading your Amazon shopping history" />
+          <title>Nozama: Amazon Order History : Download / Export Shopping History CSV </title>
+          <meta name="description" content="Your data belongs to you. A guide to exporting / downloading your Amazon order history" />
           <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -17,8 +17,8 @@ function Amazonpurchasehistory() {
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@_nozama_" />
           <meta name="twitter:creator" content="@runnr_az" />
-          <meta name="twitter:title" content="Nozama.dev... Purchase history" />
-          <meta name="twitter:description" content="... a guide to exporting / downloading your Amazon shopping history"/>
+          <meta name="twitter:title" content="Nozama.dev... Amazon shopping history csv export" />
+          <meta name="twitter:description" content="Your data belongs to you. A guide to exporting / downloading your Amazon shopping history"/>
           <meta name="twitter:image" content="https://nozama.dev/colorcard.jpg"/>
         </Head>
         
