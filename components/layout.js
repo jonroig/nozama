@@ -1,4 +1,5 @@
 import Script from 'next/script';
+import Head from 'next/head';
 
 import Navbar from './navbar';
 import Footer from './footer';
@@ -15,11 +16,15 @@ export default function Layout({ children }) {
 
           gtag('config', '${config.gtag}');`}
         </Script>
-        <Script id="service-worker" type="module">
-            {`import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
-            const el = document.createElement('pwa-update');
-            document.body.appendChild(el);`}
-        </Script>
+
+        <Head>
+          <Script id="service-worker" type="module">
+              {`import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+              const el = document.createElement('pwa-update');
+              document.body.appendChild(el);`}
+          </Script>
+        </Head>
+        
 
         <Navbar />
         <div id="fb-root"></div>
