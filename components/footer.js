@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import {
     TwitterIcon,
     FacebookIcon
@@ -17,6 +18,7 @@ export default function Footer() {
                 <br/>
                 <Link href="https://twitter.com/_nozama_"><a><TwitterIcon size={34} round /></a></Link>
                 {' '}<Link href="https://www.facebook.com/Nozama-113258568056826"><a><FacebookIcon size={34} round /></a></Link>
+                {' '}<Link href="https://github.com/jonroig/nozama"><Image src="/github_logo.png" height={32} width={32} /></Link>
             </div>
       </footer>
     );
