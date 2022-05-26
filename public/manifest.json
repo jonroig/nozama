@@ -11,6 +11,12 @@
         "src": "images/512x512.png",
         "sizes": "512x512",
         "type": "image/png"
+      },
+      {
+        "src": "images/maskable.png",
+        "sizes": "354×354",
+        "type": "image/png",
+        "purpose": "any maskable"
       }
     ],
     "theme_color": "#ffffff",
