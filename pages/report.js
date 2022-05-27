@@ -65,7 +65,6 @@ export default function Report() {
                         <Tab>Over Time</Tab>
                         <Tab>Most Common</Tab>
                         <Tab>By Category</Tab>
-                        <Tab>Stock</Tab>
                     </TabList>
 
                     <TabPanel>
@@ -85,9 +84,6 @@ export default function Report() {
                     </TabPanel>
                     <TabPanel>
                         <ByCategory orderArray={outputArray} />
-                    </TabPanel>
-                    <TabPanel>
-                        <Stocks orderArray={outputArray} amznArray={amznArray} />
                     </TabPanel>
                 </Tabs>
             </div>

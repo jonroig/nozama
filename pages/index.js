@@ -29,15 +29,15 @@ export default function Home() {
   const router = useRouter();
   const { readString } = usePapaParse();
 
-
-  useEffect(async () => {
-    const fetchData = async () => {
-      const response = await fetch('/api/amzn');
-      const amznData = await response.json();
-      dispatch(loadAmzn(amznData));
-    }
-    fetchData();
-  }, [dispatch]);
+  // stock stuff taken out for the short term
+  // useEffect(async () => {
+  //   const fetchData = async () => {
+  //     const response = await fetch('/api/amzn');
+  //     const amznData = await response.json();
+  //     dispatch(loadAmzn(amznData));
+  //   }
+  //   fetchData();
+  // }, [dispatch]);
 
   const doDemo = async () => {
     const response = await fetch('/example.csv');
@@ -75,15 +75,20 @@ export default function Home() {
       <div></div>
       
       <main className={styles.main}>
-        <h1 className={styles.subTitle}>... a look back at your Amazon purchases...</h1>
-        <Image src="/413.jpg" width='1200' height='800' layout='responsive' alt='About Nozama.dev'/>
         {showUploadButton && (
           <>
+            <div className={styles.pwaImportHeader}>
+                <Link href="/amazonpurchasehistory">
+                    <Image src="/csv-128.png" width={64} height={64} alt="Amazon purchase history CSV export instructions"/>
+                </Link>
+                <br/>
+                <strong>Get Started:</strong>{' '}
+                How To Export<br/><Link href="/amazonpurchasehistory"><a title="Amazon purchase history CSV export instructions">Amazon Order History Report</a></Link>
+            </div>
             <p className={styles.importLine }>
-              Import <Link href="/amazonpurchasehistory"><a>Amazon Order History Report</a></Link>
             </p>
-            <Upload/>
-          </>
+            <Upload />
+           </>
         )}
         {!showUploadButton && (
           <>
@@ -94,9 +99,10 @@ export default function Home() {
             </p>
           </>
         )}
-        <h2 className={styles.tighten}>Nozama decodes Amazon</h2>
+        <h1 className={styles.tighten}>Nozama: Parse Your Purchases</h1>
           
         <ul className={styles.featureList}>
+          <li>Parse your Amazon order history CSV</li>
           <li>How much did you spend at Amazon?</li>
           <li>How much did your spending go up during the pandemic?</li>
           <li>What do you buy the most of?</li>
@@ -117,7 +123,6 @@ export default function Home() {
           <li>Grouping: Amazon purchases by category and item</li>
           <li>Sorting: Amazon purchases by spending or frequency</li>
           <li>Spending graphs: Money spent by year, day, cumulative over time</li>
-          <li>Stock comparison: if you&apos;d spent your money on AMZN stock, how much would your investment be worth now?</li>
           <li><Link href="https://github.com/jonroig/nozama"><a>Open source</a></Link>: Errors / ideas? PRs welcome</li>
         </ul>
         
@@ -127,10 +132,8 @@ export default function Home() {
           <a href="https://www.producthunt.com/posts/nozama?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-nozama" target="_blank" rel="noreferrer" ><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=347409&theme=light" alt="Nozama - &#0046;&#0046;&#0046;&#0032;a&#0032;look&#0032;back&#0032;at&#0032;your&#0032;Amazon&#0032;purchases | Product Hunt" style={{width: '250px', height: '54px'}} width="250" height="54" /></a>
         </div>
         
-        <h2>AMZN Stock Calculator</h2>
-        <AmznStock/>
-        <br/><br/><br/><br/>
-
+        <br/>
+        <h2>Learn more</h2>
         <div className={styles.grid}>
           <Link href="/privacy" >
             <a className={styles.card}>

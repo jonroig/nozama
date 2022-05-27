@@ -82,7 +82,7 @@ export default function PwaHome() {
                 </Link>
                 <br/>
                 <strong>Get Started:</strong>{' '}
-                How To Import<br/><Link href="/amazonpurchasehistory?returnPath=pwa"><a title="Amazon purchase history CSV export instructions">Amazon Order History Report</a></Link>
+                How To Export<br/><Link href="/amazonpurchasehistory?returnPath=pwa"><a title="Amazon purchase history CSV export instructions">Amazon Order History Report</a></Link>
             </div>
             <p className={styles.importLine }>
             </p>

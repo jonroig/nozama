@@ -24,7 +24,8 @@ function Amazonpurchasehistory() {
         
         <main className={styles.main}>
           <h1 className={styles.title}>Purchase History</h1>
-          <h2>You own your Amazon purchase history. Request a copy -- it only takes 2 mins</h2>
+          <h2>You own your Amazon purchase history.<br/>
+          Request a copy -- it only takes 2 mins</h2>
           <div>
             <Image src='/RequestOrderHistoryReport.png' width={387}  height={313} layout='intrinsic' alt='Export your Amazon purchase history'/>
           </div>
