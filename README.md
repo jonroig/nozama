@@ -11,7 +11,6 @@ Nozama is a comprehensive look back at your Amazon shopping. After you've export
 * Groups purchases by category and item
 * Sorts purchases by spending or frequency
 * Graphs spending over time
-* Stock comparison: if you'd spent your money on AMZN stock, how much would your investment be worth now?
 
 
 ## Development
