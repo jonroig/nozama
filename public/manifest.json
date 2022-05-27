@@ -1,55 +1,55 @@
 {
-    "name": "Nozama... a look back at your Amazon purchase history",
-    "short_name": "Nozama",
-    "icons": [
-      {
-        "src": "images/192x192.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      },
-      {
-        "src": "images/512x512.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      },
-      {
-        "src": "images/maskable.png",
-        "sizes": "512x512",
-        "type": "image/png",
-        "purpose": "any maskable"
-      }
-    ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
-    "display": "standalone",
-    "start_url": "https://nozama.dev/index_pwa",
-    "orientation": "portrait-primary",
-    "screenshots": [
-      {
-        "src": "screenshots/spendingbyyeargraph.png",
-        "sizes": "1200×616",
-        "type": "image/png",
-        "platform": "wide",
-        "label": "Graph: Amazon spending grouped by year"
-      },
-      {
-        "src": "screenshots/categories_example.png",
-        "sizes": "2014×710",
-        "type": "image/png",
-        "platform": "wide",
-        "label": "Group: Spending by Categories"
-      },
-      {
-        "src": "screenshots/overview_example.png",
-        "sizes": "2002×1206",
-        "type": "image/png",
-        "platform": "wide",
-        "label": "Overview: Total Amazon spending, number of items, taxes, and stock value"
-      }
-    ],
-    "categories": [
-      "finance",
-      "shopping",
-      "lifestyle"
-    ]
-  }
+  "name": "Nozama... a look back at your Amazon purchase history",
+  "short_name": "Nozama",
+  "icons": [
+    {
+      "src": "images/192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "images/maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "https://nozama.dev/index_pwa",
+  "orientation": "portrait-primary",
+  "screenshots": [
+    {
+      "src": "screenshots/spendingbyyeargraph.png",
+      "sizes": "1200×616",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Graph: Amazon spending grouped by year"
+    },
+    {
+      "src": "screenshots/categories_example.png",
+      "sizes": "2014×710",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Group: Spending by Categories"
+    },
+    {
+      "src": "screenshots/overview_example.png",
+      "sizes": "2002×1206",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Overview: Total Amazon spending, number of items, taxes, and stock value"
+    }
+  ],
+  "categories": [
+    "finance",
+    "shopping",
+    "lifestyle"
+  ]
+}
