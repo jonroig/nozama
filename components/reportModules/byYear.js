@@ -11,7 +11,7 @@ import {
   Legend,
   Filler
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
 import styles from '../../styles/Reports.module.css';
 
@@ -45,8 +45,6 @@ export default function ByYear({orderArray}) {
 
     const options = {
       responsive: true,
-      backgroundColor: 'rgb(20,110,180)',
-      borderColor:  'rgb(20,110,180)',
       plugins: {
         legend: {
           display: false
@@ -54,8 +52,7 @@ export default function ByYear({orderArray}) {
         title: {
           display: false
         }
-      },
-      fill: true
+      }
     };
       
     const labels = Object.keys(yearObj);
@@ -68,9 +65,7 @@ export default function ByYear({orderArray}) {
       datasets: [
         {
           data: spendingTotals,
-          backgroundColor: 'rgb(20,110,180)',
-          borderColor:  'rgb(20,110,180)',
-          fill: true
+          backgroundColor: 'rgb(20,110,180)'
         }
       ]
     };
@@ -78,7 +73,7 @@ export default function ByYear({orderArray}) {
     return (
         <>
           <h1 className={styles.areaHead}>Spending By Year</h1>
-          <Line options={options} data={data} />
+          <Bar options={options} data={data} />
         </>
     );
 }

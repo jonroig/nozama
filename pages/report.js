@@ -34,6 +34,7 @@ const Stocks = dynamic(
 export default function Report() {
     const dispatch = useDispatch();
     const router = useRouter();
+    const { query } = useRouter();
 
     const state = useSelector((state) => state);
     useEffect(() => {
