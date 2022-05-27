@@ -66,10 +66,8 @@ export default function ByDay({orderArray}) {
       {
         data: spendingAmounts,
         backgroundColor: [
-            'rgba(255,153,0)',
             'rgba(20,110,180)',
-            'rgba(0,0,0)',
-            'rgba(35,47,62)'
+
         ]
       }
     ]

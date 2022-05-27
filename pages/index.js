@@ -53,7 +53,7 @@ export default function Home() {
 
   const state = useSelector((state) => state);
 
-  const showUploadButton = state.orderArray.length ? false : true;
+  const showUploadButton = state.orderArray?.length ? false : true;
 
   return (
     <div className={styles.container}>
@@ -106,7 +106,7 @@ export default function Home() {
         
         <h2>Example: Spending By Year</h2>
         <a onClick={doDemo}>
-          <Image src="/spendingbyyeargraph.png" width="600" height="308" layout='intrinsic'/>
+          <Image src="/spendingbyyeargraph.png" width="600" height="308" layout='intrinsic' alt="Graph: Amazon spending by year"/>
 
         </a>
         <h2 className={styles.tighten}>Features</h2>

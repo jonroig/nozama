@@ -9,10 +9,11 @@ import {
     BarElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    Filler
   } from 'chart.js';
   
-  import { Bar } from 'react-chartjs-2';
+  import { Line } from 'react-chartjs-2';
   
   import styles from '../../styles/Reports.module.css';
   
@@ -22,7 +23,8 @@ import {
     BarElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    Filler
   );
 
   
@@ -83,12 +85,9 @@ export default function Stock({orderArray, amznArray}) {
         datasets: [
           {
             data: accumulatedShares,
-            backgroundColor: [
-                'rgba(255,153,0)',
-                'rgba(20,110,180)',
-                'rgba(0,0,0)',
-                'rgba(35,47,62)'
-            ]
+            backgroundColor: '#00b300',
+            borderColor:  'rgb(0, 100, 0)',
+            fill: true
           }
         ]
     };
@@ -98,7 +97,7 @@ export default function Stock({orderArray, amznArray}) {
         <div>
             <h1 className={styles.areaHead}>Stock</h1>
             
-            <Bar options={options} data={data} />
+            <Line options={options} data={data} />
             <div>
                 <p>
                     You spent {totalSpend.format()} total.

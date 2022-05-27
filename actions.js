@@ -13,3 +13,10 @@ export const loadAmzn = (amznData) => (dispatch) => {
         payload: amznData
     });
 }
+
+export const reset = () => (dispatch) => {
+    dispatch({
+        type: types.RESET,
+        payload: null
+    });
+}

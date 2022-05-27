@@ -8,9 +8,10 @@ import {
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Filler
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
 import styles from '../../styles/Reports.module.css';
 
@@ -20,7 +21,8 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Filler
 );
 
 
@@ -43,6 +45,8 @@ export default function ByYear({orderArray}) {
 
     const options = {
       responsive: true,
+      backgroundColor: 'rgb(20,110,180)',
+      borderColor:  'rgb(20,110,180)',
       plugins: {
         legend: {
           display: false
@@ -50,7 +54,8 @@ export default function ByYear({orderArray}) {
         title: {
           display: false
         }
-      }
+      },
+      fill: true
     };
       
     const labels = Object.keys(yearObj);
@@ -63,12 +68,9 @@ export default function ByYear({orderArray}) {
       datasets: [
         {
           data: spendingTotals,
-          backgroundColor: [
-              'rgba(255,153,0)',
-              'rgba(20,110,180)',
-              'rgba(0,0,0)',
-              'rgba(35,47,62)'
-          ]
+          backgroundColor: 'rgb(20,110,180)',
+          borderColor:  'rgb(20,110,180)',
+          fill: true
         }
       ]
     };
@@ -76,7 +78,7 @@ export default function ByYear({orderArray}) {
     return (
         <>
           <h1 className={styles.areaHead}>Spending By Year</h1>
-          <Bar options={options} data={data} />
+          <Line options={options} data={data} />
         </>
     );
 }

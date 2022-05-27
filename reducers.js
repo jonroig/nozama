@@ -6,7 +6,7 @@ const reportReducer = (state = [], { type, payload }) => {
         case types.LOAD:
             return payload;
         case types.RESET:
-            return null;
+            return [];
         default:
             return state;
     }

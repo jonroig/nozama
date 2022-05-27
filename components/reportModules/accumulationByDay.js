@@ -10,6 +10,7 @@ import {
     Title,
     Tooltip,
     Legend,
+    Filler
   } from 'chart.js';
 
 import { Line } from 'react-chartjs-2';
@@ -23,7 +24,8 @@ ChartJS.register(
     LineElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    Filler
 );
 
 const options = {
@@ -65,9 +67,10 @@ export default function AccumulationByDay({orderArray}) {
         labels,
         datasets: [
             {
-            data: dayData,
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                data: dayData,
+                backgroundColor: 'rgb(20,110,180)',
+                borderColor:  'rgb(20,110,180)',
+                fill: true
             }
         ],
     };
