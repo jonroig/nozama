@@ -38,7 +38,8 @@ export default function Report() {
     const state = useSelector((state) => state);
     useEffect(() => {
         if (!state || !state.orderArray || state.orderArray.length === 0) {
-            router.push('/');
+            const goTo = query?.returnPath === 'pwa' ? '/index_pwa' : '/';
+            router.push(goTo);
         }
     },[]);
     

@@ -22,7 +22,7 @@
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
     "display": "standalone",
-    "start_url": "https://nozama.dev",
+    "start_url": "https://nozama.dev/index_pwa",
     "orientation": "portrait-primary",
     "screenshots": [
       {

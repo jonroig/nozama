@@ -141,6 +141,16 @@
   text-align: center;
 }
 
-.importLine a {
+.importLine a, .pwaImportHeader a {
   text-decoration: underline;
+}
+
+.pwaImportHeader {
+  border: 1px solid black;
+  text-align: center;
+  padding: 20px;
+  width: 75%;
+  margin: 20px auto 20px auto;
+  background-color: lightgray;
+  border-radius: 15px;
 }

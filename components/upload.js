@@ -86,7 +86,7 @@ const styles = {
   }
 };
 
-export default function CSVReader() {
+export default function CSVReader({ returnPath }) {
   const { CSVReader } = useCSVReader();
   const [zoneHover, setZoneHover] = useState(false);
   const [removeHoverColor, setRemoveHoverColor] = useState(
@@ -95,13 +95,14 @@ export default function CSVReader() {
 
   const dispatch = useDispatch();
   const router = useRouter();
+  const goTo = returnPath === 'pwa' ? '/report?returnPath=pwa' : '/report'
   return (
     <CSVReader
       onUploadAccepted={(results) => {
         const orderArray = processCSV(results.data);
         setZoneHover(false);
         dispatch(loadData(orderArray));
-        router.push('/report');
+        router.push(goTo);
         
       }}
       onDragOver={(event) => {
