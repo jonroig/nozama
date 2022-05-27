@@ -9,9 +9,9 @@ import { reset } from '../actions';
 export default function Navbar({ children }) {
 
   const dispatch = useDispatch();
-  const { query } = useRouter();
-  const goTo = query?.returnPath === 'pwa' ? '/index_pwa' : '/';
-  
+  const { query, pathname } = useRouter();
+  const goTo = query?.returnPath === 'pwa' || pathname === '/index_pwa' ? '/index_pwa' : '/';
+
   return (
     <div className={styles.main}>
       <Link href={goTo}>

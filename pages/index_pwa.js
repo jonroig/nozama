@@ -77,12 +77,12 @@ export default function PwaHome() {
         {showUploadButton && (
         <>
             <div className={styles.pwaImportHeader}>
-                <Link href="/amazonpurchasehistory">
+                <Link href="/amazonpurchasehistory?returnPath=pwa">
                     <Image src="/csv-128.png" width={64} height={64} alt="Amazon purchase history CSV export instructions"/>
                 </Link>
                 <br/>
                 <strong>Get Started:</strong>{' '}
-                How To Import<br/><Link href="/amazonpurchasehistory"><a title="Amazon purchase history CSV export instructions">Amazon Order History Report</a></Link>
+                How To Import<br/><Link href="/amazonpurchasehistory?returnPath=pwa"><a title="Amazon purchase history CSV export instructions">Amazon Order History Report</a></Link>
             </div>
             <p className={styles.importLine }>
             </p>
