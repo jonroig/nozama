@@ -99,10 +99,10 @@ export default function Home() {
             </p>
           </>
         )}
-        <h1 className={styles.tighten}>Nozama: Parse Your Purchases</h1>
+        <h1 className={styles.tighten}>Parse Your Purchases</h1>
           
         <ul className={styles.featureList}>
-          <li>Parse your Amazon order history CSV</li>
+          <li>Parse and graph / sort / filter your Amazon order history CSV</li>
           <li>How much did you spend at Amazon?</li>
           <li>How much did your spending go up during the pandemic?</li>
           <li>What do you buy the most of?</li>
