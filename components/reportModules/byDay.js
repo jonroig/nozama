@@ -26,9 +26,12 @@ ChartJS.register(
 
 
 export default function ByDay({orderArray}) {
+  const isMobile = window.innerWidth < 400;
+  const tabHeight = document.getElementsByClassName('react-tabs__tab-list')[0].clientHeight;
+  const chartHeight = window.innerHeight - tabHeight - (isMobile ? 190 : 300);
 
   const options = {
-    responsive: true,
+    responsive: isMobile ? false : true,
     plugins: {
       legend: {
         display: false
@@ -36,7 +39,9 @@ export default function ByDay({orderArray}) {
       title: {
         display: false
       }
-    }
+    },
+    barThickness: 3,
+    maintainAspectRatio: isMobile ? false : true
   };
 
         
@@ -72,8 +77,17 @@ export default function ByDay({orderArray}) {
 
   return (
     <>
-      <h1 className={styles.areaHead}>Spending By Day</h1>
-      <Bar options={options} data={data} />
+      {isMobile && (
+        <>
+          <Bar options={options} data={data} height={chartHeight} />
+        </>
+      )}
+      {!isMobile && (
+        <>
+          <h1 className={styles.areaHead}>Spending By Day</h1>
+          <Bar options={options} data={data} />
+        </>
+      )}
     </>
   );
 }

@@ -28,20 +28,25 @@ ChartJS.register(
     Filler
 );
 
-const options = {
-    responsive: true,
-    plugins: {
-        legend: {
-            display: false
-        },
-        title: {
-            display: false,
-        }
-    },
-};
-
 
 export default function AccumulationByDay({orderArray}) {
+    const isMobile = window.innerWidth < 400;
+    const tabHeight = document.getElementsByClassName('react-tabs__tab-list')[0].clientHeight;
+    const chartHeight = window.innerHeight - tabHeight - 190;
+
+    const options = {
+        responsive: isMobile ? false : true,
+        plugins: {
+            legend: {
+                display: false
+             },
+            title: {
+                display: false
+            }
+        },
+        maintainAspectRatio: isMobile ? false : true
+    };
+    
     const dayObj = {};
     const labels = [];
     let totalAccumulatedSpend = currency(0);
@@ -77,9 +82,17 @@ export default function AccumulationByDay({orderArray}) {
 
     return (
         <>
+      {isMobile && (
+        <>
+            <Line options={options} data={data} height={chartHeight} />
+        </>
+      )}
+      {!isMobile && (
+        <>
             <h1 className={styles.areaHead}>Spending Over Time</h1>
             <Line options={options} data={data} />
         </>
-        
+      )}
+    </> 
     );
 }

@@ -1,6 +1,5 @@
 import currency  from 'currency.js';
 import date from 'date-and-time';
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -28,52 +27,65 @@ ChartJS.register(
 
 
 export default function ByYear({orderArray}) {
-    const yearObj = {};
-    orderArray.forEach(orderObj => {
-        if (orderObj.OrderDate) {
-            const orderYear = date.format(orderObj.OrderDate, 'YYYY');
-            if (!yearObj[orderYear]) {
-                yearObj[orderYear] = {
-                    total: currency(0), 
-                    records: []
-                };
-            }
-            yearObj[orderYear].records.push(orderObj.OrderID);
-            yearObj[orderYear].total = yearObj[orderYear].total.add(orderObj.ItemTotal);
-        }
-    });
-
-    const options = {
-      responsive: true,
-      plugins: {
-        legend: {
-          display: false
-        },
-        title: {
-          display: false
-        }
+  const isMobile = window.innerWidth < 400;
+  const tabHeight = document.getElementsByClassName('react-tabs__tab-list')[0].clientHeight;
+  const chartHeight = window.innerHeight - tabHeight - 190;
+  const yearObj = {};
+  orderArray.forEach(orderObj => {
+    if (orderObj.OrderDate) {
+      const orderYear = date.format(orderObj.OrderDate, 'YYYY');
+      if (!yearObj[orderYear]) {
+          yearObj[orderYear] = {
+              total: currency(0), 
+              records: []
+          };
       }
-    };
+      yearObj[orderYear].records.push(orderObj.OrderID);
+      yearObj[orderYear].total = yearObj[orderYear].total.add(orderObj.ItemTotal);
+    }
+  });
+
+  const options = {
+    responsive: isMobile ? false : true,
+    plugins: {
+      legend: {
+        display: false
+      },
+      title: {
+        display: false
+      }
+    },
+    maintainAspectRatio: isMobile ? false : true
+  };
       
-    const labels = Object.keys(yearObj);
-    const spendingTotals = labels.map(year => (
-      yearObj[year].total.value
-    ));
+  const labels = Object.keys(yearObj);
+  const spendingTotals = labels.map(year => (
+    yearObj[year].total.value
+  ));
 
-    const data = {
-      labels,
-      datasets: [
-        {
-          data: spendingTotals,
-          backgroundColor: 'rgb(20,110,180)'
-        }
-      ]
-    };
+  const data = {
+    labels,
+    datasets: [
+      {
+        data: spendingTotals,
+        backgroundColor: 'rgb(20,110,180)'
+      }
+    ]
+  };
 
-    return (
+  return (
+    <>
+      {isMobile && (
+        <>
+          <Bar options={options} data={data} height={chartHeight} />
+        </>
+      )}
+      {!isMobile && (
         <>
           <h1 className={styles.areaHead}>Spending By Year</h1>
           <Bar options={options} data={data} />
         </>
-    );
+      )}
+    </>
+  );
 }
