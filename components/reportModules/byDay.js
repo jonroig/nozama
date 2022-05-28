@@ -29,6 +29,7 @@ export default function ByDay({orderArray}) {
   const isMobile = window.innerWidth < 830;
   const tabHeight = document.getElementsByClassName('react-tabs__tab-list')[0].clientHeight;
   const chartHeight = window.innerHeight - tabHeight - (isMobile ? 190 : 300);
+  const chartWidth = window.innerWidth - 60;
 
   const options = {
     responsive: isMobile ? false : true,
@@ -79,7 +80,7 @@ export default function ByDay({orderArray}) {
     <>
       {isMobile && (
         <>
-          <Bar options={options} data={data} height={chartHeight} />
+          <Bar options={options} data={data} height={chartHeight} width={chartWidth}  />
         </>
       )}
       {!isMobile && (

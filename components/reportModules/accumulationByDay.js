@@ -33,6 +33,7 @@ export default function AccumulationByDay({orderArray}) {
     const isMobile = window.innerWidth < 830;
     const tabHeight = document.getElementsByClassName('react-tabs__tab-list')[0].clientHeight;
     const chartHeight = window.innerHeight - tabHeight - 190;
+    const chartWidth = window.innerWidth - 60;
 
     const options = {
         responsive: isMobile ? false : true,
@@ -84,7 +85,7 @@ export default function AccumulationByDay({orderArray}) {
         <>
       {isMobile && (
         <>
-            <Line options={options} data={data} height={chartHeight} />
+            <Line options={options} data={data} height={chartHeight} width={chartWidth} />
         </>
       )}
       {!isMobile && (
