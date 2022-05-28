@@ -30,7 +30,7 @@ ChartJS.register(
 
 
 export default function AccumulationByDay({orderArray}) {
-    const isMobile = window.innerWidth < 400;
+    const isMobile = window.innerWidth < 830;
     const tabHeight = document.getElementsByClassName('react-tabs__tab-list')[0].clientHeight;
     const chartHeight = window.innerHeight - tabHeight - 190;
 

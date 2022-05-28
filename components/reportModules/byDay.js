@@ -26,7 +26,7 @@ ChartJS.register(
 
 
 export default function ByDay({orderArray}) {
-  const isMobile = window.innerWidth < 400;
+  const isMobile = window.innerWidth < 830;
   const tabHeight = document.getElementsByClassName('react-tabs__tab-list')[0].clientHeight;
   const chartHeight = window.innerHeight - tabHeight - (isMobile ? 190 : 300);
 
