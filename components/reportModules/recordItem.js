@@ -12,7 +12,9 @@ export default function RecordItem({record}) {
 
     return (
         <div>
-            <h3 className={styles.expenseHeader}>{record.Title}</h3>
+            <h3 className={styles.expenseHeader}>
+                <AmznLink record={record}/>
+            </h3>
             {record.ItemTotal.format()}
             <br/>
             {date.format(record.OrderDate, 'YYYY-MM-DD')}

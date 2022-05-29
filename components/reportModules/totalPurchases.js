@@ -52,10 +52,9 @@ export default function TotalPurchaes({orderArray, amznArray}) {
                 <h3 className={styles.totalSpendSubSubhead}>{totalObj.totalTax.format()} in taxes</h3>
                 <h3 className={styles.totalSpendSubhead}>{averageOrder.format()} average order</h3>
             </div>
-            <hr/>
+            <hr className={styles.totalDivider}/>
             {mostExpensiveObj && (
                 <>
-                    <br/>
                     <h2 className={styles.expenseHead}>Most Expensive</h2>
                     <div className={styles.expenseContainer}>
                         <RecordItem key={`mostExpensive_${mostExpensiveObj.ASINISBN}`} record={mostExpensiveObj} />
