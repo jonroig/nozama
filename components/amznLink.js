@@ -8,10 +8,11 @@ export default function AmznLink({record}) {
     }
 
     const linkHref = `https://www.amazon.com/dp/${record.ASINISBN}?tag=${config.affiliateId}`;
-    
+    const target = isMobile() ? null : '_blank';
+    const rel = isMobile() ? null : 'noreferrer';
     return (
         <>
-            <a href={linkHref} target={isMobile() ? null : '_blank'} rel={isMobile() ? null : 'noreferrer'} title={record.Title}>
+            <a href={linkHref} target={target} rel={rel} title={record.Title}>
                 {record.Title}
             </a>
         </>
