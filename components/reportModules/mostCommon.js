@@ -150,7 +150,7 @@ export default function MostCommon({orderArray}) {
             tmpAsinCountObj[orderObj.ASINISBN] = {
                 total: currency(0), 
                 records: [],
-                title: orderObj.Title,
+                Title: orderObj.Title,
                 ASINISBN: orderObj.ASINISBN
             };
         }   
@@ -207,7 +207,7 @@ export default function MostCommon({orderArray}) {
                         <div className={styles.cell}>
                             <AmznImage 
                                 ASINISBN={record.ASINISBN} 
-                                title={record.title}
+                                title={record.Title}
                                 format='_SL80_'
                             />
                         </div>
