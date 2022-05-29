@@ -37,8 +37,6 @@ export default function OrderTable({records, columns, divId}) {
 
     const uuid = uuidv4();
     const uniqueDivId = `${divId}_${uuid}`;
-    const target = isMobile() ? null : '_blank';
-    const rel = isMobile() ? null : 'noreferrer';
 
     // figure out the type of sort we're doing from the column definitions
     const sortType = internalColumns.find(columnObj => columnObj.source === sortColumn).sortType;
@@ -68,20 +66,36 @@ export default function OrderTable({records, columns, divId}) {
     const cellClicked = (cell) => {
         const [column, row] = cell;
         const columnObj = columns[column];
+        const openNew = !isMobile();
         if (columnObj.clickAction && columnObj.clickAction === 'order') {
             const data = outputRows[row];
             const orderUrl = orderUrlFromOrderId(data.OrderID);
-            window.open(orderUrl, target, rel);
+            if (openNew) {
+                window.open(orderUrl);
+            }
+            else {
+                window.location.href = orderUrl;
+            }
         }
         if (columnObj.clickAction && columnObj.clickAction === 'product') {
             const data = outputRows[row];
             const itemUrl = urlFromASINISBN(data.ASINISBN);
-            window.open(itemUrl, target, rel);
+            if (openNew) {
+                window.open(itemUrl);
+            }
+            else {
+                window.location.href = itemUrl;
+            }
         }
         if (columnObj.clickAction && columnObj.clickAction === 'category') {
             const data = outputRows[row];
             const categoryUrl = urlFromCategory(data.Category);
-            window.open(categoryUrl, target, rel);
+            if (openNew) {
+                window.open(categoryUrl);
+            }
+            else {
+                window.location.href = categoryUrl;
+            }
         }
 
 

@@ -4,7 +4,6 @@ import styles from '../../styles/Reports.module.css';
 import RecordItem from "./recordItem";
 
 export default function TotalPurchaes({orderArray, amznArray}) {
-    console.log('orderArray', orderArray);
     const totalObj = {
         totalNumberOfPurchases: 0,
         totalPurchase: currency(0),
