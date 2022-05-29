@@ -42,9 +42,8 @@ export default function TotalPurchaes({orderArray, amznArray}) {
         b.ItemTotal.value - a.ItemTotal.value
     ));
 
-    const mostExpensiveObj = sortedByExpense[0];
-    const leastExpensiveObj = sortedByExpense[sortedByExpense.length -1];
-        console.log(leastExpensiveObj)
+    const mostExpensiveObj = sortedByExpense.length > 0 ? sortedByExpense[0] : null;
+    const leastExpensiveObj = sortedByExpense.length > 0 ? sortedByExpense[sortedByExpense.length -1] : null;
     return (
         <>
             <div className={styles.totalSpendContainer}>
@@ -54,15 +53,20 @@ export default function TotalPurchaes({orderArray, amznArray}) {
                 <h3 className={styles.totalSpendSubhead}>{averageOrder.format()} average order</h3>
             </div>
             <hr/>
-            <br/>
-            <h2 className={styles.expenseHead}>Most Expensive</h2>
-            <div className={styles.expenseContainer}>
-                <RecordItem key={`mostExpensive_${mostExpensiveObj.ASINISBN}`} record={mostExpensiveObj} />
-            </div>
-            <h2 className={styles.expenseHead}>Least Expensive</h2>
-            <div className={styles.expenseContainer}>
-                <RecordItem key={`leastExpensive_${leastExpensiveObj.ASINISBN}`} record={leastExpensiveObj} />
-            </div>
+            {mostExpensiveObj && (
+                <>
+                    <br/>
+                    <h2 className={styles.expenseHead}>Most Expensive</h2>
+                    <div className={styles.expenseContainer}>
+                        <RecordItem key={`mostExpensive_${mostExpensiveObj.ASINISBN}`} record={mostExpensiveObj} />
+                    </div>
+                    <h2 className={styles.expenseHead}>Least Expensive</h2>
+                    <div className={styles.expenseContainer}>
+                        <RecordItem key={`leastExpensive_${leastExpensiveObj.ASINISBN}`} record={leastExpensiveObj} />
+                    </div>
+                </>
+            )}
+            
         </>
         
     );
