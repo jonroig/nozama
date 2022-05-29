@@ -198,7 +198,7 @@ export default function ByCategory() {
 
     return (
         <>
-            {isMobile && (
+            {!isMobile && (
                 <h1 className={styles.areaHead}>By Category</h1>
             )}
             Sort: 

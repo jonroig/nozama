@@ -188,7 +188,7 @@ export default function MostCommon({orderArray}) {
     
     return (
         <>
-            {isMobile && (
+            {!isMobile && (
                 <h1 className={styles.areaHead}>By Item</h1>
             )}
             Sort: 
