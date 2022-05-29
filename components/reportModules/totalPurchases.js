@@ -4,12 +4,14 @@ import styles from '../../styles/Reports.module.css';
 import RecordItem from "./recordItem";
 
 export default function TotalPurchaes({orderArray, amznArray}) {
+    console.log(orderArray);
     const totalObj = {
         totalNumberOfPurchases: 0,
         totalPurchase: currency(0),
         totalTax: currency(0),
         totalShares: 0,
-        orderIdArray: []
+        orderIdArray: [],
+        shippingAddressArray: []
     };
 
 
@@ -25,6 +27,10 @@ export default function TotalPurchaes({orderArray, amznArray}) {
         totalObj.totalTax = totalObj.totalTax.add(orderObj.ItemSubtotalTax);
         if (!totalObj.orderIdArray.includes(orderObj.OrderID)) {
             totalObj.orderIdArray.push(orderObj.OrderID);
+        }
+        const shippingAddress = `${orderObj.ShippingAddressStreet1}-${orderObj.ShippingAddressStreet2}-${orderObj.ShippingAddressCity}-${orderObj.ShippingAddressState}-${orderObj.ShippingAddressZip}`;
+        if (!totalObj.shippingAddressArray.includes(shippingAddress)) {
+            totalObj.shippingAddressArray.push(shippingAddress);
         }
     });
     const averageOrder = currency(totalObj.totalPurchase.value  / totalObj.orderIdArray.length);
@@ -50,6 +56,8 @@ export default function TotalPurchaes({orderArray, amznArray}) {
                 <h3 className={styles.totalSpendSubhead}>{new Intl.NumberFormat().format(totalObj.totalNumberOfPurchases)} items</h3>
                 <h3 className={styles.totalSpendSubSubhead}>{totalObj.totalTax.format()} in taxes</h3>
                 <h3 className={styles.totalSpendSubhead}>{averageOrder.format()} average order</h3>
+                <h3 className={styles.totalSpendSubSubhead}>{new Intl.NumberFormat().format(totalObj.orderIdArray.length)} total orders</h3>
+                <h3 className={styles.totalSpendSubSubhead}>Shipped to {new Intl.NumberFormat().format(totalObj.shippingAddressArray.length)} places</h3>
             </div>
             <hr className={styles.totalDivider}/>
             {mostExpensiveObj && (

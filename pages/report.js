@@ -61,11 +61,11 @@ export default function Report() {
                 <Tabs selectedTabClassName="reportTabSelected">
                     <TabList>
                         <Tab>Summary</Tab>
-                        <Tab>By Year</Tab>
-                        <Tab>By Day</Tab>
-                        <Tab>Over Time</Tab>
+                        <Tab>Year</Tab>
+                        <Tab>Day</Tab>
+                        <Tab>Time</Tab>
                         <Tab>Most Common</Tab>
-                        <Tab>By Category</Tab>
+                        <Tab>Category</Tab>
                     </TabList>
 
                     <TabPanel>
