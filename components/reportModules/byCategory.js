@@ -194,10 +194,13 @@ export default function ByCategory() {
     const outputSortedCategoryArray = sortedCategoryArray.slice(0, categoryCount);
     const shouldShowMore = categoryCount < sortedCategoryArray.length;
     const shouldShowLess = categoryCount.length > baseCount && categoryCount > baseCount;
+    const isMobile = window.innerWidth < 830;
 
     return (
         <>
-            <h1 className={styles.areaHead}>By Category</h1>
+            {isMobile && (
+                <h1 className={styles.areaHead}>By Category</h1>
+            )}
             Sort: 
             <>
                 <span onClick={sortByCount} className={countButtonClassname}>Most Items</span>

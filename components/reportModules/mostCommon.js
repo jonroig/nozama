@@ -184,10 +184,13 @@ export default function MostCommon({orderArray}) {
     const tmpRecords = mostCommon.slice(0, commonCount);
     const shouldShowMore = commonCount < mostCommon.length;
     const shouldShowLess = mostCommon.length > baseCount && commonCount > baseCount;
+    const isMobile = window.innerWidth < 830;
     
     return (
         <>
-            <h1 className={styles.areaHead}>Most Common</h1>
+            {isMobile && (
+                <h1 className={styles.areaHead}>By Item</h1>
+            )}
             Sort: 
             <>
                 <span onClick={sortByCommon} href="#" className={countButtonClassname}>Most Common</span>

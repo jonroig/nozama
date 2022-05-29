@@ -64,7 +64,7 @@ export default function Report() {
                         <Tab>Year</Tab>
                         <Tab>Day</Tab>
                         <Tab>Time</Tab>
-                        <Tab>Most Common</Tab>
+                        <Tab>Item</Tab>
                         <Tab>Category</Tab>
                     </TabList>
 

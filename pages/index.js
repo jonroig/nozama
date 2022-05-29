@@ -102,7 +102,7 @@ export default function Home() {
         <h1 className={styles.tighten}>Parse Your Purchases</h1>
           
         <ul className={styles.featureList}>
-          <li>Parse and graph / sort / filter your Amazon order history CSV</li>
+          <li><strong>Parse and graph / sort / filter your Amazon order history CSV</strong></li>
           <li>How much did you spend at Amazon?</li>
           <li>How much did your spending go up during the pandemic?</li>
           <li>What do you buy the most of?</li>
@@ -118,7 +118,7 @@ export default function Home() {
         <h2 className={styles.tighten}>Features</h2>
         <ul className={styles.featureList}>
           <li><a className={styles.demo} onClick={doDemo}>Demo</a> ⭅ Take Nozama for a test drive</li>
-          <li>Where is all your money going? Slice and dice your past spending</li>
+          <li>Where is all your money going? Slice and dice your past Amazon spending</li>
           <li><Link href="/privacy"><a>Privacy focused / client-side only</a></Link>... no data is sent back to the server</li>
           <li>Grouping: Amazon purchases by category and item</li>
           <li>Sorting: Amazon purchases by spending or frequency</li>
