@@ -22,6 +22,15 @@
     padding: 1rem 0;
 }
 
+.expenseCommonRow {
+    margin-top: -10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 1rem 0;
+}
+
 .otherRow {
     display: table;    
     width: 100%;
@@ -34,6 +43,18 @@
     flex-basis: 100%;
     flex: 3;
     font-size: 1.5rem;
+}
+
+.expenseColumn {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 2 1;
+    font-size: 1.5rem;
+}
+
+.expenseColumn h3 {
+    margin-bottom: 5px;
 }
 
 .mostExpensiveCostColumn {
@@ -117,4 +138,13 @@
 .areaHead {
     font-size: 2.7rem;
     margin: 0 0 20px 0;
+}
+
+.expenseContainer {
+    margin-left: 20px;
+}
+
+.expenseHeader {
+    margin: 0px;
+    font-size: 1.8rem;
 }

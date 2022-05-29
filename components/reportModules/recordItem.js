@@ -11,17 +11,13 @@ export default function RecordItem({record}) {
     }
 
     return (
-        <div className={styles.commonRow}>
-            <div className={styles.mostExpensiveCostColumn}>
-                {record.ItemTotal.format()}
-                <div className={styles.totalSpend}>
-                    {date.format(record.OrderDate, 'YYYY-MM-DD')}
-                </div>
-            </div>
-            <div className={styles.column}>
-                <AmznLink ASINISBN={record.ASINISBN} title={record.Title} />
-                <AmznImage ASINISBN={record.ASINISBN} title={record.Title} />
-            </div>
+        <div>
+            <h3 className={styles.expenseHeader}>{record.Title}</h3>
+            {record.ItemTotal.format()}
+            <br/>
+            {date.format(record.OrderDate, 'YYYY-MM-DD')}
+            <br/>
+            <AmznImage ASINISBN={record.ASINISBN} title={record.Title} format='_SL200_' />
         </div>
     );
 }
