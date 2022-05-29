@@ -6,6 +6,7 @@ import {
     GridCell,
     GridCellKind
 } from "@glideapps/glide-data-grid";
+import isMobile from 'is-mobile';
 
 import config from '../config';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -36,6 +37,8 @@ export default function OrderTable({records, columns, divId}) {
 
     const uuid = uuidv4();
     const uniqueDivId = `${divId}_${uuid}`;
+    const target = isMobile() ? null : '_blank';
+    const rel = isMobile() ? null : 'noreferrer';
 
     // figure out the type of sort we're doing from the column definitions
     const sortType = internalColumns.find(columnObj => columnObj.source === sortColumn).sortType;
@@ -68,17 +71,17 @@ export default function OrderTable({records, columns, divId}) {
         if (columnObj.clickAction && columnObj.clickAction === 'order') {
             const data = outputRows[row];
             const orderUrl = orderUrlFromOrderId(data.OrderID);
-            window.open(orderUrl);
+            window.open(orderUrl, target, rel);
         }
         if (columnObj.clickAction && columnObj.clickAction === 'product') {
             const data = outputRows[row];
             const itemUrl = urlFromASINISBN(data.ASINISBN);
-            window.open(itemUrl);
+            window.open(itemUrl, target, rel);
         }
         if (columnObj.clickAction && columnObj.clickAction === 'category') {
             const data = outputRows[row];
             const categoryUrl = urlFromCategory(data.Category);
-            window.open(categoryUrl);
+            window.open(categoryUrl, target, rel);
         }
 
 

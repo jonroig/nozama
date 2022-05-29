@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import isMobile from 'is-mobile';
 
-import AmznImage from "./amznImage";
 import config from '../config';
 
 export default function ImageByASINISBN({ASINISBN, orderArray, format = '_SL200_'}) {
@@ -14,11 +14,13 @@ export default function ImageByASINISBN({ASINISBN, orderArray, format = '_SL200_
     const linkHref = `https://www.amazon.com/dp/${outputObj.ASINISBN}?tag=${config.affiliateId}`;
     const imgHref = `//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=${outputObj.ASINISBN}&Format=${format}&ID=AsinImage&MarketPlace=US&ServiceVersion=20070822&WS=1&tag=${config.affiliateId}&language=en_US`;
     const trackHref= `https://ir-na.amazon-adsystem.com/e/ir?t=${config.affiliateId}&language=en_US&l=li2&o=1&a=${outputObj.ASINISBN}`;
-    
+    const target = isMobile() ? null : '_blank';
+    const rel = isMobile() ? null : 'noreferrer';
+
     return (
         <>  
             <div>
-                <a href={linkHref} target="_blank" rel="noreferrer" title={outputObj.Title} >
+                <a href={linkHref} target={target} rel={rel} title={outputObj.Title} >
                     <img border="0"  width='50' src={imgHref} alt='' style={{margin: 20}} onError={() => setShouldDisplay(false)} />
                 </a>
             </div>
