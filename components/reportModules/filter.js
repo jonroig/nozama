@@ -11,7 +11,10 @@ import styles from '../../styles/Reports.module.css';
 
   
 export default function Filter({orderArray}) {
-    const dispatch = useDispatch();
+    
+    if (!orderArray.length) {
+        return <></>;
+    }
 
     const sortedByDateArray = orderArray.sort((a,b) => (
         a.OrderDate.getTime() - b.OrderDate.getTime()
@@ -45,6 +48,7 @@ export default function Filter({orderArray}) {
         
     });
 
+    const dispatch = useDispatch();
     const onChangeStartDate = (newDate) => {
         const tmpObj = {
             startDate: newDate.getTime(),

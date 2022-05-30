@@ -58,7 +58,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Nozama... a look back at your Amazon purchase history</title>
+        <title>Nozama: Look back at your Amazon purchase history</title>
         <meta name="description" content="Analyze your Amazon shopping. Slice and dice your past spending... where is all your money going?" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -68,7 +68,7 @@ export default function Home() {
         <meta name="twitter:site" content="@_nozama_" />
         <meta name="twitter:creator" content="@runnr_az" />
         <meta name="twitter:title" content="Nozama.dev" />
-        <meta name="twitter:description" content="... a look back at your Amazon spending. Slice and dice your past spending... where is all your money going?"/>
+        <meta name="twitter:description" content="Look back at your Amazon spending. Slice and dice your past spending... where is all your money going?"/>
         <meta name="twitter:image" content="https://nozama.dev/colorcard.jpg"/>
       </Head>
       <div id="fb-root"></div>
@@ -99,11 +99,11 @@ export default function Home() {
             </p>
           </>
         )}
-        <h1 className={styles.tighten}>A Look Back at Your Amazon Purchases</h1>
+        <h1 className={styles.tighten}>Look Back at Your Amazon Purchases</h1>
           
         <ul className={styles.featureList}>
           <li><strong>Free! Parse and graph / sort / filter your Amazon order history CSV</strong></li>
-          <li>Wait... I spent how much at Amazon?</li>
+          <li>Analyze your Amazon shopping. Wait... I spent how much?</li>
           <li>Grouping: Amazon purchases by category and item</li>
           <li>Sorting: Amazon shopping by spending, frequency, or date</li>
           <li>Filter: Amazon orders by date</li>

@@ -9,7 +9,7 @@ function Wtf() {
     return (
       <div className={styles.container}>
         <Head>
-          <title>Nozama: About</title>
+          <title>Nozama: About Nozama</title>
           <meta name="description" content="Analyze your Amazon purchase history." />
           <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -34,8 +34,8 @@ function Wtf() {
           </p>
           <p>
             Driven by our own needs to analyze our household spending as much as 
-            just pure curiosity, this site was created by 
-            {' '}<Link href="https://jonroig.com"><a>Jon Roig</a></Link>.
+            just pure curiosity, Nozama was created by 
+            {' '}<Link href="https://jonroig.com"><a>Jon Roig</a></Link> over the course of a few weekends.
           </p>
           <p>
             It&apos;s still a little rough around the edges, but we hope that you find it 
@@ -43,11 +43,16 @@ function Wtf() {
             how much we&apos;d spent since the beginning of the pandemic.
           </p>
           <p>
-            We are not affiliated with Amazon in any way.
+            Nozama is not affiliated with Amazon in any way.
           </p>
           <p>
-            ... but this site makes money through affiliate links to Amazon. We don&apos;t collect
-            any information on you or your purchases whatsoever.
+            ... but this site makes money through affiliate links to Amazon. 
+            If you use our app and click through to Amazon, we sometimes receive
+            a small percentage of your future purchases for a limited amount of time.
+          </p>
+          <p>
+            That's how we pay the bills. 
+            We do not collect any information on you or your purchases.
           </p>
           <p>
             We&apos;re <Link href="https://github.com/jonroig/nozama"><a>Open Source</a></Link>, 
@@ -55,17 +60,16 @@ function Wtf() {
             or fixing bugs.
           </p>
           <p>
-            Our stack:
+            Nozama stack:
             <ul>
               <li>NextJS</li>
               <li>Glide Data Grid</li>
               <li>Chart.JS</li>
-              <li>Vercel</li>
+              <li>Vercel hosting</li>
               <li>Yahoo Finance</li>
               <li>ReactDayPicker</li>
             </ul>
           </p>
-
         </main>
       </div>
     )
