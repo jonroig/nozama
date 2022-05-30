@@ -1,6 +1,5 @@
 import currency  from 'currency.js';
 import date from 'date-and-time';
-import { useSelector } from 'react-redux';
 import {useState} from 'react';
 
 import styles from '../../styles/Reports.module.css';
@@ -136,7 +135,7 @@ const columns = [
 
 const baseCount = 10;
 
-export default function ByCategory() {
+export default function ByCategory({orderArray}) {
     const [categoryCount, setCategoryCount] = useState(baseCount);
     const [sortBy, setSortBy] = useState('count');
 
@@ -156,9 +155,6 @@ export default function ByCategory() {
         setCategoryCount(categoryCount - baseCount);
     };
 
-
-    const state = useSelector((state) => state);
-    const orderArray = state.orderArray || [];
     const byCategory = {};
     orderArray.forEach(orderObj => {
         const theCategory = orderObj.Category || false;
@@ -189,7 +185,6 @@ export default function ByCategory() {
             return byCategory[b].total.value-byCategory[a].total.value;
         }
     });
-    
     
     const outputSortedCategoryArray = sortedCategoryArray.slice(0, categoryCount);
     const shouldShowMore = categoryCount < sortedCategoryArray.length;

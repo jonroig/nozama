@@ -4,16 +4,16 @@ import React, { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Head from 'next/head';
+import date from 'date-and-time';
 
 import 'react-tabs/style/react-tabs.css';
 import styles from '../styles/Reports.module.css';
-import { loadData } from '../actions';
 
 import TotalPurchases from '../components/reportModules/totalPurchases';
 import ByYear from '../components/reportModules/byYear';
 import ByDay from '../components/reportModules/byDay';
 import AccumulationByDay from '../components/reportModules/accumulationByDay';
-
+import Filter from '../components/reportModules/filter';
 
 const MostCommon = dynamic(
     () => import('../components/reportModules/mostCommon'),
@@ -44,7 +44,21 @@ export default function Report() {
         }
     },[]);
     
-    const outputArray = state.orderArray;
+    const orderArray = state.orderArray;
+    let filteredOrderArray = orderArray;
+    let filterObj = {};
+    if (state?.filterObj?.startDate && state?.filterObj?.endDate) {
+        filterObj = {
+            startDate: new Date(state.filterObj.startDate),
+            endDate: new Date(state.filterObj.endDate)
+        };
+
+        filteredOrderArray = orderArray.filter(orderObj => (
+            orderObj.OrderDate >= state.filterObj.startDate 
+            && orderObj.OrderDate <= state.filterObj.endDate
+        ));
+    } 
+
     const amznArray = state.amznArray;
     return (
         <>
@@ -66,25 +80,36 @@ export default function Report() {
                         <Tab>Time</Tab>
                         <Tab>Item</Tab>
                         <Tab>Category</Tab>
+                        <Tab>Filter</Tab>
                     </TabList>
-
+                    {filterObj?.startDate && (
+                        <>
+                            <strong>Filter: </strong>
+                            {date.format(filterObj.startDate, 'YYYY-MM-DD')}
+                            {' '}to{' '}
+                            {date.format(filterObj.endDate, 'YYYY-MM-DD')}
+                        </>
+                    )}
                     <TabPanel>
-                        <TotalPurchases orderArray={outputArray} amznArray={amznArray} />
+                        <TotalPurchases orderArray={filteredOrderArray} amznArray={amznArray} />
                     </TabPanel>
                     <TabPanel>
-                        <ByYear orderArray={outputArray} />
+                        <ByYear orderArray={filteredOrderArray} />
                     </TabPanel>
                     <TabPanel>
-                        <ByDay orderArray={outputArray} />
+                        <ByDay orderArray={filteredOrderArray} />
                     </TabPanel>
                     <TabPanel>
-                        <AccumulationByDay orderArray={outputArray} />
+                        <AccumulationByDay orderArray={filteredOrderArray} />
                     </TabPanel>
                     <TabPanel>
-                        <MostCommon orderArray={outputArray} />
+                        <MostCommon orderArray={filteredOrderArray} />
                     </TabPanel>
                     <TabPanel>
-                        <ByCategory orderArray={outputArray} />
+                        <ByCategory orderArray={filteredOrderArray} />
+                    </TabPanel>
+                    <TabPanel>
+                        <Filter orderArray={orderArray} />
                     </TabPanel>
                 </Tabs>
             </div>

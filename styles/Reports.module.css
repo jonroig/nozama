@@ -153,3 +153,11 @@
     margin-top: 40px;
     margin-bottom: 40px;
 }
+
+.filterZone {
+    margin-left: 20px;
+}
+
+.daypickerZone {
+    margin: auto;
+}

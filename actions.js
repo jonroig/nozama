@@ -20,3 +20,10 @@ export const reset = () => (dispatch) => {
         payload: null
     });
 }
+
+export const updateFilter = (filterObj) => (dispatch) => {
+    dispatch({
+        type: types.FILTERCHANGE,
+        payload: filterObj
+    });
+}
