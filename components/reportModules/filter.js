@@ -11,21 +11,34 @@ import styles from '../../styles/Reports.module.css';
 
   
 export default function Filter({orderArray}) {
-    
-    if (!orderArray.length) {
-        return <></>;
-    }
 
+    const dispatch = useDispatch();
+    const onChangeStartDate = (newDate) => {
+        const tmpObj = {
+            startDate: newDate.getTime(),
+            endDate: currentEndDate.getTime()
+        };
+        dispatch(updateFilter(tmpObj));
+    };
+
+    const onChangeEndDate = (newDate) => {
+        const tmpObj = {
+            startDate: currentStartDate.getTime(),
+            endDate: newDate.getTime()
+        };
+        dispatch(updateFilter(tmpObj));
+    };
+    
     const sortedByDateArray = orderArray.sort((a,b) => (
         a.OrderDate.getTime() - b.OrderDate.getTime()
     ));
     
-    const startTime = sortedByDateArray[0].OrderDate.getTime();
+    const startTime = !!sortedByDateArray.length ? sortedByDateArray[0].OrderDate.getTime() : 0;
     const startDate = new Date(startTime);
     const dayBeforeStartDate = new Date(startTime);
     dayBeforeStartDate.setDate(dayBeforeStartDate.getDate() - 1);
     
-    const endTime = sortedByDateArray[sortedByDateArray.length -1].OrderDate.getTime();
+    const endTime = !!sortedByDateArray.length ? sortedByDateArray[sortedByDateArray.length -1].OrderDate.getTime() : 0;
     const endDate = new Date(endTime);
     const dayAfterEndDate = new Date(endTime);
     dayAfterEndDate.setDate(dayAfterEndDate.getDate() + 1);
@@ -47,23 +60,6 @@ export default function Filter({orderArray}) {
         }
         
     });
-
-    const dispatch = useDispatch();
-    const onChangeStartDate = (newDate) => {
-        const tmpObj = {
-            startDate: newDate.getTime(),
-            endDate: currentEndDate.getTime()
-        };
-        dispatch(updateFilter(tmpObj));
-    };
-
-    const onChangeEndDate = (newDate) => {
-        const tmpObj = {
-            startDate: currentStartDate.getTime(),
-            endDate: newDate.getTime()
-        };
-        dispatch(updateFilter(tmpObj));
-    };
 
     const disabledDays = [
         { 

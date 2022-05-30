@@ -10,7 +10,7 @@ function Wtf() {
       <div className={styles.container}>
         <Head>
           <title>Nozama: About Nozama</title>
-          <meta name="description" content="Analyze your Amazon purchase history." />
+          <meta name="description" content="Analyze your Amazon purchase history" />
           <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -18,8 +18,8 @@ function Wtf() {
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@_nozama_" />
           <meta name="twitter:creator" content="@runnr_az" />
-          <meta name="twitter:title" content="Nozama.dev... about Nozama" />
-          <meta name="twitter:description" content="... wait. I spent how much at Amazon?"/>
+          <meta name="twitter:title" content="Amazon Shopping Export Parser" />
+          <meta name="twitter:description" content=" Nozama is an easy way to look back at your Amazon purchases"/>
           <meta name="twitter:image" content="https://nozama.dev/colorcard.jpg"/>
         </Head>
         
