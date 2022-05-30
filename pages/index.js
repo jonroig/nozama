@@ -100,7 +100,14 @@ export default function Home() {
           </>
         )}
         <h1 className={styles.tighten}>Look Back at Your Amazon Shopping</h1>
-          
+        <p className={styles.explanation}>
+          Amazon lets you export your shopping history as a .csv. Nozama helps you parse it.
+          <br/><br/>
+          Nozama is a comprehensive look back at your Amazon shopping. After you've exported your purchase history from Amazon in csv format, Nozama allows you to sort / group / graph / filter your shipping history, see where all your money is going.
+          <br/><br/>
+          It might surprise you.
+        </p>
+        <h2 className={styles.tighten}>Features</h2>
         <ul className={styles.featureList}>
           <li><strong>Parse and graph / sort / filter your Amazon order history CSV</strong></li>
           <li>Analyze your Amazon shopping. Wait... I spent how much?</li>

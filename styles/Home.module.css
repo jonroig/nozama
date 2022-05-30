@@ -154,3 +154,8 @@
   background-color: lightgray;
   border-radius: 15px;
 }
+
+.explanation {
+  font-size: 1.4rem;
+  padding-left: 20px;
+}
