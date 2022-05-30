@@ -99,32 +99,31 @@ export default function Home() {
             </p>
           </>
         )}
-        <h1 className={styles.tighten}>Parse Your Purchases</h1>
+        <h1 className={styles.tighten}>A Look Back at Your Amazon Purchases</h1>
           
         <ul className={styles.featureList}>
-          <li><strong>Parse and graph / sort / filter your Amazon order history CSV</strong></li>
-          <li>How much did you spend at Amazon?</li>
-          <li>How much did your spending go up during the pandemic?</li>
-          <li>What do you buy the most of?</li>
-          <li>How much did you pay in taxes?</li>
-          <li><a onClick={doDemo}>Demo</a></li>
+          <li><strong>Free! Parse and graph / sort / filter your Amazon order history CSV</strong></li>
+          <li>Wait... I spent how much at Amazon?</li>
+          <li>Grouping: Amazon purchases by category and item</li>
+          <li>Sorting: Amazon shopping by spending, frequency, or date</li>
+          <li>Filter: Amazon orders by date</li>
+          <li>Graph: spending by year / day / cumulative over time</li>
+          <li><Link href="/privacy"><a>Privacy focused / client-side only</a></Link>... no data is sent back to the server</li>
+          
+          <li><Link href="https://github.com/jonroig/nozama"><a>Open source</a></Link>: Errors / ideas? PRs welcome</li>
+          <li><a className={styles.demo} onClick={doDemo}>Demo</a> ⭅ Take Nozama for a test drive</li>
         </ul>
+
+        <h2 className={styles.tighten}>Get Started: 2 Easy Steps</h2>
+        <ol className={styles.featureList}>
+          <li><Link href="/amazonpurchasehistory"><a>Export your Amazon Order History CSV</a></Link></li>
+          <li>Import your Amazon Order History CSV</li>
+        </ol>
         
         <h2>Example: Spending By Year</h2>
         <a onClick={doDemo}>
           <Image src="/spendingbyyeargraph.png" width="600" height="308" layout='intrinsic' alt="Graph: Amazon spending by year"/>
-
         </a>
-        <h2 className={styles.tighten}>Features</h2>
-        <ul className={styles.featureList}>
-          <li><a className={styles.demo} onClick={doDemo}>Demo</a> ⭅ Take Nozama for a test drive</li>
-          <li>Where is all your money going? Slice and dice your past Amazon spending</li>
-          <li><Link href="/privacy"><a>Privacy focused / client-side only</a></Link>... no data is sent back to the server</li>
-          <li>Grouping: Amazon purchases by category and item</li>
-          <li>Sorting: Amazon purchases by spending or frequency</li>
-          <li>Spending graphs: Money spent by year, day, cumulative over time</li>
-          <li><Link href="https://github.com/jonroig/nozama"><a>Open source</a></Link>: Errors / ideas? PRs welcome</li>
-        </ul>
         
         <h2>Share</h2>
         <Share />

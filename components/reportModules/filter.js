@@ -72,9 +72,13 @@ export default function Filter({orderArray}) {
         }
     ];
 
+    const isMobile = window.innerWidth < 830;
+
     return (
         <div>
-            <h1>Filter</h1>
+            {!isMobile && (
+                <h1 className={styles.areaHead}>Filter</h1>
+            )}
             <div>
                 Total: {totalPurchase.format()}
             </div>
