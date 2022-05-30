@@ -51,7 +51,7 @@ function Wtf() {
             a small percentage of your future purchases for a limited amount of time.
           </p>
           <p>
-            That's how we pay the bills. 
+            That&apos;s how we pay the bills. 
             We do not collect any information on you or your purchases.
           </p>
           <p>
