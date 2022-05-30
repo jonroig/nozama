@@ -13,11 +13,12 @@ export default function AmznImage({ASINISBN, title = '', format = '_SL200_'}) {
     const trackHref= `https://ir-na.amazon-adsystem.com/e/ir?t=${config.affiliateId}&language=en_US&l=li2&o=1&a=${ASINISBN}`;
     const target = isMobile() ? null : '_blank';
     const rel = isMobile() ? null : 'noreferrer';
+    const outputTitle = title.substring(0, 15);
     
     return (
         <>  
-            <a href={linkHref} target={target} rel={rel} title={title}>
-                <img border="0" src={imgHref} alt={title} className={styles.amznImage}/>
+            <a href={linkHref} target={target} rel={rel} title={outputTitle}>
+                <img border="0" src={imgHref} alt={outputTitle} className={styles.amznImage}/>
             </a>
         </>
     );

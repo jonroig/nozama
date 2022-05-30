@@ -161,3 +161,7 @@
 .daypickerZone {
     margin: auto;
 }
+
+.mobileGraphContainer {
+    padding-top: 20px;
+}

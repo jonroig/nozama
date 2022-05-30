@@ -49,7 +49,7 @@ export default function TotalPurchaes({orderArray, amznArray}) {
     const mostExpensiveObj = sortedByExpense.length > 0 ? sortedByExpense[0] : null;
     const leastExpensiveObj = sortedByExpense.length > 0 ? sortedByExpense[sortedByExpense.length -1] : null;
     return (
-        <>
+        <div className={styles.mobileGraphContainer}>
             <div className={styles.totalSpendContainer}>
                 <h2 className={styles.totalSpendHeadline}>{totalObj.totalPurchase.format()}</h2>
                 <h3 className={styles.totalSpendSubhead}>{new Intl.NumberFormat().format(totalObj.totalNumberOfPurchases)} items</h3>
@@ -72,7 +72,7 @@ export default function TotalPurchaes({orderArray, amznArray}) {
                 </>
             )}
             
-        </>
+        </div>
         
     );
 }

@@ -79,9 +79,9 @@ export default function ByDay({orderArray}) {
   return (
     <>
       {isMobile && (
-        <>
+        <div className={styles.mobileGraphContainer}>
           <Bar options={options} data={data} height={chartHeight} width={chartWidth}  />
-        </>
+        </div>
       )}
       {!isMobile && (
         <>

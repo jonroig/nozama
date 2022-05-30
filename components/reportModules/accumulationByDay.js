@@ -84,9 +84,9 @@ export default function AccumulationByDay({orderArray}) {
     return (
         <>
       {isMobile && (
-        <>
+        <div className={styles.mobileGraphContainer}>
             <Line options={options} data={data} height={chartHeight} width={chartWidth} />
-        </>
+        </div>
       )}
       {!isMobile && (
         <>
