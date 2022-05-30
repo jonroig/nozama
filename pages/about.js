@@ -18,8 +18,8 @@ function Wtf() {
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@_nozama_" />
           <meta name="twitter:creator" content="@runnr_az" />
-          <meta name="twitter:title" content="Amazon Shopping Export Parser" />
-          <meta name="twitter:description" content=" Nozama is an easy way to look back at your Amazon purchases"/>
+          <meta name="twitter:title" content="Nozama: Amazon Shopping Export Parser" />
+          <meta name="twitter:description" content="... an easy way to look back at your Amazon purchases"/>
           <meta name="twitter:image" content="https://nozama.dev/colorcard.jpg"/>
         </Head>
         
