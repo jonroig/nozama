@@ -1,8 +1,10 @@
-# Example: [nozama.dev](https://nozama.dev)
+# [nozama.dev](https://nozama.dev)
 
-Amazon let's you export your shopping history as a .csv. Nozama helps you parse it.
+Amazon lets you export your shopping history as a .csv. Nozama helps you parse it.
 
 Nozama is a comprehensive look back at your Amazon shopping. After you've exported your purchase history from Amazon in csv format, Nozama allows you to sort / group / graph / filter your shipping history, see where all your money is going.
+
+It might suprise you. It suprised me.
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
@@ -11,6 +13,8 @@ Nozama is a comprehensive look back at your Amazon shopping. After you've export
 * Groups purchases by category and item
 * Sorts purchases by spending or frequency
 * Graphs spending over time
+* Filter by date
+* PWA functionality
 
 
 ## Development
