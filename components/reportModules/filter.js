@@ -3,10 +3,12 @@ import { DayPicker } from 'react-day-picker';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import currency  from 'currency.js';
+import 'react-day-picker/dist/style.css';
 
 
 import { updateFilter } from '../../actions';
 import styles from '../../styles/Reports.module.css';
+
   
 export default function Filter({orderArray}) {
     const dispatch = useDispatch();
