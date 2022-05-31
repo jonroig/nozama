@@ -1,6 +1,6 @@
 ;import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Head from 'next/head';
@@ -8,6 +8,9 @@ import date from 'date-and-time';
 
 import 'react-tabs/style/react-tabs.css';
 import styles from '../styles/Reports.module.css';
+
+import { processCSVFromJson } from '../lib/processCSV';
+import { loadData, updateFilter } from '../actions';
 
 import TotalPurchases from '../components/reportModules/totalPurchases';
 import ByYear from '../components/reportModules/byYear';
@@ -31,6 +34,7 @@ const Stocks = dynamic(
 );
 
 
+
 export default function Report() {
     const dispatch = useDispatch();
     const router = useRouter();
@@ -38,11 +42,22 @@ export default function Report() {
 
     const state = useSelector((state) => state);
     useEffect(() => {
-        if (!state || !state.orderArray || state.orderArray.length === 0) {
-            const goTo = query?.returnPath === 'pwa' ? '/index_pwa' : '/';
-            router.push(goTo);
+        const jsonOrderArray = localStorage.getItem('orderArray');
+        if (jsonOrderArray) {
+            const orderArray = processCSVFromJson(JSON.parse(jsonOrderArray));
+            dispatch(loadData(orderArray));
+
+            const filterObj = JSON.parse(localStorage.getItem('filterObj'));
+            if (filterObj && filterObj?.startDate) {
+                dispatch(updateFilter(filterObj));
+            }
+        } else {
+            if (!state || !state.orderArray || state.orderArray.length === 0) {
+                const goTo = query?.returnPath === 'pwa' ? '/index_pwa' : '/';
+                router.push(goTo);
+            }
         }
-    },[]);
+    },[dispatch]);
     
     const orderArray = state.orderArray;
     let filteredOrderArray = orderArray;

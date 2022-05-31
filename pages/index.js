@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 
 import { loadAmzn, loadData } from '../actions';
 import styles from '../styles/Home.module.css';
-import { processCSV } from '../lib/processCSV';
+import { processCSV, processCSVFromJson } from '../lib/processCSV';
 import AmznStock from '../components/amznStock';
 
 const Upload = dynamic(
@@ -30,14 +30,19 @@ export default function Home() {
   const { readString } = usePapaParse();
 
   // stock stuff taken out for the short term
-  // useEffect(async () => {
-  //   const fetchData = async () => {
-  //     const response = await fetch('/api/amzn');
-  //     const amznData = await response.json();
-  //     dispatch(loadAmzn(amznData));
-  //   }
-  //   fetchData();
-  // }, [dispatch]);
+  useEffect(async () => {
+    // const fetchData = async () => {
+    //   const response = await fetch('/api/amzn');
+    //   const amznData = await response.json();
+    //   dispatch(loadAmzn(amznData));
+    // }
+    // fetchData();
+    const jsonOrderArray = localStorage.getItem('orderArray');
+    if (jsonOrderArray) {
+      const orderArray = processCSVFromJson(JSON.parse(jsonOrderArray));
+      dispatch(loadData(orderArray));
+    }
+  }, [dispatch]);
 
   const doDemo = async () => {
     const response = await fetch('/example.csv');
@@ -75,21 +80,21 @@ export default function Home() {
       <div></div>
       
       <main className={styles.main}>
-        {showUploadButton && (
-          <>
-            <div className={styles.pwaImportHeader}>
-                <Link href="/amazonpurchasehistory">
-                    <Image src="/csv-128.png" width={64} height={64} alt="Amazon purchase history CSV export instructions"/>
-                </Link>
-                <br/>
-                <strong>Get Started:</strong>{' '}
-                How To Export<br/><Link href="/amazonpurchasehistory"><a title="Amazon purchase history CSV export instructions">Amazon Order History Report</a></Link>
-            </div>
-            <p className={styles.importLine }>
-            </p>
-            <Upload />
-           </>
-        )}
+  
+        <>
+          <div className={styles.pwaImportHeader}>
+              <Link href="/amazonpurchasehistory">
+                  <Image src="/csv-128.png" width={64} height={64} alt="Amazon purchase history CSV export instructions"/>
+              </Link>
+              <br/>
+              <strong>Get Started:</strong>{' '}
+              How To Export<br/><Link href="/amazonpurchasehistory"><a title="Amazon purchase history CSV export instructions">Amazon Order History Report</a></Link>
+          </div>
+          <p className={styles.importLine }>
+          </p>
+          <Upload />
+        </>
+        
         {!showUploadButton && (
           <>
             <p className={styles.description}>

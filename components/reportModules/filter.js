@@ -18,6 +18,9 @@ export default function Filter({orderArray}) {
             startDate: newDate.getTime(),
             endDate: currentEndDate.getTime()
         };
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('filterObj', JSON.stringify(tmpObj));
+          }
         dispatch(updateFilter(tmpObj));
     };
 

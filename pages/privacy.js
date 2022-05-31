@@ -28,7 +28,12 @@ function Privacy() {
        
           <p>
             Your purchase history is not uploaded to our central servers, nor does 
-            Nozama attempt to retain your data in any way.
+            Nozama attempt to retain your data in any way. 
+          </p>
+          <p>
+            Your CSV import persists within 
+            your browser by way of 
+            {' '}<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage" target="_blank" rel="noreferrer" title="Learn more about localStorage">localStorage</a>.
           </p>
           <p>
             We do 3rd party tracking with Google Analytics and we load images
