@@ -20,7 +20,7 @@ export default function Filter({orderArray}) {
         };
         if (typeof window !== 'undefined') {
             localStorage.setItem('filterObj', JSON.stringify(tmpObj));
-          }
+        }
         dispatch(updateFilter(tmpObj));
     };
 
@@ -29,6 +29,9 @@ export default function Filter({orderArray}) {
             startDate: currentStartDate.getTime(),
             endDate: newDate.getTime()
         };
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('filterObj', JSON.stringify(tmpObj));
+        }
         dispatch(updateFilter(tmpObj));
     };
     
