@@ -86,6 +86,11 @@ const styles = {
   }
 };
 
+const isSafari = () => (
+  navigator.userAgent.toLowerCase().indexOf('safari/') > -1
+)
+
+
 export default function CSVReader({ returnPath }) {
   const { CSVReader } = useCSVReader();
   const [zoneHover, setZoneHover] = useState(false);
@@ -105,7 +110,7 @@ export default function CSVReader({ returnPath }) {
         const orderObj = processCSV(results.data);
         setZoneHover(false);
         dispatch(loadData(orderObj));
-        if (typeof window !== 'undefined') {
+        if (typeof window !== 'undefined' && !isSafari) {
           localStorage.setItem('orderObj', JSON.stringify(orderObj));
           localStorage.setItem('filterObj', null);
         }

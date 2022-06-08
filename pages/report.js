@@ -34,6 +34,9 @@ const Stocks = dynamic(
 );
 
 
+const isSafari = () => (
+    navigator.userAgent.toLowerCase().indexOf('safari/') > -1
+)
 
 export default function Report() {
     const dispatch = useDispatch();
@@ -42,20 +45,23 @@ export default function Report() {
 
     const state = useSelector((state) => state);
     useEffect(() => {
-        const jsonOrderObj = localStorage.getItem('orderObj');
-        if (jsonOrderObj) {
-            const orderObj = processCSVFromJson(JSON.parse(jsonOrderObj));
-            dispatch(loadData(orderObj));
+        if (!isSafari) {
+            const jsonOrderObj = localStorage.getItem('orderObj');
+            if (jsonOrderObj) {
+                const orderObj = processCSVFromJson(JSON.parse(jsonOrderObj));
+                dispatch(loadData(orderObj));
 
-            const filterObj = JSON.parse(localStorage.getItem('filterObj'));
-            if (filterObj && filterObj?.startDate) {
-                dispatch(updateFilter(filterObj));
-            }
-        } else {
-            if (!state || !state.orderrObj || state.orderArray.length === 0) {
-                const goTo = query?.returnPath === 'pwa' ? '/index_pwa' : '/';
-                router.push(goTo);
-            }
+                const filterObj = JSON.parse(localStorage.getItem('filterObj'));
+                if (filterObj && filterObj?.startDate) {
+                    dispatch(updateFilter(filterObj));
+                }
+            };
+        }
+    
+        if (!state || !state.orderObj || !state.orderObj.orderArray || state.orderObj.orderArray.length === 0) {
+            console.log('state', state);
+            const goTo = query?.returnPath === 'pwa' ? '/index_pwa' : '/';
+            router.push(goTo);
         }
     },[dispatch]);
 
@@ -64,7 +70,7 @@ export default function Report() {
     if (!filteredOrderArray) {
         return <></>
     }
-    
+
     let filterObj = {};
     if (state?.filterObj?.startDate && state?.filterObj?.endDate) {
         filterObj = {
