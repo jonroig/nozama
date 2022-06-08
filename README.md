@@ -16,12 +16,18 @@ It might suprise you. It suprised me.
 * Filter by date
 * PWA functionality - data persisted with localStorage
 
+## To Do
+* Better international Amazon Order History export support (sample files help!)
+* LocalStorage / persistence
+* PWA version for AppStores
+* New visualizations... maybe shipping location breakdown?
 
 ## Development
 
 PRs, totally welcome! Hopefully the format and whatnot is pretty easy to understand.
 
 This is a [Next.js](https://nextjs.org/) project, so it follows standard next-type stuff.
+
 
 ## Getting Started
 
