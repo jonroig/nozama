@@ -37,10 +37,10 @@ export default function Home() {
     //   dispatch(loadAmzn(amznData));
     // }
     // fetchData();
-    const jsonOrderArray = localStorage.getItem('orderArray');
-    if (jsonOrderArray) {
-      const orderArray = processCSVFromJson(JSON.parse(jsonOrderArray));
-      dispatch(loadData(orderArray));
+    const jsonOrderObj = localStorage.getItem('orderObj');
+    if (jsonOrderObj) {
+      const orderObj = processCSVFromJson(JSON.parse(jsonOrderObj));
+      dispatch(loadData(orderObj));
     }
   }, [dispatch]);
 
