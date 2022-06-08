@@ -61,6 +61,10 @@ export default function Report() {
 
     const orderObj = state.orderObj;
     let filteredOrderArray = orderObj.orderArray;
+    if (!filteredOrderArray) {
+        return <></>
+    }
+    
     let filterObj = {};
     if (state?.filterObj?.startDate && state?.filterObj?.endDate) {
         filterObj = {

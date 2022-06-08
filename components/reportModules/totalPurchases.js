@@ -3,7 +3,8 @@ import styles from '../../styles/Reports.module.css';
 // import { getStockPricePerDay } from '../../lib/getStockPricePerDay';
 import RecordItem from "./recordItem";
 
-export default function TotalPurchaes({orderArray, amznArray}) {
+export default function TotalPurchases({orderArray, amznArray}) {
+    console.log('orderArray', orderArray);
     const totalObj = {
         totalNumberOfPurchases: 0,
         totalPurchase: currency(0),

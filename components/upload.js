@@ -98,6 +98,9 @@ export default function CSVReader({ returnPath }) {
   const goTo = returnPath === 'pwa' ? '/report?returnPath=pwa' : '/report'
   return (
     <CSVReader
+      config={{
+        delimitersToGuess: [';', ',']
+      }}
       onUploadAccepted={(results) => {
         const orderObj = processCSV(results.data);
         setZoneHover(false);
@@ -107,7 +110,6 @@ export default function CSVReader({ returnPath }) {
           localStorage.setItem('filterObj', null);
         }
         router.push(goTo);
-        
       }}
       onDragOver={(event) => {
         event.preventDefault();
