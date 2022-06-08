@@ -1,9 +1,9 @@
 import * as types from './types'
 
-export const loadData = (orderArray) => (dispatch) => {
+export const loadData = (orderObj) => (dispatch) => {
     dispatch({
         type: types.LOAD,
-        payload: orderArray
+        payload: orderObj
     });
 };
 

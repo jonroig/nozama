@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import * as types from './types'
 
-const reportReducer = (state = [], { type, payload }) => {
+const reportReducer = (state = {}, { type, payload }) => {
     switch (type) {
         case types.LOAD:
             return payload;
         case types.RESET:
-            return [];
+            return {};
         default:
             return state;
     }
@@ -32,7 +32,7 @@ const filterReducer = (state = {}, { type, payload }) => {
 
 
 const reducers = {
-    orderArray: reportReducer,
+    orderObj: reportReducer,
     amznArray: amznReducer,
     filterObj: filterReducer
 };

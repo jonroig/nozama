@@ -42,25 +42,25 @@ export default function Report() {
 
     const state = useSelector((state) => state);
     useEffect(() => {
-        const jsonOrderArray = localStorage.getItem('orderArray');
-        if (jsonOrderArray) {
-            const orderArray = processCSVFromJson(JSON.parse(jsonOrderArray));
-            dispatch(loadData(orderArray));
+        const jsonOrderObj = localStorage.getItem('orderObj');
+        if (jsonOrderObj) {
+            const orderObj = processCSVFromJson(JSON.parse(jsonOrderObj));
+            dispatch(loadData(orderObj));
 
             const filterObj = JSON.parse(localStorage.getItem('filterObj'));
             if (filterObj && filterObj?.startDate) {
                 dispatch(updateFilter(filterObj));
             }
         } else {
-            if (!state || !state.orderArray || state.orderArray.length === 0) {
+            if (!state || !state.orderrObj || state.orderArray.length === 0) {
                 const goTo = query?.returnPath === 'pwa' ? '/index_pwa' : '/';
                 router.push(goTo);
             }
         }
     },[dispatch]);
-    
-    const orderArray = state.orderArray;
-    let filteredOrderArray = orderArray;
+
+    const orderObj = state.orderObj;
+    let filteredOrderArray = orderObj.orderArray;
     let filterObj = {};
     if (state?.filterObj?.startDate && state?.filterObj?.endDate) {
         filterObj = {
@@ -68,7 +68,7 @@ export default function Report() {
             endDate: new Date(state.filterObj.endDate)
         };
 
-        filteredOrderArray = orderArray.filter(orderObj => (
+        filteredOrderArray = orderObj.orderArray.filter(orderObj => (
             orderObj.OrderDate >= state.filterObj.startDate 
             && orderObj.OrderDate <= state.filterObj.endDate
         ));
@@ -124,7 +124,7 @@ export default function Report() {
                         <ByCategory orderArray={filteredOrderArray} />
                     </TabPanel>
                     <TabPanel>
-                        <Filter orderArray={orderArray} />
+                        <Filter orderArray={orderObj.orderArray} />
                     </TabPanel>
                 </Tabs>
             </div>

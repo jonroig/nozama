@@ -99,11 +99,11 @@ export default function CSVReader({ returnPath }) {
   return (
     <CSVReader
       onUploadAccepted={(results) => {
-        const orderArray = processCSV(results.data);
+        const orderObj = processCSV(results.data);
         setZoneHover(false);
-        dispatch(loadData(orderArray));
+        dispatch(loadData(orderObj));
         if (typeof window !== 'undefined') {
-          localStorage.setItem('orderArray', JSON.stringify(orderArray));
+          localStorage.setItem('orderObj', JSON.stringify(orderObj));
           localStorage.setItem('filterObj', null);
         }
         router.push(goTo);
