@@ -1,4 +1,4 @@
-http://nozama.dev/
-http://nozama.dev/about
-http://nozama.dev/privacy
-http://nozama.dev/amazonpurchasehistory
+https://nozama.dev/
+https://nozama.dev/about
+https://nozama.dev/privacy
+https://nozama.dev/amazonpurchasehistory
